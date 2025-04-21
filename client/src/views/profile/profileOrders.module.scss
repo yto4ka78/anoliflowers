@@ -1,0 +1,37 @@
+.profileOrders_header {
+  background-color: rgb(214, 214, 214);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profileOrders_body {
+  display: flex;
+  flex-direction: column;
+}
+
+.profileOrders_order {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  justify-content: space-between;
+  button {
+    border: none;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #a49864;
+    transition: 0.3s;
+    font-family: "NotCourierSans";
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+.profileOrders_column {
+  width: 16.5%;
+  text-align: center;
+  height: auto;
+}

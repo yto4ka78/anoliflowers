@@ -1,0 +1,42 @@
+@import "../../assets/styles/mixin.scss";
+
+@media (min-width: 457px) {
+  .registration_main {
+    width: 1280px;
+    margin: auto;
+    padding: 20px 0px;
+    .registration_main_forms {
+      display: flex;
+      justify-content: space-evenly;
+      .registration_main_connexForm {
+        @include registrationForm;
+      }
+      .registration_main_regForm {
+        @include registrationForm;
+      }
+    }
+  }
+}
+
+@media (max-width: 456px) {
+  .registration_main {
+    margin: auto;
+    padding: 20px 0px;
+    .registration_main_forms {
+      .registration_main_connexForm {
+        width: 100% !important; //ПРОВЕРЬ ЭТО registration_registration_main_connexForm__g7gc+
+        @include registrationForm;
+        button {
+          width: 100% !important;
+        }
+      }
+      .registration_main_regForm {
+        width: 100% !important; //ПРОВЕРЬ ЭТО registration_registration_main_connexForm__g7gc+
+        @include registrationForm;
+        button {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+}

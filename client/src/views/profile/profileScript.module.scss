@@ -1,0 +1,47 @@
+@media (min-width: 577px) {
+  .profileScript_main {
+    width: 1280px;
+    margin: auto;
+    margin-bottom: 10px;
+    .profileScript_navbar {
+      padding: 5px;
+      background-color: rgb(237, 237, 237);
+      margin: 10px 0px;
+      border-radius: 10px;
+      button {
+        border: none;
+        font-size: 1.2rem;
+        text-decoration: none;
+        color: #a49864;
+        margin: 0px 10px;
+        transition: 0.3s;
+        font-family: "NotCourierSans";
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 576px) {
+  .profileScript_main {
+    .profileScript_navbar {
+      padding: 5px;
+      background-color: rgb(237, 237, 237);
+      margin: 10px;
+      border-radius: 10px;
+      button {
+        border: none;
+        font-size: 1.2rem;
+        text-decoration: none;
+        color: #a49864;
+        margin: 0px 10px;
+        transition: 0.3s;
+        font-family: "NotCourierSans";
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
+}

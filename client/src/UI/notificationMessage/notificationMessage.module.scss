@@ -1,0 +1,12 @@
+@import "../../assets/styles/mixin.scss";
+.notoficationMessage {
+  @include notificationDiv;
+}
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+}

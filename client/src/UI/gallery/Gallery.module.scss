@@ -1,0 +1,65 @@
+@import "../../assets/styles/mixin.scss";
+@import "../../assets/styles/variables";
+
+@media (min-width: $desktop-width) {
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+  }
+  .mainImage img {
+    width: 400px;
+    height: 410px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    object-fit: cover;
+  }
+  .thumbnails {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: $phone-width) {
+  .gallery {
+    display: flex;
+    flex-direction: column;
+  }
+  .mainImage {
+    padding: 0 10px;
+  }
+  .mainImage img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    object-fit: cover;
+  }
+  .thumbnails {
+    padding: 0px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+}
+
+.thumbnails img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border 0.3s;
+}
+
+.thumbnails img:hover {
+  border-color: #888;
+}
+
+.active {
+  border-color: #007bff;
+}

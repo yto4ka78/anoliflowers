@@ -1,0 +1,68 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixin";
+
+.contacts_mainDiv {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem 1rem;
+  font-family: "TimelessMemoriesRegular", sans-serif;
+  color: #333;
+
+  .contacts_header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+  }
+
+  .contacts_list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: $desktop-width) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .contact_item {
+    background-color: #f8f8f8;
+    padding: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    h4 {
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: black;
+    }
+
+    div {
+      font-size: 1rem;
+    }
+
+    a {
+      align-self: flex-start;
+
+      button {
+        @include brownButton;
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem;
+        margin-top: 0.3rem;
+      }
+    }
+  }
+}

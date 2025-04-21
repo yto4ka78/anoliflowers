@@ -1,0 +1,98 @@
+@import "../../assets/styles/mixin.scss";
+@import "../../assets/styles/variables";
+
+@media (min-width: $desktop-width) {
+  .footer_maindiv {
+    background-color: black;
+    padding: 10px;
+    .footer_maindiv_top {
+      padding: 30px 200px;
+      height: 250px;
+      background-color: black;
+      display: flex;
+      color: white;
+      justify-content: space-around;
+      .footer_maindiv_firstcolumn {
+        @include centerText;
+        @include footerText;
+      }
+      .footer_maindiv_secondcolumn {
+        @include centerText;
+        @include footerText;
+      }
+      .footer_maindiv_thirdcolumn {
+        @include centerText;
+        div:nth-child(1) {
+          font-family: "DejaVuSerif";
+          font-size: 1.2rem;
+        }
+        div:nth-child(2) {
+          display: flex;
+          justify-content: center;
+          a {
+            width: 18%;
+            margin: 0px 5px;
+            img {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    .footer_maindiv_bot {
+      display: flex;
+      justify-content: space-evenly;
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    }
+  }
+}
+
+@media (max-width: $phone-width) {
+  .footer_maindiv {
+    text-align: center;
+
+    background-color: black;
+    padding: 10px;
+    .footer_maindiv_top {
+      background-color: #000;
+      color: #fff;
+      .footer_maindiv_firstcolumn {
+        margin-bottom: 10px;
+        @include footerText;
+      }
+      .footer_maindiv_secondcolumn {
+        margin-bottom: 10px;
+        @include footerText;
+      }
+      .footer_maindiv_thirdcolumn {
+        margin-bottom: 10px;
+        div:nth-child(1) {
+          font-family: "DejaVuSerif";
+          font-size: 1.2rem;
+        }
+        div:nth-child(2) {
+          display: flex;
+          justify-content: center;
+          a {
+            width: 18%;
+            margin: 0px 5px;
+            img {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    .footer_maindiv_bot {
+      display: flex;
+      flex-direction: column;
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    }
+  }
+}

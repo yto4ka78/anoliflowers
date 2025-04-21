@@ -1,0 +1,21 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixin";
+
+@media (min-width: $desktop-width) {
+  .contacts_mainDiv {
+    width: 65%;
+    margin: auto;
+    div:nth-of-type(1) {
+      font-family: "TimelessMemoriesRegular";
+    }
+    div:nth-of-type(2) {
+      button {
+        @include brownButton;
+      }
+      .whatsapp {
+      }
+    }
+  }
+}
+@media (max-width: $phone-width) {
+}

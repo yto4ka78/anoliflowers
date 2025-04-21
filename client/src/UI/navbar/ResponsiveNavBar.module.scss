@@ -1,0 +1,43 @@
+// @import "../../assets/styles/variables";
+
+// .burger {
+//   display: none;
+//   font-size: 2rem;
+//   color: white;
+//   cursor: pointer;
+//   margin-left: 1rem;
+// }
+
+// .navLinks {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 1rem;
+//   justify-content: center;
+
+//   div {
+//     text-align: center;
+//   }
+// }
+
+// // 📱 Мобильный режим
+// @media (max-width: $phone-width) {
+//   .burger {
+//     display: block;
+//   }
+
+//   .navLinks {
+//     display: none;
+//     flex-direction: column;
+//     background-color: black;
+//     padding: 1rem;
+//     position: absolute;
+//     top: 100%;
+//     left: 0;
+//     width: 100%;
+//     z-index: 10;
+//   }
+
+//   .show {
+//     display: flex;
+//   }
+// }
