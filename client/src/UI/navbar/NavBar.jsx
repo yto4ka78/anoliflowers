@@ -6,6 +6,9 @@ import mailLogo from "../../assets/images/logo_mail.png";
 import basketLogo from "../../assets/images/logo_basket.png";
 import { getUserFromToken } from "../../utils/getUser";
 import api from "../../utils/api";
+import WhatsAppIcon from "./WhatsAppIcon";
+import InstagramIcon from "./InstagramIcon";
+import MenuButton from "./MenuButton";
 
 const NavBar = () => {
   const [user, setUser] = useState(null);
@@ -32,101 +35,120 @@ const NavBar = () => {
   };
   return (
     <div className={styles.NavBar_Main}>
-      <div className={styles.NavBar_Main_Section0}>
-        <div>Доставка по всей Алматинской области</div>
-      </div>
-      <div className={styles.NavBar_Main_Section1}>
-        <div className={styles.NavBar_Main_Section1_leftParty}>
-          <div>
-            <img src={phoneLogo} alt="" />
-            +77714661111
+      <div className={styles.NavBar_Main_size}>
+        <div className={styles.NavBar_Main_Section1}>
+          <div className={styles.logo}>
+            <a href="">
+              <img src="/logo.png" alt="" />
+            </a>
           </div>
-          <div>
-            {" "}
-            <img src={mailLogo} alt="" />
-            erik.sitnikov.fr@gmail.com
+          <div className={styles.firstSection_text}>
+            Доставка цветов по городу <br /> Алматы и Астана
           </div>
-        </div>
-        <div className={styles.NavBar_Main_Section1_centralParty}>
-          <div>ЦВЕТОЧНЫЙ ДОМ</div>
-          <a href="/">Главная страница</a>
-        </div>
-
-        {/* Если нужно добавить систему егистраций и входа, расскоментировать код снизу, а нижний код  (49 - 69)для входа в профиль заккоментировать */}
-        <div className={styles.NavBar_Main_Section1_rightParty}>
-          {user ? (
-            <div className={styles.dropdown}>
-              <button className={styles.dropbtn}>Профиль</button>
-              <div className={styles.dropdownContent}>
-                <Link to="/profile">Мой аккаунт</Link>
-                <Link
-                  to="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLogout();
-                  }}
-                >
-                  Выйти
-                </Link>
-              </div>
-            </div>
-          ) : (
-            <div className={styles.link_toConnexion}></div>
-          )}
-          {/* {user ? (
-            <div className={styles.dropdown}>
-              <button className={styles.dropbtn}>Профиль</button>
-              <div className={styles.dropdownContent}>
-                <Link to="/profile">Мой аккаунт</Link>
-                <Link
-                  to="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLogout();
-                  }}
-                >
-                  Выйти
-                </Link>
-              </div>
-            </div>
-          ) : (
-            <div className={styles.link_toConnexion}>
-              <Link to="/registration" className="">
-                Войти
-              </Link>
-            </div>
-          )}
-          <div className={styles.NavBar_Main_Section1_rightParty_basket}>
-            <div>0 Тг.</div>
+          <div className={styles.secondSection_text}>
+            <button href="">
+              <div>Алматы</div> <img src="/arr-down.svg" alt="" />
+            </button>
+          </div>
+          <div className={styles.thirdSection_text}>+337-80-33-54-90</div>
+          <div className={styles.fourthSection_text}>
             <div>
-              0 <img src={basketLogo} alt="" />
+              <WhatsAppIcon></WhatsAppIcon>
             </div>
-          </div> */}
+            <div>
+              <InstagramIcon></InstagramIcon>
+            </div>
+          </div>
+          <div className={styles.loginSection}>
+            {user ? (
+              <div className={styles.dropdown}>
+                <button className={styles.dropbtn}>Профиль</button>
+                <div className={styles.dropdownContent}>
+                  <Link to="/profile">Мой аккаунт</Link>
+                  <Link
+                    to="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLogout();
+                    }}
+                  >
+                    Выйти
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.link_toConnexion}>
+                <Link to="/login" className="">
+                  Войти
+                </Link>
+              </div>
+            )}
+            <div className={styles.NavBar_Main_Section1_rightParty_basket}>
+              <div>0 Тг.</div>
+              <div>
+                0 <img src={basketLogo} alt="" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className={styles.NavBar_Main_Section2}>
-        <div className={styles.burger} onClick={toggleMenu}>
-          {menuOpen ? "✖ Список категорий" : "☰ Список категорий"}
-        </div>
 
-        <div
-          className={`${styles.navLinks} ${menuOpen ? styles.show : ""}`}
-          onClick={() => setMenuOpen(false)}
-        >
-          <div>
-            <Link to="/allCategories">Все категории</Link>
+      {/* НавБар вторая часть */}
+      <div className={styles.NavBar_Main_size2}>
+        <div className={styles.NavBar_Main_Section2}>
+          <div className={styles.burger} onClick={toggleMenu}>
+            {menuOpen ? "✖ Список категорий" : "☰ Список категорий"}
           </div>
-          {Array.isArray(links) &&
+
+          <div
+            className={`${styles.navLinks} ${menuOpen ? styles.show : ""}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            <div className={styles.navLinks_menu}>
+              {/* <Link to="/allCategories">
+                <img src="/" alt="" />
+                Меню
+              </Link> */}
+              <MenuButton></MenuButton>
+            </div>
+            {/* {Array.isArray(links) &&
             links.map((link) => (
               <div key={link.id}>
                 <Link to={`/category/${link.id}`}>{link.Name}</Link>
               </div>
-            ))}
-          <div>
-            <Link to="">Отзывы</Link>
-          </div>
-          <div>
-            <Link to="/contacts">Контакты</Link>
+            ))} */}
+            <div className={styles.navLinks__categories}>
+              <div>
+                <Link to="">Каталог</Link>
+              </div>
+              <div>
+                <Link to="">Розы</Link>
+              </div>
+              <div>
+                <Link to="">Пионы</Link>
+              </div>
+              <div>
+                <Link to="">Съедобные</Link>
+              </div>
+              <div>
+                <Link to="">В коробке</Link>
+              </div>
+              <div>
+                <Link to="">Тюльпаны</Link>
+              </div>
+              <div>
+                <Link to="">Пионы</Link>
+              </div>
+              <div>
+                <Link to="">Доставка</Link>
+              </div>
+              <div>
+                <Link to="/contacts">Контакты</Link>
+              </div>
+              <div>
+                <Link to="/contacts">Оплата</Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

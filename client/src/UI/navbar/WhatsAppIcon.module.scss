@@ -1,0 +1,21 @@
+.whatsapp_icon {
+  display: inline-block;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &__svg {
+    padding: 7px;
+    color: #5c6d59;
+    background-color: #e6d8cf;
+    transition: 0.2s ease;
+    border-radius: 100px;
+
+    &:hover {
+      background-color: #6f886f;
+      color: #ffffff;
+    }
+  }
+}

@@ -3,40 +3,70 @@ import { Link } from "react-router-dom";
 import insta_logo from "../../assets/images/instagram_logo.png";
 import vk_logo from "../../assets/images/vk_logo.png";
 import styles from "./Footer.module.scss";
+import WhatsAppIcon from "../navbar/WhatsAppIcon.jsx";
+import InstagramIcon from "../navbar/InstagramIcon.jsx";
 
 const Footer = () => {
   return (
     <div className={styles.footer_maindiv}>
-      <div className={styles.footer_maindiv_top}>
-        <div className={styles.footer_maindiv_firstcolumn}>
-          <div>Часы работы:</div>
-          <div>С 8:00 до 17:00. Выходные суббота и воскресенье</div>
-        </div>
-        <div className={styles.footer_maindiv_secondcolumn}>
-          <div>Контакты:</div>
-          <div>+77714661111</div>
-          <div>erik.sitnikov.fr@gmail.com</div>
-          <div>Город: Астана</div>
-          <div>Адрес: Пелегримова 52</div>
-        </div>
-        <div className={styles.footer_maindiv_thirdcolumn}>
-          <div>Социальные сети:</div>
-          <div>
-            <a href="">
-              <img src={insta_logo} alt="" />
-            </a>
-            <a href="">
-              <img src={vk_logo} alt="" />
-            </a>
+      <div className={styles.NavBar_Main_size2}>
+        <div className={styles.NavBar_Main_Section2}>
+          <div className={styles.navLinks_menu}>
+            <img src="/logo.png" alt="" />
+          </div>
+
+          <div className={styles.navLinks__categories}>
+            <div>
+              <Link to="">Каталог</Link>
+            </div>
+            <div>
+              <Link to="">Розы</Link>
+            </div>
+            <div>
+              <Link to="">Пионы</Link>
+            </div>
+            <div>
+              <Link to="">Съедобные</Link>
+            </div>
+            <div>
+              <Link to="">В коробке</Link>
+            </div>
+            <div>
+              <Link to="">Тюльпаны</Link>
+            </div>
+            <div>
+              <Link to="">Пионы</Link>
+            </div>
+            <div>
+              <Link to="">Доставка</Link>
+            </div>
+            <div>
+              <Link to="/contacts">Контакты</Link>
+            </div>
+            <div>
+              <Link to="/contacts">Оплата</Link>
+            </div>
           </div>
         </div>
       </div>
-      <hr style={{ margin: "0px", border: "1px solid white" }} />
-      <div className={styles.footer_maindiv_bot}>
-        <a href="/">© {new Date().getFullYear()}</a>
-        <a href="/confidentiality">Политика конфиденциальнсоти</a>
-        <a href="/cookie">Управление куки</a>
+      <div className={styles.footer_maindiv_secondsection_size}>
+        <div className={styles.footer_maindiv_secondsection}>
+          <div className={styles.left_side}>
+            <a href="">Карта сайта</a>
+            <a href="">Наверх</a>
+          </div>
+          <div className={styles.right_side}>
+            <div>+337-80-33-54-90</div>
+            <div>
+              <WhatsAppIcon></WhatsAppIcon>
+            </div>
+            <div>
+              <InstagramIcon></InstagramIcon>
+            </div>
+          </div>
+        </div>
       </div>
+      <div></div>
     </div>
   );
 };

@@ -14,6 +14,7 @@ import ProductPage from "./UI/productPage/ProductPage";
 import Contacts from "./views/contacts/Contacts";
 import Confidentiality from "./UI/footer/Confidentiality";
 import Cookie from "./UI/footer/Cookie";
+import Login from "./views/registration/Login";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         display: "flex",
         flexDirection: "column",
         minHeight: "100vh",
+        marginTop: "118px",
       }}
     >
       <BrowserRouter>
@@ -35,7 +37,7 @@ function App() {
             <Route path="/product_page/:id" element={<ProductPage />} />
             <Route path="/cookie" element={<Cookie />} />
             <Route path="/confidentiality" element={<Confidentiality />} />
-            <Route path="/login" element={<Registration />} />
+            <Route path="/login" element={<Login />} />
             <Route
               path="/profile"
               element={

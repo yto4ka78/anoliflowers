@@ -1,4 +1,4 @@
-@import "./UI/carousel/Carousel.scss";
+@import "./UI/carousel/Carousel.module.scss";
 @import "./assets/styles/fonts.scss";
 
 * {
@@ -7,5 +7,9 @@
 }
 
 hr {
+  margin: 0;
+}
+
+p {
   margin: 0;
 }

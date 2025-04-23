@@ -1,0 +1,36 @@
+.menu_button {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #6f886f; // заменишь на свой цвет
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 30px 50px;
+  position: relative;
+  cursor: pointer;
+  &:hover {
+    background-color: #5c6d59;
+  }
+}
+
+.dots {
+  display: grid;
+  grid-template-columns: repeat(3, 4px);
+  grid-template-rows: repeat(3, 4px);
+  gap: 4px;
+
+  span {
+    width: 3px;
+    height: 3px;
+    background-color: white;
+    border-radius: 50%;
+    display: block;
+  }
+}
+.text {
+  font-family: "NotoSerifLight";
+  font-weight: normal;
+}
