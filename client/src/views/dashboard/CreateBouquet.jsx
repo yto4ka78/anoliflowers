@@ -8,6 +8,7 @@ const CreateBouquet = () => {
     name: "",
     description: "",
     price: "",
+    salePrice: "",
     photo: [],
   });
   const [previewPhotos, setPreviewPhotos] = useState([]);
@@ -67,6 +68,7 @@ const CreateBouquet = () => {
     data.append("name", formData.name);
     data.append("description", formData.description);
     data.append("price", formData.price);
+    data.append("saleprice", formData.salePrice);
     categoriesSelected.forEach((catId) => {
       data.append("categories[]", catId);
     });
@@ -131,15 +133,26 @@ const CreateBouquet = () => {
           value={formData.price}
           onChange={handleChange}
         />
+        <label htmlFor="saleprice">Скидка</label>
+        <input
+          id="saleprice"
+          name="saleprice"
+          type="text"
+          value={formData.salePrice}
+          onChange={handleChange}
+        />
         <label htmlFor="category">Категория</label>
         <div className={styles.createBouquet_main_form_category}>
           <select
+            className={styles.select}
             id="category"
             name="category"
             value={selectedCategoryId}
             onChange={(e) => setSelectedCategoryId(e.target.value)}
           >
-            <option value="">Без категории</option>
+            <option className={styles.option} value="">
+              Без категории
+            </option>
             {allCategories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.Name}

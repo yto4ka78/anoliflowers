@@ -11,7 +11,7 @@ const {
 class BouquetController {
   static async createBouquet(req, res) {
     try {
-      const { name, description, price } = req.body;
+      const { name, description, price, saleprice } = req.body;
       const imageUrl = Array.isArray(req.files)
         ? req.files.map((file) => file.path)
         : [];
@@ -21,6 +21,7 @@ class BouquetController {
         name,
         description,
         price,
+        saleprice,
         imageUrl,
       });
 

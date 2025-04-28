@@ -3,11 +3,12 @@
 
 @media (min-width: $desktop-width) {
   .manageBouquet_header {
-    background-color: rgb(214, 214, 214);
-    border-radius: 10px;
+    background-color: #eee2da;
     padding: 10px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    border: #d8ccc4 1px solid;
   }
 
   .bouquet_column {
@@ -26,15 +27,16 @@
     padding: 10px;
     border-bottom: 1px solid #ccc;
     button {
+      background-color: #eee2da;
       border: none;
       font-size: 1.2rem;
       text-decoration: none;
-      color: #a49864;
+      color: black;
       transition: 0.3s;
       font-family: "NotCourierSans";
       margin: 0px 5px;
       &:hover {
-        color: black;
+        color: rgb(73, 73, 73);
       }
     }
   }

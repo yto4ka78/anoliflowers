@@ -52,58 +52,44 @@ const Profile = () => {
     } catch (error) {}
   };
   return (
-    <div className={styles.profile_main}>
-      {/* <div className={styles.profile_main_profile}>
-        <form onSubmit={handleSubmitEmail}>
-          <NotificationMessage />
-          <label htmlFor="">Имя</label>
-          <input type="text" />
-          <label htmlFor="">Номер телефона</label>
-          <input type="text" />
-          <label htmlFor="">Почтовый адрес</label>
-          <input
-            id="email"
-            name="email"
-            type="text"
-            value={formPassword.name}
-            onChange={handleChageEmail}
-          />
-          <button>Изменить адрес</button>
-        </form>
-      </div> */}
-      <div className={styles.profile_main_profile}>
-        <form onSubmit={handleSubmitPassword} action="">
-          <NotificationMessage
-            message={responMessage.message}
-            isActive={responMessage.boolean}
-          />
-          <label htmlFor="">Старый пароль</label>
-          <input
-            id="oldPassword"
-            name="oldPassword"
-            type="password"
-            value={formPassword.oldPassword}
-            onChange={handleChagePassword}
-          />
-          <label htmlFor="">Новый пароль</label>
-          <input
-            id="newPassword"
-            name="newPassword"
-            type="password"
-            value={formPassword.newPassword}
-            onChange={handleChagePassword}
-          />
-          <label htmlFor="">Повторите новый пароль</label>
-          <input
-            id="repeatPassword"
-            name="repeatPassword"
-            type="password"
-            value={formPassword.repeatPassword}
-            onChange={handleChagePassword}
-          />
-          <button>Изменить пароль</button>
-        </form>
-      </div>
+    <div className={styles.profile_mainContainer}>
+      <form action="">
+        <div>
+          <div className={styles.profile_title}>Контактная информация</div>
+          <div className={styles.profile_mainSection}>
+            <div className={styles.profile_section}>
+              <label htmlFor=""> Имя *</label>
+              <input type="text" />
+              <label htmlFor=""> Отображаемое имя *</label>
+              <input type="text" />
+            </div>
+            <div className={styles.profile_section}>
+              <label htmlFor=""> Фамилия *</label>
+              <input type="text" />
+              <label htmlFor=""> Email *</label>
+              <input type="email" />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className={styles.profile_title}>Контактная информация</div>
+          <div className={styles.profile_section}>
+            <label htmlFor="">
+              {" "}
+              Действующий пароль (не заполняйте, чтобы оставить прежний)
+            </label>
+            <input type="text" />
+            <label htmlFor="">
+              {" "}
+              Новый пароль (не заполняйте, чтобы оставить прежний)
+            </label>
+            <input type="text" />
+            <label htmlFor=""> Подтвердите новый пароль</label>
+            <input type="text" />
+          </div>
+        </div>
+        <button>СОХРАНИТЬ</button>
+      </form>
     </div>
   );
 };

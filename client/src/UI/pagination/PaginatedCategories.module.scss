@@ -3,7 +3,6 @@
 .allPagination_list {
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
   justify-content: flex-start;
 }
 @media (min-width: $desktop-width) {
@@ -71,7 +70,7 @@
 
 .pagination li {
   a {
-    color: #a49864;
+    color: #7a9874;
     text-decoration: none;
   }
   cursor: pointer;
@@ -81,7 +80,7 @@
 }
 
 .pagination .active {
-  background-color: #a49864;
+  background-color: #7a9874;
   color: white;
   font-weight: bold;
 }

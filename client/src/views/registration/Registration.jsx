@@ -42,96 +42,32 @@ const Registration = () => {
     }
   };
 
-  //For login
-  const [logFormData, setLogFormData] = useState({
-    logEmail: "",
-    logPassword: "",
-  });
-
-  const handleChangeLogin = (e) => {
-    const { name, value } = e.target;
-    setLogFormData({ ...logFormData, [name]: value });
-  };
-
-  const handleLoginSubmit = async (e) => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append("logEmail", logFormData.logEmail);
-    data.append("logPassword", logFormData.logPassword);
-    try {
-      const response = await axios.post("api/login/login", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-      window.location.href = "/";
-    } catch (error) {
-      setErrorMessage(error.response.data.message);
-    }
-  };
-
   return (
-    <div className={styles.registration_main}>
-      <div className={styles.registration_main_forms}>
-        <div className={styles.registration_main_connexForm}>
-          <div>Подключиться</div>
-          <form action="" onSubmit={handleLoginSubmit}>
-            <label htmlFor="logEmail">Почтовый адрес</label>
-            <input
-              id="logEmail"
-              name="logEmail"
-              type="email"
-              onChange={handleChangeLogin}
-            />
-            <label htmlFor="logPassword">Пароль</label>
-            <input
-              id="logPassword"
-              name="logPassword"
-              type="password"
-              onChange={handleChangeLogin}
-            />
-            {errorMessage && (
-              <div className={styles.errorDiv}>{errorMessage}</div>
-            )}
-            <button>Войти</button>
-          </form>
+    <div className={styles.registrationContainer}>
+      <h1>Регистрация</h1>
+      <form className={styles.loginForm}>
+        <label className={styles.label} htmlFor="username">
+          Email *
+        </label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          className={styles.input}
+        />
+        <div className={styles.registrationText}>
+          Пароль будет отправлен на ваш мейл адрес.
         </div>
-        {/* ЕСЛИ НУЖНО ДОБАВИТЬ РЕГИСТРАЦИЮ, ВОТ ФОРМА */}
-        {/* <div className={styles.registration_main_regForm}>
-          <div>Зарегестрироваться</div>
-          <form action="" onSubmit={handleSubmit}>
-            <label htmlFor="regEmail">Почтовый адрес</label>
-            <input
-              id="regEmail"
-              type="email"
-              name="regEmail"
-              onChange={handleChange}
-            />
-            <label htmlFor="regPassword">Пароль</label>
-            <input
-              id="regPassword"
-              type="password"
-              onChange={handleChange}
-              name="regPassword"
-            />
-            <label htmlFor="regRepPassword">Повторите пароль</label>
-            <input
-              id="regRepPassword"
-              type="password"
-              onChange={handleChange}
-              name="regRepPassword"
-            />
-            <div>{errorMessage}</div>
-            <button>Зарегестрироваться</button>
-            <label>
-              <input type="checkbox" /> Я принимаю условия регистрационных
-              данных
-            </label>
-          </form>
-        </div> */}
-      </div>
+        <div className={styles.registrationText}>
+          Ваши личные данные будут использоваться для упрощения вашей работы с
+          сайтом, управления доступом к вашей учётной записи и для других целей,
+          описанных в нашей
+          <a href=""> Политика конфиденциальности</a>.
+        </div>
+        <button type="submit" className={styles.submitButton}>
+          ВОЙТИ
+        </button>
+      </form>
     </div>
   );
 };

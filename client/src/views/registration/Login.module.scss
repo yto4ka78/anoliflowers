@@ -1,0 +1,103 @@
+.LoginContainer {
+  width: 1180px;
+  margin: auto;
+  padding: 100px 0px;
+  h1 {
+    font-family: "Karma";
+    font-weight: 600;
+  }
+  .loginForm {
+    margin: 20px auto;
+    font-family: sans-serif;
+  }
+  .label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: 500;
+    color: #333;
+    font-family: "CrimsonRoman";
+  }
+  .input {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    font-family: "RalewayRegular";
+
+    &:focus {
+      font-family: "RalewayRegular";
+      border: 1px solid rgb(145, 145, 145);
+      outline: none;
+      box-shadow: none;
+    }
+  }
+  .checkboxContainer {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .custom_checkbox {
+    display: flex;
+    cursor: pointer;
+    font-family: "NotoSerifLight";
+    align-items: center;
+    cursor: pointer;
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .checkmark {
+      width: 20px;
+      height: 20px;
+      background-color: #f9f9f9;
+      border: 2px solid #ddd;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      transition: all 0.2s ease;
+      margin-right: 10px;
+    }
+    input:checked + .checkmark {
+      border: 1px solid #4caf50;
+      background-color: #f9f9f9;
+    }
+    input:checked + .checkmark::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 2px;
+      width: 6px;
+      height: 12px;
+      border: solid #4caf50;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+  .submitButton {
+    font-family: "Georgia";
+    background-color: #7a9675;
+    color: white;
+    padding: 15px 50px;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .submitButton:hover {
+    background-color: #6b8668;
+  }
+
+  .links {
+    a {
+      margin-right: 10px;
+      color: rgb(51, 51, 51);
+      font-family: "TimesNewRoman";
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

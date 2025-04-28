@@ -7,6 +7,7 @@ const ModifyBouquet = ({ bouquet }) => {
     name: "",
     description: "",
     price: "",
+    salePrice: "",
     photo: [],
   });
   const [previewPhotos, setPreviewPhotos] = useState([]);
@@ -37,21 +38,6 @@ const ModifyBouquet = ({ bouquet }) => {
     setCategoriesSelected(categoryIds);
     setBouquetId(bouquet.id);
   }, []);
-
-  //Я совместил 2 useEffect, если будет ошибка, убрать комментарии
-
-  // useEffect(() => {
-  //   setFormData((prev) => ({
-  //     name: bouquet.name,
-  //     description: bouquet.description,
-  //     price: bouquet.price,
-  //     photo: [],
-  //   }));
-  //   setPreviewPhotos(bouquet.imageUrl);
-  //   const categoryIds = bouquet.Categories.map((cat) => String(cat.id));
-  //   setCategoriesSelected(categoryIds);
-  //   setBouquetId(bouquet.id);
-  // }, []);
 
   const removeCategory = (idToRemove) => {
     setCategoriesSelected((prev) => prev.filter((cat) => cat !== idToRemove));
@@ -172,6 +158,14 @@ const ModifyBouquet = ({ bouquet }) => {
           value={formData.price}
           onChange={handleChange}
         />
+        <label htmlFor="salePrice">Скидка</label>
+        <input
+          id="salePrice"
+          name="salePrice"
+          type="text"
+          value={formData.salePrice}
+          onChange={handleChange}
+        />
         <label htmlFor="category">Категория</label>
         <div className={styles.createBouquet_main_form_category}>
           <select
@@ -192,6 +186,7 @@ const ModifyBouquet = ({ bouquet }) => {
             onClick={() => {
               addCategory();
             }}
+            className={styles.button_add}
           >
             ✚
           </button>
@@ -205,7 +200,11 @@ const ModifyBouquet = ({ bouquet }) => {
                   className={styles.createBouquet_main_form_categorySelected}
                 >
                   {category?.Name || "Категория не найдена"}
-                  <button type="button" onClick={() => removeCategory(id)}>
+                  <button
+                    type="button"
+                    onClick={() => removeCategory(id)}
+                    className={styles.button_remove}
+                  >
                     Удалить
                   </button>
                 </div>
@@ -226,13 +225,15 @@ const ModifyBouquet = ({ bouquet }) => {
           {previewPhotos.map((url, index) => (
             <div key={index} className={styles.preview}>
               <button type="button" onClick={() => removePhoto(url)}>
-                ✖
+                ×
               </button>
               <img src={url} alt={`Preview ${index + 1}`} />
             </div>
           ))}
         </div>
-        <button type="submit">Сохранить</button>
+        <button className={styles.button_save} type="submit">
+          Сохранить
+        </button>
       </form>
     </div>
   );

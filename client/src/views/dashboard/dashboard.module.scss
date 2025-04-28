@@ -2,23 +2,32 @@
 
 @media (min-width: $desktop-width) {
   .dashboard_main {
-    width: 1280px;
+    width: 1180px;
     margin: auto;
+    margin-bottom: 10px;
     .dashboard_main_navbar {
       padding: 5px;
-      background-color: rgb(237, 237, 237);
-      margin: 10px 0px;
-      border-radius: 10px;
+      background-color: #eee2da;
+      margin-top: 10px;
+      border: #d8ccc4 1px solid;
+      display: flex;
       button {
+        display: flex;
+        background-color: transparent;
         border: none;
-        font-size: 1.2rem;
+        font-size: 1rem;
         text-decoration: none;
-        color: #a49864;
-        margin: 0px 10px;
+        color: rgb(46, 46, 46);
+        margin: 20px 10px;
         transition: 0.3s;
-        font-family: "NotCourierSans";
+        font-family: "DejaVuSerif";
         &:hover {
-          color: black;
+          box-shadow: inset 0 -1px 0 black;
+        }
+        img {
+          width: 20px;
+          height: 20px;
+          margin-right: 5px;
         }
       }
     }

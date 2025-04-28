@@ -28,7 +28,7 @@ app.use(
 app.use(express.json());
 app.use(xss());
 
-app.use("/api", apiLimiter);
+// app.use("/api", apiLimiter);
 const apiRoutes = require("./routes");
 app.use("/api", apiRoutes);
 

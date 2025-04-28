@@ -77,7 +77,6 @@
               transition: 0.3s ease;
               &:hover {
                 height: 60%;
-                background-color: rgb(242, 242, 242);
                 border: 1px solid rgb(168, 168, 168);
                 cursor: pointer;
               }
@@ -141,7 +140,6 @@
             }
             &:hover {
               height: 60%;
-              background-color: rgb(242, 242, 242);
               border: 1px solid rgb(168, 168, 168);
               cursor: pointer;
             }
@@ -169,8 +167,67 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          .navLinks_menu {
+          .navBarWrapper {
+            position: relative;
+            z-index: 10;
             height: 100%;
+            .overlay {
+              position: fixed;
+              inset: 0;
+              background-color: rgba(0, 0, 0, 0.2);
+              z-index: 10;
+              pointer-events: none;
+            }
+            .navLinks_menu {
+              position: relative;
+              height: 100%;
+              z-index: 10;
+              .navLinks__categoriesFromBd {
+                display: none;
+                min-width: 140%;
+                flex-direction: column;
+                padding: 10px;
+                background-color: white;
+                align-items: flex-start;
+                .categoryItem {
+                  position: relative;
+                }
+                .submenu {
+                  position: fixed;
+                  top: 118px;
+                  left: 619px;
+                  background-color: white;
+                  border-left: 1px solid #ccc;
+                  z-index: 20;
+                  min-width: 200px;
+                  padding: 10px;
+
+                  .submenuItem {
+                    padding: 5px 10px;
+                    white-space: nowrap;
+                    &:hover {
+                      background-color: #f0f0f0;
+                    }
+                  }
+                }
+                button {
+                  display: flex;
+                  width: 100%;
+                  border: none;
+                  background-color: white;
+                  padding: 5px;
+                  font-family: "Georgia";
+                  text-transform: uppercase;
+                  transition: 0.3s ease;
+                  &:hover {
+                    color: orange;
+                  }
+                }
+              }
+              &:hover .navLinks__categoriesFromBd {
+                display: block;
+              }
+            }
           }
           .navLinks__categories {
             display: flex;
@@ -296,7 +353,7 @@
           align-items: center;
           height: 100%;
           .dropbtn {
-            background-color: white;
+            background-color: transparent;
             border: none;
             cursor: pointer;
             height: 100%;

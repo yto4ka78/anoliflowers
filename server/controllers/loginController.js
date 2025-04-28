@@ -32,7 +32,7 @@ class LoginController {
         { expiresIn: "24h" }
       );
       res.json({ token });
-    } catch (err) {
+    } catch (error) {
       showError(error);
     }
   }

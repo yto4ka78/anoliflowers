@@ -1,42 +1,59 @@
 @import "../../assets/styles/mixin.scss";
+.registrationContainer {
+  width: 1180px;
+  margin: auto;
+  padding: 100px 0px;
+  h1 {
+    font-family: "Karma";
+    font-weight: 600;
+  }
+  .loginForm {
+    margin: 20px auto;
+    font-family: sans-serif;
+  }
+  .label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: 500;
+    color: #333;
+    font-family: "CrimsonRoman";
+    font-size: 1.2rem;
+  }
+  .input {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    font-family: "RalewayRegular";
 
-@media (min-width: 457px) {
-  .registration_main {
-    width: 1280px;
-    margin: auto;
-    padding: 20px 0px;
-    .registration_main_forms {
-      display: flex;
-      justify-content: space-evenly;
-      .registration_main_connexForm {
-        @include registrationForm;
-      }
-      .registration_main_regForm {
-        @include registrationForm;
-      }
+    &:focus {
+      font-family: "RalewayRegular";
+      border: 1px solid rgb(145, 145, 145);
+      outline: none;
+      box-shadow: none;
     }
   }
-}
-
-@media (max-width: 456px) {
-  .registration_main {
-    margin: auto;
-    padding: 20px 0px;
-    .registration_main_forms {
-      .registration_main_connexForm {
-        width: 100% !important; //ПРОВЕРЬ ЭТО registration_registration_main_connexForm__g7gc+
-        @include registrationForm;
-        button {
-          width: 100% !important;
-        }
-      }
-      .registration_main_regForm {
-        width: 100% !important; //ПРОВЕРЬ ЭТО registration_registration_main_connexForm__g7gc+
-        @include registrationForm;
-        button {
-          width: 100% !important;
-        }
-      }
+  .registrationText {
+    color: gray;
+    font-family: "TimesNewRoman";
+    margin: 20px 0;
+    a {
+      color: rgb(70, 70, 70);
     }
+  }
+  .submitButton {
+    font-family: "Georgia";
+    background-color: #7a9675;
+    color: white;
+    padding: 15px 50px;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .submitButton:hover {
+    background-color: #6b8668;
   }
 }

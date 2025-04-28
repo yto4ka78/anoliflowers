@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./dashboard.module.scss";
 import CreateBouquet from "./CreateBouquet";
-import Orders from "./ordersRoot";
+import Orders from "./OrdersRoot";
 import ManageBouquet from "./ManageBouquet";
 import ManageCategories from "./ManageCategories";
 import OrderRootDetail from "./OrderRootDetail";
@@ -39,10 +39,10 @@ const Dashboard = () => {
             setCategoryToModify={setCategoryToModify}
           />
         );
-      // case "orders":
-      //   return <Orders setActiveView={setActiveView} />;
-      // case "OrderRootDetail":
-      //   return <OrderRootDetail setActiveView={setActiveView} />;
+      case "orders":
+        return <Orders setActiveView={setActiveView} />;
+      case "OrderRootDetail":
+        return <OrderRootDetail setActiveView={setActiveView} />;
       case "ModifyCategory":
         return <ModifyCategory category={categoryToModify} />;
       case "ManageNavBar":
@@ -54,7 +54,7 @@ const Dashboard = () => {
   return (
     <div className={styles.dashboard_main}>
       <div className={styles.dashboard_main_navbar}>
-        {/* <button onClick={() => setActiveView("orders")}>Заказы</button> */}
+        <button onClick={() => setActiveView("orders")}>Заказы</button>
         <button onClick={() => setActiveView("addBouquet")}>
           Добавить букет
         </button>

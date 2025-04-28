@@ -1,0 +1,31 @@
+.adressContainer {
+  width: 100%;
+  border-bottom: #eee2da 1px solid;
+  padding: 20px;
+  p {
+    margin-bottom: 20px;
+    font-family: "Georgia";
+    color: rgb(97, 97, 97);
+    font-size: 1rem;
+  }
+  .adressTitle {
+    margin-bottom: 20px;
+    font-family: "Georgia";
+    color: rgb(97, 97, 97);
+    font-size: 1.2rem;
+  }
+  .check_adressSubtitle {
+    font-family: "CrimsonRoman";
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    font-family: "CrimsonRoman";
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+}

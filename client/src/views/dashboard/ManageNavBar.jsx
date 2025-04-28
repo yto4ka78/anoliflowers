@@ -7,6 +7,38 @@ const ManageNavBar = () => {
   const [message, setMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [categoriesInMernu, setCategoriesInMenu] = useState([
+    {
+      id: 21,
+      Name: "Розы",
+      createdAt: "2025-04-02 13:34:41",
+      updatedAt: "2025-04-07 19:16:16",
+      showInNavbar: 1,
+      imageUrl: [
+        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743617500/ReactNode/Category/kcpsdwgrihy7kh1qp1qu.jpg",
+      ],
+    },
+    {
+      id: 22,
+      Name: "Фиалки",
+      createdAt: "2025-04-02 13:34:56",
+      updatedAt: "2025-04-07 19:16:16",
+      showInNavbar: 1,
+      imageUrl: [
+        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743617500/ReactNode/Category/kcpsdwgrihy7kh1qp1qu.jpg",
+      ],
+    },
+    {
+      id: 23,
+      Name: "Фиолетовые цветы",
+      createdAt: "2025-04-02 16:01:26",
+      updatedAt: "2025-04-07 19:16:16",
+      showInNavbar: 1,
+      imageUrl: [
+        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743617500/ReactNode/Category/kcpsdwgrihy7kh1qp1qu.jpg",
+      ],
+    },
+  ]);
 
   useEffect(() => {
     const fetchcategories = async () => {
@@ -48,38 +80,72 @@ const ManageNavBar = () => {
 
   return (
     <div className={styles.manageNavBar_main}>
-      <form onSubmit={handleSubmit} className={styles.manageNavBar_form}>
-        {/* Для отображения уведомления с сервер */}
-        <div
-          className={`${styles.manageNavBar_notification} ${
-            showMessage ? styles.visible : styles.hidden
-          }`}
-        >
-          {message}
-        </div>
-        <h3>Выберите категории в порядке иерархии слева направо</h3>
+      <div className={styles.manageNavBar_title}>
+        Добавление категорий для кнопки "меню":
+      </div>
+      <form action="" className={styles.form}>
+        <label htmlFor="">Выбрать категорию из существующих:</label>
         <div>
-          {[0, 1, 2].map((i) => (
-            <div className={styles.manageNavBar_select}>
-              <label htmlFor="firstCategory">{i + 1}.</label>
-              <select
-                key={i}
-                name={`category${i}`}
-                onChange={(e) => handleCategoryChange(i, e.target.value)}
-                defaultValue=""
-              >
-                <option value="">Без Категории</option>
-                {allCategories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.Name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          ))}
+          <select name="" id="">
+            <option value=""></option>
+          </select>
+          <button className={styles.button_addCategory} type="button">
+            ✚
+          </button>
         </div>
-        <button type="submit">Сохранить</button>
       </form>
+      <div className={styles.categotyInMenu}>
+        {categoriesInMernu.map((category, index) => (
+          <div key={index} className={styles.category}>
+            <div>{category.Name}</div>
+            <button>Удалить</button>
+          </div>
+        ))}
+      </div>
+      <div className={styles.manageNavBar_title}>
+        Категории в блоке "Популярные категории":
+      </div>
+      <form action="" className={styles.form}>
+        <label htmlFor="">Выбрать категорию из существующих:</label>
+        <div>
+          <select name="" id="">
+            <option value=""></option>
+          </select>
+          <button className={styles.button_addCategory} type="button">
+            ✚
+          </button>
+        </div>
+      </form>
+      <div className={styles.categotyInMenu}>
+        {categoriesInMernu.map((category, index) => (
+          <div key={index} className={styles.category}>
+            <div>{category.Name}</div>
+            <button>Удалить</button>
+          </div>
+        ))}
+      </div>
+      <div className={styles.manageNavBar_title}>
+        Категории которые следуют после блока "Популярные категории":
+      </div>
+      <form action="" className={styles.form}>
+        <label htmlFor="">Выбрать категорию из существующих:</label>
+        <div>
+          <select name="" id="">
+            <option value=""></option>
+          </select>
+          <button className={styles.button_addCategory} type="button">
+            ✚
+          </button>
+        </div>
+      </form>
+      <div className={styles.categotyInMenu}>
+        {categoriesInMernu.map((category, index) => (
+          <div key={index} className={styles.category}>
+            <div>{category.Name}</div>
+            <button>Удалить</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

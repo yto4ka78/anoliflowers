@@ -41,6 +41,9 @@
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
+    a {
+      text-decoration: none;
+    }
 
     h4 {
       font-size: 1.1rem;
@@ -58,10 +61,28 @@
       align-self: flex-start;
 
       button {
-        @include brownButton;
-        font-size: 0.95rem;
-        padding: 0.5rem 1rem;
-        margin-top: 0.3rem;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        width: 100%;
+        min-height: 65px;
+        color: #fff;
+        font: 15px "NotoSerifLight";
+        text-transform: uppercase;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 10px 20px;
+        margin: 0 0 20px 0;
+        border: solid 1px #7a9874;
+        background: #7a9874;
+        border-radius: 5px;
+        box-sizing: border-box;
+        transition: 0.3s ease;
+        &:hover {
+          background-color: transparent;
+          color: black;
+        }
       }
     }
   }

@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ProtectedRoute from "./utils/protectedRoute";
 import Main from "./views/main/Main";
 import NavBar from "./UI/navbar/NavBar";
-import CreateBouquet from "./views/dashboard/CreateBouquet";
 import Footer from "./UI/footer/Footer";
 import Registration from "./views/registration/Registration";
 import Dashboard from "./views/dashboard/dashboard";
@@ -14,7 +13,7 @@ import ProductPage from "./UI/productPage/ProductPage";
 import Contacts from "./views/contacts/Contacts";
 import Confidentiality from "./UI/footer/Confidentiality";
 import Cookie from "./UI/footer/Cookie";
-import Login from "./views/registration/Login";
+import Login from "./views/registration/Login.jsx";
 
 function App() {
   return (
@@ -38,6 +37,7 @@ function App() {
             <Route path="/cookie" element={<Cookie />} />
             <Route path="/confidentiality" element={<Confidentiality />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
             <Route
               path="/profile"
               element={

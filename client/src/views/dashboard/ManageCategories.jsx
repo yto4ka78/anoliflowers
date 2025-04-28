@@ -137,7 +137,6 @@ const ManageCategories = ({ setActiveView, setCategoryToModify }) => {
         </div>
       </form>
 
-      {/* <div className={styles.manageCategories_listCategories}> */}
       <div className={styles.manageCategories_header}>
         <span className={styles.categories_column}>Название</span>
         <span className={styles.categories_column}></span>
@@ -160,7 +159,6 @@ const ManageCategories = ({ setActiveView, setCategoryToModify }) => {
         ))}
       </div>
     </div>
-    // </div>
   );
 };
 

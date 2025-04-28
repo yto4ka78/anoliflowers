@@ -27,7 +27,7 @@ class MainController {
       });
       res.json(response);
     } catch (err) {
-      showError(error);
+      showError(err);
     }
   }
 
