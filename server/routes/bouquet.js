@@ -9,7 +9,6 @@ const util = require("util");
 
 router.post(
   "/create",
-  authenticate(["root"]),
   (req, res, next) => {
     upload.array("photo", 5)(req, res, function (err) {
       if (err instanceof multer.MulterError) {

@@ -1,0 +1,440 @@
+@import "../../assets/styles/variables.scss";
+@import "../../assets/styles/mixin.scss";
+.main {
+  width: 1180px;
+  margin: auto;
+  display: flex;
+}
+.headTitle {
+  h2 {
+    font-family: "PlayfairDisplay";
+    font-size: 2.8rem;
+    font-weight: 100;
+    margin-bottom: 30px;
+  }
+  hr {
+    color: $color-button;
+  }
+}
+.leftPart {
+  width: 65%;
+}
+.lackOfBouquets {
+  padding: 10px 0px;
+  font-family: "PlayfairDisplay";
+  font-size: 1.3rem;
+  font-style: italic;
+  color: gray;
+}
+.bouquet {
+  display: flex;
+  padding: 25px 0;
+  .bouquetImg {
+    width: 130px;
+    height: 170px;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .bouquetDescription {
+    display: flex;
+    margin-left: 10px;
+    flex-direction: column;
+    justify-content: center;
+    .name {
+      font-family: "RalewayRegular";
+      font-size: 2rem;
+      margin-left: 3px;
+      color: $color-text;
+    }
+    .size {
+      font-family: "PlayfairDisplay";
+      font-size: 1.2rem;
+      margin-left: 4px;
+      margin-bottom: 8px;
+      color: gray;
+    }
+    .sizeSelector {
+      display: flex;
+      .sizeButton {
+        margin-right: 10px;
+        color: #414141;
+        background-color: #f4e8e0;
+        padding: 5px 5px;
+        border: 1px solid #f0dfd3;
+        font-family: "Roboto";
+        transition: 1s ease;
+        border-radius: 10px;
+        font-family: "CrimsonRoman";
+      }
+      .selected {
+        background-color: #b1d8af;
+        border-color: #aed5a6;
+      }
+    }
+    .price_container {
+      display: flex;
+      align-items: center;
+      .salePrice {
+        font-family: "CrimsonRoman";
+        font-size: 1.8rem;
+        font-weight: 100;
+        color: #414141;
+      }
+      .price {
+        font-family: "CrimsonRoman";
+        font-size: 1.3rem;
+        font-weight: 100;
+        color: #a7a7a7;
+        text-decoration: line-through;
+        margin-left: 5px;
+      }
+    }
+  }
+  .flex {
+    flex: 1;
+  }
+  .quantity {
+    display: flex;
+    align-items: center;
+    margin-right: 45px;
+    .quantitySelector {
+      display: flex;
+      align-items: center;
+      background: #f8f8f8;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-family: inherit;
+      box-shadow: -1px 1px 4px rgba(0, 0, 0, 0.219);
+      button {
+        background: none;
+        border: none;
+        color: #86a586; // зелёный
+        font-size: 20px;
+        cursor: pointer;
+        padding: 0 8px;
+        transition: 0.2s;
+        font-weight: bold;
+        &:disabled {
+          color: #ccc;
+          cursor: not-allowed;
+        }
+      }
+      span {
+        margin: 0 10px;
+        min-width: 20px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 16px;
+        color: #333;
+      }
+    }
+  }
+  .deleteButton_div {
+    display: flex;
+    align-items: center;
+    .deleteButton {
+      button {
+        border: 1px solid $color-button;
+        border-radius: 100px;
+        padding: 3px 10px;
+        transition: 0.3s;
+        &:hover {
+          background-color: $color-button;
+          color: $color-text-secondary;
+        }
+      }
+    }
+  }
+}
+
+.userInfo {
+  h3 {
+    font-family: "DejaVuSerif";
+    color: $color-button;
+    font-size: 1.4srem;
+  }
+  .choise_client_buttons {
+    display: flex;
+    width: 60%;
+    button {
+      min-height: auto !important;
+      margin-right: 10px !important;
+      padding: 10px !important;
+      @include greenButton;
+    }
+    .buttonChoised {
+      background-color: $color-text-secondary !important;
+      color: $color-button;
+    }
+  }
+  .choise_anonymously {
+    display: flex;
+    align-items: center;
+    position: relative;
+    button {
+      height: 50%;
+      border: 1px solid gray;
+      border-radius: 100%;
+      padding: 10px;
+      background-color: #ffffff12;
+      z-index: 10;
+    }
+    .buttonChoised {
+      background-color: rgb(175 175 175 / 24%);
+    }
+    span {
+      position: absolute;
+      left: 5px;
+      top: 2px;
+    }
+    div {
+      margin-left: 7px;
+      font-family: "NotoSerifLights";
+      font-size: 1rem;
+      color: $color-text;
+    }
+  }
+  .clientNames {
+    .profile_section {
+      margin-top: 20px;
+      display: flex;
+      color: $color-text;
+      .flex {
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px;
+        width: 100%;
+        label {
+          font-family: "CrimsonRoman";
+          font-size: 1.1rem;
+        }
+        input {
+          font-family: "CrimsonRoman";
+          font-size: 1.1rem;
+          padding: 15px;
+          border: 1px solid rgb(199, 199, 199);
+          &:focus {
+            outline: 1px solid rgb(199, 199, 199);
+          }
+        }
+      }
+    }
+  }
+}
+
+.deliveryChoise {
+  .option {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 5px;
+    color: $color-text;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .custom_choise {
+      padding-left: 28px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .custom_choise::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      background: white;
+      transition: 0.2s;
+    }
+
+    .custom_choise::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 7px;
+      width: 8px;
+      height: 8px;
+      background: #4caf50;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform 0.2s ease;
+    }
+
+    input:checked + .custom_choise::before {
+      border-color: #4caf50;
+    }
+
+    input:checked + .custom_choise::after {
+      transform: scale(1);
+    }
+  }
+}
+
+.deliveryChoise_text {
+  font-style: italic;
+  color: gray;
+}
+
+.map {
+  margin: 20px 0px;
+  .map_title {
+    font-family: "DejaVuSerif";
+    color: $color-text;
+    font-size: 1.6rem;
+  }
+  .map_underTitle {
+    margin-top: 10px;
+    font-family: "PlayfairDisplay";
+    font-size: 1.2rem;
+  }
+  .map_info {
+    display: flex;
+    flex-direction: column;
+    background-color: $color-primary;
+    padding: 20px;
+    .map_info_flex {
+      display: flex;
+      justify-content: space-around;
+      margin: 5px 0px;
+      .map_info_containers {
+        background-color: white;
+        padding: 10px 20px;
+        width: 48%;
+        .map_green {
+          margin-right: 5px;
+          background-color: green;
+          padding: 0px 10px;
+          border-radius: 100px;
+        }
+        .map_red {
+          margin-right: 5px;
+          background-color: red;
+          padding: 0px 10px;
+          border-radius: 100px;
+        }
+        .map_blue {
+          margin-right: 5px;
+          background-color: blue;
+          padding: 0px 10px;
+          border-radius: 100px;
+        }
+      }
+    }
+  }
+}
+
+.order_adresse {
+  h3 {
+    font-family: "DejaVuSerif";
+    color: $color-button;
+    font-size: 1.4srem;
+  }
+  .flex {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    label {
+      font-family: "CrimsonRoman";
+      font-size: 1.1rem;
+    }
+    input {
+      font-family: "CrimsonRoman";
+      font-size: 1.1rem;
+      padding: 15px;
+      border: 1px solid rgb(199, 199, 199);
+      &:focus {
+        outline: 1px solid rgb(199, 199, 199);
+      }
+    }
+  }
+}
+
+.errorContainer {
+  margin: 10px 0px;
+  width: 50%;
+  .errorDiv {
+    padding: 10px;
+    border: 1px solid red;
+    .title {
+      font-family: "CrimsonRoman";
+      font-size: 1.2rem;
+    }
+    .message {
+      color: black;
+    }
+  }
+}
+
+.sendButton {
+  width: 50%;
+  .notoficationSuccess {
+    border: 1px solid green;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  button {
+    @include greenButton;
+  }
+}
+
+.underButton {
+  font-style: italic;
+  color: gray;
+  margin-bottom: 20px;
+}
+
+.orderInfo {
+  z-index: 1;
+  top: 7px;
+  position: absolute;
+  right: 410px;
+  width: 350px;
+  transition: transform 0.2s ease-out;
+  .orderTitle {
+    background-color: $color-primary;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-family: "CrimsonRoman";
+    font-weight: lighter;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    color: $color-text;
+    margin-bottom: 10px;
+    margin-top: 30px;
+  }
+  .orderDetails {
+    background-color: $color-primary;
+    border-radius: 10px;
+    padding: 20px 20px;
+    font-family: "CrimsonRoman";
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    color: $color-text;
+    .orderText {
+      display: flex;
+    }
+    .flex {
+      flex: 1;
+      border-bottom: dashed black 1px;
+      margin-bottom: 8px;
+    }
+  }
+  button {
+    margin: 10px 0px !important;
+    font-size: 1.2rem !important;
+    @include greenButton;
+  }
+}

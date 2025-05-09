@@ -6,8 +6,73 @@ import { useParams } from "react-router-dom";
 
 const CategorySpecial = () => {
   const { id } = useParams();
-  const [nameCategory, setNameCategory] = useState("");
-  const [allBouquets, setAllBouquets] = useState([]);
+  const [nameCategory, setNameCategory] = useState("Розы");
+  const [allBouquets, setAllBouquets] = useState([
+    {
+      name: "Розы",
+      price: 10000,
+      saleprice: 8000,
+      imageUrl: [
+        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
+      ],
+    },
+    {
+      name: "Тюльпаны",
+      price: 9500,
+      saleprice: 7500,
+      imageUrl: [
+        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
+      ],
+    },
+    {
+      name: "Пионы",
+      price: 12000,
+      saleprice: 9800,
+      imageUrl: [
+        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
+      ],
+    },
+    {
+      name: "Герберы",
+      price: 8000,
+      saleprice: 6500,
+      imageUrl: [
+        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
+      ],
+    },
+    {
+      name: "Лилии",
+      price: 11000,
+      saleprice: 9200,
+      imageUrl: [
+        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
+      ],
+    },
+    {
+      name: "Орхидеи",
+      price: 15000,
+      saleprice: 13500,
+      imageUrl: [
+        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
+      ],
+    },
+    {
+      name: "Нарциссы",
+      price: 7000,
+      saleprice: 6000,
+      imageUrl: [
+        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
+      ],
+    },
+    {
+      name: "Альстромерии",
+      price: 9000,
+      saleprice: 7700,
+      imageUrl: [
+        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
+      ],
+    },
+  ]);
   useEffect(() => {
     const fetchData = async () => {
       try {

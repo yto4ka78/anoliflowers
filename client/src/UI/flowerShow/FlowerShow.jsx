@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./FlowerShow.module.scss";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/cartSlice";
 
 const FlowerShow = ({ flower, index }) => {
+  const dispatch = useDispatch();
   return (
     <div className={styles.main_product} key={index}>
       <Link
@@ -33,8 +36,32 @@ const FlowerShow = ({ flower, index }) => {
           )}
         </div>
         <div className={styles.flowerButton}>
-          <button>Купить в 1 клик</button>
-          <button>в корзину</button>
+          <button
+            onClick={() =>
+              dispatch(
+                addToCart({
+                  id: flower.id,
+                  price: flower.saleprice || flower.price,
+                  size: "S",
+                })
+              )
+            }
+          >
+            Купить в 1 клик
+          </button>
+          <button
+            onClick={() =>
+              dispatch(
+                addToCart({
+                  id: flower.id,
+                  price: flower.saleprice || flower.price,
+                  size: "S",
+                })
+              )
+            }
+          >
+            в корзину
+          </button>
         </div>
       </div>
     </div>

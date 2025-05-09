@@ -10,7 +10,10 @@ const {
 
 class BouquetController {
   static async createBouquet(req, res) {
+    console.log("Ошибка в контроллере дошла до создания букета 1");
     try {
+      console.log("Ошибка в контроллере дошла до создания букета 2");
+
       const { name, description, price, saleprice } = req.body;
       const imageUrl = Array.isArray(req.files)
         ? req.files.map((file) => file.path)
@@ -24,7 +27,7 @@ class BouquetController {
         saleprice,
         imageUrl,
       });
-
+      console.log("Ошибка в контроллере дошла до создания букета 3");
       await bouquet.save();
       if (category && category.length > 0) {
         await bouquet.setCategories(category);
@@ -58,7 +61,14 @@ class BouquetController {
       if (!bouquet) {
         return res.status(404).json({ message: "Букет не найден" });
       }
-      const { name, description, price, photoToDeleted, categories } = req.body;
+      const {
+        name,
+        description,
+        price,
+        saleprice,
+        photoToDeleted,
+        categories,
+      } = req.body;
       const exceeded = await autoCleanupUploadIfLimitExceeded({
         uploadedFiles: req.files,
         currentCount: bouquet.imageUrl?.length || 0,
@@ -93,12 +103,14 @@ class BouquetController {
       bouquet.imageUrl = [...bouquet.imageUrl, ...newImageUrl];
       bouquet.description = description;
       bouquet.price = price;
+      bouquet.saleprice = saleprice;
       await bouquet.save();
       if (categories) {
         await bouquet.setCategories(categories);
       }
       res.status(201).json({
         message: "Букет сохранен",
+        imageUrl: bouquet.imageUrl,
       });
     } catch (error) {
       showError(error);

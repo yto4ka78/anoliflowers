@@ -19,7 +19,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    familyname: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     numberPhone: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    surname: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -36,6 +44,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.JSON,
       allowNull: false,
       defaultValue: ["user"],
+    },
+    isVerified: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   });
 

@@ -1,126 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./NavBar.module.scss";
 import { Link } from "react-router-dom";
-import phoneLogo from "../../assets/images/logo_phone.png";
-import mailLogo from "../../assets/images/logo_mail.png";
 import basketLogo from "../../assets/images/logo_basket.png";
 import { getUserFromToken } from "../../utils/getUser";
 import api from "../../utils/api";
 import WhatsAppIcon from "./WhatsAppIcon";
 import InstagramIcon from "./InstagramIcon";
 import MenuButton from "./MenuButton";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [user, setUser] = useState(null);
-  const [links, setLinks] = useState([
-    {
-      id: 1,
-      name: "Популярное",
-      Bouquets: [
-        {
-          name: "Тюльпаны",
-          price: 9500,
-          saleprice: 7500,
-          imageUrl: [
-            "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-          ],
-        },
-        {
-          name: "Пионы",
-          price: 12000,
-          saleprice: 9800,
-          imageUrl: [
-            "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-          ],
-        },
-        {
-          name: "Герберы",
-          price: 8000,
-          saleprice: 6500,
-          imageUrl: [
-            "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-          ],
-        },
-        {
-          name: "Лилии",
-          price: 11000,
-          saleprice: 9200,
-          imageUrl: [
-            "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-          ],
-        },
-        {
-          name: "Орхидеи",
-          price: 15000,
-          saleprice: 13500,
-          imageUrl: [
-            "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-          ],
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: "Новинки",
-      Bouquets: [
-        {
-          name: "КАПКАНЫ КАПКАНЫ КАПКАНЫ ",
-          price: 9500,
-          saleprice: 7500,
-          imageUrl: [
-            "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-          ],
-        },
-        {
-          name: "Гуси",
-          price: 12000,
-          saleprice: 9800,
-          imageUrl: [
-            "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-          ],
-        },
-        {
-          name: "Герберы",
-          price: 8000,
-          saleprice: 6500,
-          imageUrl: [
-            "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-          ],
-        },
-        {
-          name: "Лилии",
-          price: 11000,
-          saleprice: 9200,
-          imageUrl: [
-            "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-          ],
-        },
-        {
-          name: "Орхидеи",
-          price: 15000,
-          saleprice: 13500,
-          imageUrl: [
-            "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-          ],
-        },
-      ],
-    },
-  ]);
+  const [links, setLinks] = useState();
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuHovered, setMenuHovered] = useState(false);
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(null);
   const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart);
+  const totalProduct = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.quantity * item.price,
+    0
+  );
+  const navRef = useRef();
 
   useEffect(() => {
     const user = getUserFromToken();
     setUser(user);
-    const getNavBarLinks = async () => {
-      const response = await api.get("/main/getNavBarLink");
+    const getMenu = async () => {
+      const response = await api.get("/main/getMenu");
       const links = response.data.categories;
       setLinks(links);
     };
-    getNavBarLinks();
+    getMenu();
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setMenuHovered(false);
+      }
+    };
+
+    if (menuHovered) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuHovered]);
 
   const handleLogout = async () => {
     try {
@@ -178,12 +111,16 @@ const NavBar = () => {
                 </Link>
               </div>
             )}
-            <div className={styles.NavBar_Main_Section1_rightParty_basket}>
-              <div>0 Тг.</div>
-              <div>
-                0 <img src={basketLogo} alt="" />
+            <a href="/basket" className={styles.linkBasket}>
+              <div className={styles.NavBar_Main_Section1_rightParty_basket}>
+                <div> {totalProduct ? totalProduct + " к-во." : "0 к-во."}</div>
+
+                <div>
+                  {totalPrice ? totalPrice + " Тг" : "0 Тг"}{" "}
+                  <img src={basketLogo} alt="" />
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -201,34 +138,51 @@ const NavBar = () => {
           >
             <div
               className={styles.navBarWrapper}
+              ref={navRef}
               onMouseEnter={() => setMenuHovered(true)}
-              onMouseLeave={() => setMenuHovered(false)}
             >
-              {menuHovered && <div className={styles.overlay}></div>}{" "}
+              {menuHovered && (
+                <div
+                  className={styles.overlay}
+                  onClick={() => setMenuHovered(false)}
+                ></div>
+              )}{" "}
               <div className={styles.navLinks_menu}>
                 <MenuButton></MenuButton>
-                <div className={styles.navLinks__categoriesFromBd}>
-                  {links.map((link, index) => (
-                    <div
-                      key={index}
-                      className={styles.categoryItem}
-                      onMouseEnter={() => setActiveCategoryIndex(index)}
-                    >
-                      <button>
-                        <button>{link.name}</button>
-                        <div>❯</div>
-                      </button>
-                      {activeCategoryIndex === index && (
-                        <div className={styles.submenu}>
-                          {link.Bouquets?.map((bouquet, i) => (
-                            <button key={i} className={styles.submenuItem}>
-                              {bouquet.name}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                <div
+                  className={`${styles.navLinks__categoriesFromBd} ${
+                    menuHovered ? styles.showMenu : ""
+                  }`}
+                >
+                  {Array.isArray(links) &&
+                    links.length > 0 &&
+                    links.map((link, index) => (
+                      <div
+                        key={index}
+                        className={styles.categoryItem}
+                        onMouseEnter={() => setActiveCategoryIndex(index)}
+                      >
+                        <button>
+                          <div>{link.Name}</div>
+                          <div>❯</div>
+                        </button>
+                        {activeCategoryIndex === index && (
+                          <div className={styles.submenu}>
+                            {link.Bouquets?.map((bouquet, i) => (
+                              <button
+                                key={i}
+                                className={styles.submenuItem}
+                                onClick={() => {
+                                  navigate(`/category/${bouquet.id}`);
+                                }}
+                              >
+                                {bouquet.name}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
@@ -255,13 +209,10 @@ const NavBar = () => {
                 <Link to="">Пионы</Link>
               </div>
               <div>
-                <Link to="">Доставка</Link>
-              </div>
-              <div>
                 <Link to="/contacts">Контакты</Link>
               </div>
               <div>
-                <Link to="/contacts">Оплата</Link>
+                <Link to="/delivery">Доставка</Link>
               </div>
             </div>
           </div>

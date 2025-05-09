@@ -37,13 +37,13 @@ const ManageCategories = ({ setActiveView, setCategoryToModify }) => {
     setPreviewPhotos([...previewPhotos, ...urls]);
   };
 
+  const fetchcategories = async () => {
+    try {
+      const response = await api.post("/dashboard/getAllCategories");
+      setAllCategories(response.data.categories);
+    } catch (error) {}
+  };
   useEffect(() => {
-    const fetchcategories = async () => {
-      try {
-        const response = await api.post("/dashboard/getAllCategories");
-        setAllCategories(response.data.categories);
-      } catch (error) {}
-    };
     fetchcategories();
   }, []);
 
@@ -82,6 +82,7 @@ const ManageCategories = ({ setActiveView, setCategoryToModify }) => {
           "Content-Type": "multipart/form-data",
         },
       });
+      await fetchcategories();
       setMessage(response.data.message);
       setShowMessage(true);
     } catch (error) {

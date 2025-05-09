@@ -4,6 +4,7 @@ import styles from "./main.module.scss";
 import { Link } from "react-router-dom";
 import CheckboxListPriceMain from "../../UI/checkbox/CheckboxListPriceMain";
 import FlowerShow from "../../UI/flowerShow/FlowerShow";
+import ContactWhatsApp from "../../UI/contactWhatsApp/ContactWhatsApp";
 const Main = () => {
   const [flowers, setFlowers] = useState([
     {
@@ -71,7 +72,7 @@ const Main = () => {
       ],
     },
   ]);
-
+  const [isOpen, setIsOpen] = useState(true);
   function mixArray(array) {
     return array.sort(() => Math.random() - 0.5);
   }
@@ -82,24 +83,56 @@ const Main = () => {
         const response = await fetch("/api/main/");
         let result = await response.json();
         if (Array.isArray(result)) {
-          result = mixArray(result).slice(0, 8);
+          result = mixArray(result).slice(0, 24);
         }
         setFlowers(result);
       } catch {}
     };
     fetchData();
   }, []);
+
+  const handlePriceFilterChange = async (ranges) => {
+    try {
+      const response = await fetch("/api/main/");
+      let result = await response.json();
+
+      if (!Array.isArray(result)) return;
+
+      if (ranges.length === 0) {
+        const all = mixArray(result).slice(0, 24);
+        setFlowers(all);
+        return;
+      }
+
+      const filtered = result.filter((flower) => {
+        const price = flower.saleprice || flower.price;
+        return ranges.some(([min, max]) => price >= min && price <= max);
+      });
+
+      const shuffled = mixArray(filtered).slice(0, 24);
+      setFlowers(shuffled);
+    } catch (e) {
+      console.error("Ошибка загрузки", e);
+    }
+  };
+
   return (
     <div>
       <Carousel> </Carousel>
       <div className={styles.main}>
         <div className={styles.main_priceSection}>
           <div>
-            <button>₸ Выбрать бюджет </button>
+            <button onClick={() => setIsOpen((prev) => !prev)}>
+              ₸ Выбрать бюджет {isOpen ? "↑" : "↓"}
+            </button>
           </div>
-          <div className={styles.main_priceSection_checkList}>
-            <CheckboxListPriceMain></CheckboxListPriceMain>
-          </div>
+          {isOpen && (
+            <div className={styles.main_priceSection_checkList}>
+              <CheckboxListPriceMain
+                onFilterChange={handlePriceFilterChange}
+              ></CheckboxListPriceMain>
+            </div>
+          )}
           <div className={styles.main_priceSection_categories}>
             <a href=""> Розы 🌹</a>
             <a href=""> Пионы</a>
@@ -125,33 +158,7 @@ const Main = () => {
       </div>
 
       {/* КОНТАКТ */}
-      <div className={styles.main_contact_width}>
-        <div className={styles.contact_firstSection}>
-          <div>Оставьте заявку и мы соберем для вас идеальный букет</div>
-          <div>Заполните форму и мы свяжемся с Вами в ближайшее время.</div>
-        </div>
-        <div className={styles.contact_secondSection}>
-          <div className={styles.contact_secondSection_input}>
-            <input type="text" placeholder="+7 (ˍˍˍ) ˍˍˍ ˍˍ ˍˍ" />
-            <img src="icon_phone.svg" alt="" />
-          </div>
-          <button>Отправить заявку</button>
-          <div className={styles.contact_secondSection_checkbox}>
-            <label className={styles.custom_checkbox}>
-              <input type="checkbox" defaultChecked />
-              <span className={styles.checkmark}></span>
-            </label>
-            <div>
-              Нажимая на кнопку, вы даёте согласие на обработку персональных
-              данных
-            </div>
-          </div>
-        </div>
-        <div className={styles.contact_thirdSection}>
-          <img src="/womanManager.webp" alt="" />
-          <div>Менеджер перезвонит вам, чтобы уточнить удобное время</div>
-        </div>
-      </div>
+      <ContactWhatsApp> </ContactWhatsApp>
 
       <div className={styles.main_description}>
         <div className={styles.description_firstSection}>

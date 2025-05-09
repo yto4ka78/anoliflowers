@@ -5,6 +5,24 @@
       font-family: "TimelessMemoriesRegular";
       font-size: 1.8rem;
     }
+    .successContainer {
+      padding: 10px;
+      border: 1px solid green;
+      .successMessage {
+        color: rgb(65, 65, 65);
+      }
+    }
+    .errorContainer {
+      padding: 10px;
+      border: 1px solid red;
+      .errorTitle {
+        font-family: "CrimsonRoman";
+        font-size: 1.2rem;
+      }
+      .errorMessage {
+        color: rgb(65, 65, 65);
+      }
+    }
     .profile_section {
       display: flex;
       flex-direction: column;

@@ -7,7 +7,8 @@ const Login = () => {
     logEmail: "",
     logPassword: "",
   });
-  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleChangeLogin = (e) => {
     const { name, value } = e.target;
@@ -29,31 +30,48 @@ const Login = () => {
       localStorage.setItem("token", token);
       window.location.href = "/";
     } catch (error) {
-      setErrorMessage(error.response.data.message);
+      setMessage(error.response.data.message);
+      setShowMessage(true);
     }
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 5000);
+    setTimeout(() => {
+      setShowMessage(false);
+      setMessage("");
+    }, 6000);
   };
   return (
     <div className={styles.LoginContainer}>
       <h1>Вход</h1>
-      <form className={styles.loginForm}>
-        <label className={styles.label} htmlFor="username">
+      <div
+        className={`${styles.notificationMessage} ${
+          showMessage ? styles.visible : styles.hidden
+        }`}
+      >
+        {message}
+      </div>
+      <form className={styles.loginForm} onSubmit={handleLoginSubmit}>
+        <label className={styles.label} htmlFor="logEmail">
           Имя пользователя или Email *
         </label>
         <input
-          type="text"
-          id="username"
-          name="username"
+          type="email"
+          id="logEmail"
+          name="logEmail"
           className={styles.input}
+          onChange={(e) => handleChangeLogin(e)}
         />
 
-        <label className={styles.label} htmlFor="password">
+        <label className={styles.label} htmlFor="logPassword">
           Пароль *
         </label>
         <input
           type="password"
-          id="password"
-          name="password"
+          id="logPassword"
+          name="logPassword"
           className={styles.input}
+          onChange={(e) => handleChangeLogin(e)}
         />
 
         <div className={styles.checkboxContainer}>

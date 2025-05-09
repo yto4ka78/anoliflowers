@@ -30,11 +30,11 @@ const ProfileScript = () => {
           <img src="/busket_profile.svg" alt="" />
           Заказы
         </button>
-        <button onClick={() => setActiveProfileView("address")}>
+        {/* <button onClick={() => setActiveProfileView("address")}>
           {" "}
           <img src="/phoneicon_profile.svg" alt="" />
           Адреса
-        </button>
+        </button> */}
         <button onClick={() => setActiveProfileView("profile")}>
           <img src="/phoneicon_profile.svg" alt="" />
           Анкета

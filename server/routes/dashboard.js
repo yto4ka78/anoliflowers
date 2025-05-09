@@ -23,7 +23,30 @@ router.delete(
   authenticate(["root"]),
   dashboardController.deleteCategory
 );
-router.patch("/modifyNavBar", dashboardController.modifyNavBar);
+
+router.patch(
+  "/addCategoryInMenu",
+  authenticate(["root"]),
+  dashboardController.addCategoryInMenu
+);
+
+router.patch(
+  "/addPopularCategory",
+  authenticate(["root"]),
+  dashboardController.addPopularCategory
+);
+
+router.patch(
+  "/addAfterPopularCategory",
+  authenticate(["root"]),
+  dashboardController.addAfterPopularCategory
+);
+
+router.patch(
+  "/deleteCategoryFromMenu",
+  authenticate(["root"]),
+  dashboardController.deleteCategoryFromMenu
+);
 
 router.post(
   "/modifyCategory",

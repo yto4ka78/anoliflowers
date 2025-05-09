@@ -1,0 +1,36 @@
+.width {
+  width: 800px;
+  margin: auto;
+}
+.messageBox {
+  margin: 80px auto;
+  padding: 40px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: "NotCourierSans", Roboto, sans-serif;
+  background-color: #f7fdfb;
+  border: 1px solid transparent;
+}
+
+.success {
+  border-color: #7a9874;
+  background-color: white;
+  color: #0f5132;
+}
+
+.error {
+  border-color: #7a9874;
+  background-color: white;
+  color: rgb(56, 56, 56);
+}
+
+.messageTitle {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.subText {
+  font-size: 1rem;
+  margin-top: 10px;
+}

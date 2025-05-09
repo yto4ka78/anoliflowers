@@ -3,72 +3,45 @@ import styles from "./manageNavBar.module.scss";
 import api from "../../utils/api";
 
 const ManageNavBar = () => {
-  const [allCategories, setAllCategories] = useState([""]);
+  const [allCategories, setAllCategories] = useState([]);
   const [message, setMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [categoriesInMernu, setCategoriesInMenu] = useState([
-    {
-      id: 21,
-      Name: "Розы",
-      createdAt: "2025-04-02 13:34:41",
-      updatedAt: "2025-04-07 19:16:16",
-      showInNavbar: 1,
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743617500/ReactNode/Category/kcpsdwgrihy7kh1qp1qu.jpg",
-      ],
-    },
-    {
-      id: 22,
-      Name: "Фиалки",
-      createdAt: "2025-04-02 13:34:56",
-      updatedAt: "2025-04-07 19:16:16",
-      showInNavbar: 1,
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743617500/ReactNode/Category/kcpsdwgrihy7kh1qp1qu.jpg",
-      ],
-    },
-    {
-      id: 23,
-      Name: "Фиолетовые цветы",
-      createdAt: "2025-04-02 16:01:26",
-      updatedAt: "2025-04-07 19:16:16",
-      showInNavbar: 1,
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743617500/ReactNode/Category/kcpsdwgrihy7kh1qp1qu.jpg",
-      ],
-    },
-  ]);
+
+  const [newCategoryInMenu, setNewCategoryInMenu] = useState(null);
+  const [categoriesInMernu, setCategoriesInMenu] = useState([]);
+
+  const [newPopularCategory, setNewPopularCategory] = useState(null);
+  const [popularCategories, setPopularCategories] = useState([]);
+
+  const [newAfterPopularCategory, setNewAfterPopularCategory] = useState(null);
+  const [afterPopularCategories, setAfterPopularCategories] = useState([]);
 
   useEffect(() => {
     const fetchcategories = async () => {
       try {
         const response = await api.post("/dashboard/getAllCategories");
         setAllCategories(response.data.categories);
+        setCategoriesInMenu(
+          response.data.categories.filter(
+            (category) => category.showInMenu === true
+          )
+        );
+        setPopularCategories(
+          response.data.categories.filter(
+            (category) => category.showInPopular === true
+          )
+        );
+        setAfterPopularCategories(
+          response.data.categories.filter(
+            (category) => category.showAfterPopular === true
+          )
+        );
       } catch (error) {}
     };
     fetchcategories();
   }, []);
 
-  const handleCategoryChange = (index, value) => {
-    const updated = [...selectedCategory];
-    updated[index] = value;
-    const filtered = [...new Set(updated.filter((v) => v))];
-    setSelectedCategory(filtered);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await api.patch("/dashboard/modifyNavBar", {
-        categories: selectedCategory,
-      });
-      setMessage(response.data.message);
-      setShowMessage(true);
-    } catch (error) {
-      setMessage("❌ Ошибка при добавлении категории.");
-      setShowMessage(true);
-    }
+  function timerForNotification() {
     setTimeout(() => {
       setShowMessage(false);
     }, 5000);
@@ -76,20 +49,103 @@ const ManageNavBar = () => {
       setShowMessage(false);
       setMessage("");
     }, 6000);
+  }
+  const handleCategoryInMenuChange = (value) => {
+    setNewCategoryInMenu(value);
+  };
+  const handlePopularCategoryChange = (value) => {
+    setNewPopularCategory(value);
+  };
+
+  const handleNewAfterPopularCategoryChange = (value) => {
+    setNewAfterPopularCategory(value);
+  };
+
+  const handleAddCategoryInMenu = async () => {
+    try {
+      const response = await api.patch("/dashboard/addCategoryInMenu", {
+        category: newCategoryInMenu,
+      });
+      setCategoriesInMenu((prev) => [...prev, response.data.category]);
+    } catch (error) {
+      setMessage("❌ Ошибка обновите страницу и посмотрите изменения.");
+      setShowMessage(true);
+    }
+    timerForNotification();
+  };
+  const handleAddPopularCategory = async () => {
+    try {
+      const response = await api.patch("/dashboard/addPopularCategory", {
+        category: newPopularCategory,
+      });
+      setPopularCategories((prev) => [...prev, response.data.category]);
+    } catch (error) {
+      setMessage("❌ Ошибка обновите страницу и посмотрите изменения.");
+      setShowMessage(true);
+    }
+    timerForNotification();
+  };
+
+  const handleAddAfterPopularCategory = async () => {
+    try {
+      const response = await api.patch("/dashboard/addAfterPopularCategory", {
+        category: newAfterPopularCategory,
+      });
+      setAfterPopularCategories((prev) => [...prev, response.data.category]);
+    } catch (error) {
+      setMessage("❌ Ошибка обновите страницу и посмотрите изменения.");
+      setShowMessage(true);
+    }
+    timerForNotification();
+  };
+
+  const handleDeleteCategory = async (categoryId, type) => {
+    try {
+      await api.patch("/dashboard/deleteCategoryFromMenu", {
+        id: categoryId,
+        type: type, // например: "menu", "popular", "afterPopular"
+      });
+
+      if (type === "menu") {
+        setCategoriesInMenu((prev) =>
+          prev.filter((cat) => cat.id !== categoryId)
+        );
+      } else if (type === "popular") {
+        setPopularCategories((prev) =>
+          prev.filter((cat) => cat.id !== categoryId)
+        );
+      } else if (type === "afterPopular") {
+        setAfterPopularCategories((prev) =>
+          prev.filter((cat) => cat.id !== categoryId)
+        );
+      }
+    } catch (error) {
+      setMessage("❌ Ошибка при удалении категории.");
+      setShowMessage(true);
+    }
+    timerForNotification();
   };
 
   return (
     <div className={styles.manageNavBar_main}>
       <div className={styles.manageNavBar_title}>
-        Добавление категорий для кнопки "меню":
+        Добавление категорий для кнопки "Меню":
       </div>
       <form action="" className={styles.form}>
         <label htmlFor="">Выбрать категорию из существующих:</label>
         <div>
-          <select name="" id="">
-            <option value=""></option>
+          <select onChange={(e) => handleCategoryInMenuChange(e.target.value)}>
+            {allCategories.map((category, index) => (
+              <option key={category.id} value={category.id}>
+                {category.Name}
+              </option>
+            ))}
           </select>
-          <button className={styles.button_addCategory} type="button">
+          <button
+            className={styles.button_addCategory}
+            type="button"
+            onClick={handleAddCategoryInMenu}
+          >
             ✚
           </button>
         </div>
@@ -98,51 +154,81 @@ const ManageNavBar = () => {
         {categoriesInMernu.map((category, index) => (
           <div key={index} className={styles.category}>
             <div>{category.Name}</div>
-            <button>Удалить</button>
+            <button onClick={() => handleDeleteCategory(category.id, "menu")}>
+              Удалить
+            </button>
           </div>
         ))}
       </div>
+
       <div className={styles.manageNavBar_title}>
         Категории в блоке "Популярные категории":
       </div>
       <form action="" className={styles.form}>
         <label htmlFor="">Выбрать категорию из существующих:</label>
         <div>
-          <select name="" id="">
-            <option value=""></option>
+          <select onChange={(e) => handlePopularCategoryChange(e.target.value)}>
+            {allCategories.map((category, index) => (
+              <option key={category.id} value={category.id}>
+                {category.Name}
+              </option>
+            ))}
           </select>
-          <button className={styles.button_addCategory} type="button">
+          <button
+            className={styles.button_addCategory}
+            type="button"
+            onClick={handleAddPopularCategory}
+          >
             ✚
           </button>
         </div>
       </form>
       <div className={styles.categotyInMenu}>
-        {categoriesInMernu.map((category, index) => (
+        {popularCategories.map((category, index) => (
           <div key={index} className={styles.category}>
             <div>{category.Name}</div>
-            <button>Удалить</button>
+            <button
+              onClick={() => handleDeleteCategory(category.id, "popular")}
+            >
+              Удалить
+            </button>
           </div>
         ))}
       </div>
-      <div className={styles.manageNavBar_title}>
-        Категории которые следуют после блока "Популярные категории":
-      </div>
+
+      <div className={styles.manageNavBar_title}>Розы:</div>
       <form action="" className={styles.form}>
         <label htmlFor="">Выбрать категорию из существующих:</label>
         <div>
-          <select name="" id="">
-            <option value=""></option>
+          <select
+            onChange={(e) =>
+              handleNewAfterPopularCategoryChange(e.target.value)
+            }
+          >
+            {allCategories.map((category, index) => (
+              <option key={category.id} value={category.id}>
+                {category.Name}
+              </option>
+            ))}
           </select>
-          <button className={styles.button_addCategory} type="button">
+          <button
+            className={styles.button_addCategory}
+            type="button"
+            onClick={handleAddAfterPopularCategory}
+          >
             ✚
           </button>
         </div>
       </form>
       <div className={styles.categotyInMenu}>
-        {categoriesInMernu.map((category, index) => (
+        {afterPopularCategories.map((category, index) => (
           <div key={index} className={styles.category}>
             <div>{category.Name}</div>
-            <button>Удалить</button>
+            <button
+              onClick={() => handleDeleteCategory(category.id, "afterPopular")}
+            >
+              Удалить
+            </button>
           </div>
         ))}
       </div>

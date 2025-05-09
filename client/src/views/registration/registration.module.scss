@@ -7,6 +7,16 @@
     font-family: "Karma";
     font-weight: 600;
   }
+  .success {
+    color: green;
+    padding: 5px 0px;
+    font-size: 1.2rem;
+  }
+  .error {
+    color: red;
+    padding: 5px 0px;
+    font-size: 1.2rem;
+  }
   .loginForm {
     margin: 20px auto;
     font-family: sans-serif;

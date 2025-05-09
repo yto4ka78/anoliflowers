@@ -13,3 +13,9 @@ hr {
 p {
   margin: 0;
 }
+
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 900 !important;
+  pointer-events: none;
+}

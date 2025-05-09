@@ -91,7 +91,7 @@
             align-items: center;
             height: 100%;
             .dropbtn {
-              background-color: white;
+              background-color: transparent;
               border: none;
               cursor: pointer;
               height: 100%;
@@ -127,18 +127,29 @@
             }
           }
           //* Корзина */
-          .NavBar_Main_Section1_rightParty_basket {
+          .linkBasket {
+            display: block;
+            text-decoration: none;
+            color: black;
+            height: 100%;
             display: flex;
             align-items: center;
-            transition: 0.3s;
-            height: 100%;
-            div {
-              margin: 0px 10px;
+            .NavBar_Main_Section1_rightParty_basket {
+              display: flex;
+              align-items: center;
+              height: 100%;
+              transition: 0.3s;
+
+              div {
+                margin: 0px 10px;
+              }
+
+              img {
+                width: 20px;
+              }
             }
-            img {
-              width: 20px;
-            }
-            &:hover {
+
+            &:hover .NavBar_Main_Section1_rightParty_basket {
               height: 60%;
               border: 1px solid rgb(168, 168, 168);
               cursor: pointer;
@@ -176,19 +187,24 @@
               inset: 0;
               background-color: rgba(0, 0, 0, 0.2);
               z-index: 10;
-              pointer-events: none;
+              pointer-events: all;
             }
             .navLinks_menu {
               position: relative;
               height: 100%;
-              z-index: 10;
+              z-index: 11;
               .navLinks__categoriesFromBd {
+                position: absolute;
                 display: none;
                 min-width: 140%;
                 flex-direction: column;
                 padding: 10px;
                 background-color: white;
                 align-items: flex-start;
+                &.showMenu {
+                  //Это
+                  display: flex;
+                }
                 .categoryItem {
                   position: relative;
                 }
@@ -224,9 +240,9 @@
                   }
                 }
               }
-              &:hover .navLinks__categoriesFromBd {
-                display: block;
-              }
+              // &:hover .navLinks__categoriesFromBd {
+              //   display: block;
+              // }
             }
           }
           .navLinks__categories {
@@ -362,7 +378,7 @@
           .dropdownContent {
             display: none;
             position: absolute;
-            background-color: #f9f9f9;
+            background-color: transparent;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;

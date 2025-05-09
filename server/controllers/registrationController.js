@@ -1,26 +1,89 @@
-// const bcrypt = require("bcrypt");
-// const db = require("../models/");
-// const User = db.User;
+const db = require("../models/");
+const { sequelize } = require("../models");
+const User = db.User;
+const RegistrationLog = db.RegistrationLog;
+const jwt = require("jsonwebtoken");
+const sendEmail = require("../config/mailer");
+const EMAIL_SECRET = process.env.MAILER_JWT;
 
-// class registrationController {
-//   static async register(req, res) {
-//     try {
-//       const { email, password } = req.body;
-//       const existingUser = await User.findOne({ where: { email } });
-//       if (existingUser) {
-//         return res.status(400).json({ message: "Email уже используется" });
-//       }
-//       const newUser = await User.create({ email, password });
-//       res.status(201).json({
-//         message: "Пользователь успешно зарегистрирован",
-//       });
-//     } catch (err) {
-//       console.error("Ошибка сервера:", err);
-//       res.status(500).json({
-//         message: "Ошибка сервера",
-//       });
-//     }
-//   }
-// }
+class registrationController {
+  static async register(req, res) {
+    const t = await sequelize.transaction();
+    try {
+      const { email, password } = req.body;
 
-// module.exports = registrationController;
+      let rawIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+      if (rawIp === "::1") rawIp = "127.0.0.1";
+      if (rawIp.startsWith("::ffff:")) rawIp = rawIp.replace("::ffff:", "");
+      const ip = rawIp;
+
+      const today = new Date().toISOString().split("T")[0];
+
+      const count = await RegistrationLog.count({
+        where: { ip, date: today },
+      });
+
+      if (count >= 3) {
+        return res.status(429).json({
+          message: "Превышен лимит регистраций с одного IP за день",
+          condition: false,
+        });
+      }
+
+      const existingUser = await User.findOne({ where: { email } });
+      if (existingUser) {
+        return res
+          .status(400)
+          .json({ message: "Email уже используется", condition: false });
+      }
+
+      const newUser = await User.create(
+        { email, password, isVerified: false },
+        { transaction: t }
+      );
+
+      const emailToken = jwt.sign({ email }, EMAIL_SECRET, {
+        expiresIn: "60m",
+      });
+      const url = `http://localhost:5000/email-verified?token=${emailToken}`;
+      await sendEmail({
+        to: email,
+        subject: "Подтверждение email",
+        html: `<p>Нажмите по ссылке, чтобы подтвердить email:</p><a href="${url}">${url}</a>`,
+      });
+
+      await RegistrationLog.create({ ip, date: today }, { transaction: t });
+      await t.commit();
+
+      res.status(201).json({
+        message: "Пользователь зарегистрирован. Подтвердите email через почту.",
+        condition: true,
+      });
+    } catch (err) {
+      await t.rollback();
+      console.error("Ошибка сервера:", err);
+      res.status(500).json({ message: "Ошибка сервера" });
+    }
+  }
+
+  static async verifyEmail(req, res) {
+    try {
+      const { token } = req.query;
+      const decoded = jwt.verify(token, EMAIL_SECRET);
+      const user = await User.findOne({ where: { email: decoded.email } });
+      if (!user) {
+        return res.status(400).json({ message: "Пользователь не найден" });
+      }
+
+      user.isVerified = true;
+      await user.save();
+      res.status(200).json({ message: "Email подтвержден" });
+    } catch (err) {
+      return res
+        .status(400)
+        .json({ message: "Недействительный или просроченный токен" });
+    }
+  }
+}
+
+module.exports = registrationController;

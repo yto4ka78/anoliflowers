@@ -121,7 +121,36 @@
   background: #7a9874;
   border-radius: 5px;
   box-sizing: border-box;
-  width: 30%;
+  transition: 0.3s;
+  &:hover {
+    background: white;
+    color: #7a9874;
+  }
+}
+
+@mixin whiteButton {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 65px;
+  color: #7a9874;
+  font: 15px "Kalnia", sans-serif;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 20px;
+  margin: 0 0 20px 0;
+  border: solid 1px #7a9874;
+  background: white;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: 0.3s;
+  &:hover {
+    background: #7a9874;
+    color: white;
+  }
 }
 
 @mixin brownButton {
@@ -147,7 +176,4 @@
   opacity: 0;
   transform: translateY(-10px);
   margin: 10px 0px;
-}
-
-@mixin greenButton {
 }

@@ -3,10 +3,10 @@ import styles from "./OrderRootDetail.module.scss";
 
 const OrderRootDetail = ({ setActiveView }) => {
   const orderDetails = [
-    { label: "Пользователь", value: "yto4ka78" },
+    { label: "Email", value: "yto4ka78" },
     { label: "Цена", value: "20000 тенге" },
-    { label: "Номер телефона", value: "+77714661111" },
-    { label: "Букет", value: "Белый асфальт" },
+    { label: "Номер телефона заказчика", value: "+77714661111" },
+    { label: "Букеты", value: "Белый асфальт" },
     { label: "Дополнение к заказу", value: "Хочу чтобы было без упаковки" },
     { label: "Дата заказа", value: "21.03.2025" },
     { label: "Адрес", value: "Пушкина 228" },

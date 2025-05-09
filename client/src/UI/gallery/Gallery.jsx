@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Gallery.module.scss"; // или .css
 
 const Gallery = ({ images }) => {
-  const [mainImage, setMainImage] = useState(images[0]);
+  const [mainImage, setMainImage] = useState(null);
+
+  useEffect(() => {
+    if (Array.isArray(images) && images.length > 0) {
+      setMainImage(images[0]);
+    }
+  }, [images]);
+
+  if (!Array.isArray(images) || images.length === 0 || !mainImage) {
+    return <div>Нет изображений</div>;
+  }
 
   return (
     <div className={styles.gallery}>
@@ -21,6 +31,9 @@ const Gallery = ({ images }) => {
             className={img === mainImage ? styles.active : ""}
           />
         ))}
+      </div>
+      <div className={styles.text}>
+        * Свежая поставка цветов - гарантия на букет 7 дней!
       </div>
     </div>
   );

@@ -4,21 +4,7 @@ import api from "../../utils/api";
 import axios from "axios";
 
 const ManageBouquet = ({ setActiveView, setSelectedBouquet }) => {
-  const [listBouquets, setListBouquets] = useState([
-    {
-      id: "1",
-      name: "Белые розы",
-      Categories: [
-        { id: "1", Name: "Розы" },
-        { id: "2", Name: "Белые" },
-      ],
-      description: "Красивая композиция из роз",
-      price: "10000",
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-      ],
-    },
-  ]);
+  const [listBouquets, setListBouquets] = useState([]);
   const [message, setMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
 

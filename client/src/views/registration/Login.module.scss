@@ -2,12 +2,31 @@
   width: 1180px;
   margin: auto;
   padding: 100px 0px;
+  .notificationMessage {
+    width: 80%;
+    font-family: "NotoSerifLight";
+    font-size: 1rem;
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+    margin: 10px 0px;
+    color: red;
+  }
+  .visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
   h1 {
     font-family: "Karma";
     font-weight: 600;
+    margin-bottom: 0px;
   }
   .loginForm {
-    margin: 20px auto;
+    margin: 0px auto 20px auto;
     font-family: sans-serif;
   }
   .label {

@@ -94,7 +94,24 @@
       }
     }
     button {
-      @include pinkyButton;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      width: 100%;
+      min-height: 45px;
+      color: #fff;
+      font: 15px "Kalnia", sans-serif;
+      text-transform: uppercase;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px 20px;
+      margin: 10px 0 20px 0;
+      border: solid 1px #7a9874;
+      background: #7a9874;
+      border-radius: 5px;
+      box-sizing: border-box;
+      width: 30%;
     }
   }
 }
@@ -191,7 +208,24 @@
       }
     }
     button {
-      @include pinkyButton;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      width: 100%;
+      min-height: 45px;
+      color: #fff;
+      font: 15px "Kalnia", sans-serif;
+      text-transform: uppercase;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px 20px;
+      margin: 10px 0 20px 0;
+      border: solid 1px #7a9874;
+      background: #7a9874;
+      border-radius: 5px;
+      box-sizing: border-box;
+      width: 30%;
     }
   }
 }

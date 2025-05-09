@@ -133,10 +133,10 @@ const CreateBouquet = () => {
           value={formData.price}
           onChange={handleChange}
         />
-        <label htmlFor="saleprice">Скидка</label>
+        <label htmlFor="salePrice">Скидка</label>
         <input
-          id="saleprice"
-          name="saleprice"
+          id="salePrice"
+          name="salePrice"
           type="text"
           value={formData.salePrice}
           onChange={handleChange}

@@ -3,15 +3,13 @@ import styles from "./registration.module.scss";
 import axios from "axios";
 
 const Registration = () => {
-  //for registration
   const [regFormData, setregFormData] = useState({
     regEmail: "",
     regPassword: "",
     regRepPassword: "",
   });
-
   const [errorMessage, setErrorMessage] = useState("");
-
+  const [colorMessage, setColorMessage] = useState(null);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setregFormData({ ...regFormData, [name]: value });
@@ -26,38 +24,61 @@ const Registration = () => {
     data.append("email", regFormData.regEmail);
     data.append("password", regFormData.regPassword);
     try {
-      const response = await axios.post(
-        "/api/registration/registration",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      alert("Вы успешно зарегестрировались, подтвердите почтовый адрес");
+      const response = await axios.post("/api/registration/registration", {
+        email: regFormData.regEmail,
+        password: regFormData.regPassword,
+      });
+      setColorMessage(response.data.condition);
+      setErrorMessage(response.data.message);
     } catch (error) {
-      console.error("Ошибка регистрации из реакт:", error);
-      alert("Ошибка регистрации");
+      const errData = error.response?.data;
+      setColorMessage(errData?.condition || false);
+      setErrorMessage(errData?.message || "Ошибка сервера");
     }
   };
 
   return (
     <div className={styles.registrationContainer}>
       <h1>Регистрация</h1>
-      <form className={styles.loginForm}>
-        <label className={styles.label} htmlFor="username">
+      {errorMessage && (
+        <div className={colorMessage ? styles.success : styles.error}>
+          {errorMessage}
+        </div>
+      )}
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
+        <label className={styles.label} htmlFor="regEmail">
           Email *
         </label>
         <input
-          type="text"
-          id="username"
-          name="username"
+          type="email"
+          id="regEmail"
+          name="regEmail"
           className={styles.input}
+          value={regFormData.regEmail}
+          onChange={handleChange}
         />
-        <div className={styles.registrationText}>
-          Пароль будет отправлен на ваш мейл адрес.
-        </div>
+        <label className={styles.label} htmlFor="regPassword">
+          Пароль *
+        </label>
+        <input
+          type="password"
+          id="regPassword"
+          name="regPassword"
+          className={styles.input}
+          value={regFormData.regPassword}
+          onChange={handleChange}
+        />
+        <label className={styles.label} htmlFor="regRepPassword">
+          Повторите пароль *
+        </label>
+        <input
+          type="password"
+          id="regRepPassword"
+          name="regRepPassword"
+          className={styles.input}
+          value={regFormData.regRepPassword}
+          onChange={handleChange}
+        />
         <div className={styles.registrationText}>
           Ваши личные данные будут использоваться для упрощения вашей работы с
           сайтом, управления доступом к вашей учётной записи и для других целей,

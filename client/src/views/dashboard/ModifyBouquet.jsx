@@ -7,7 +7,7 @@ const ModifyBouquet = ({ bouquet }) => {
     name: "",
     description: "",
     price: "",
-    salePrice: "",
+    saleprice: "",
     photo: [],
   });
   const [previewPhotos, setPreviewPhotos] = useState([]);
@@ -31,6 +31,7 @@ const ModifyBouquet = ({ bouquet }) => {
       name: bouquet.name,
       description: bouquet.description,
       price: bouquet.price,
+      saleprice: bouquet.saleprice,
       photo: [],
     }));
     setPreviewPhotos(bouquet.imageUrl);
@@ -78,6 +79,7 @@ const ModifyBouquet = ({ bouquet }) => {
     data.append("name", formData.name);
     data.append("description", formData.description);
     data.append("price", formData.price);
+    data.append("saleprice", formData.saleprice);
     data.append("bouquetId", bouquetId);
     photoToDeleted.forEach((photoId) => {
       data.append("photoToDeleted[]", photoId);
@@ -96,6 +98,9 @@ const ModifyBouquet = ({ bouquet }) => {
           "Content-Type": "multipart/form-data",
         },
       });
+      setPhotoToDeleted([]);
+      setFormData({ ...formData, photo: [] });
+      setPreviewPhotos(response.data.imageUrl);
       setShowMessage(true);
       setMessage("Букет сохранен");
     } catch (error) {
@@ -158,12 +163,12 @@ const ModifyBouquet = ({ bouquet }) => {
           value={formData.price}
           onChange={handleChange}
         />
-        <label htmlFor="salePrice">Скидка</label>
+        <label htmlFor="saleprice">Скидка</label>
         <input
-          id="salePrice"
-          name="salePrice"
+          id="saleprice"
+          name="saleprice"
           type="text"
-          value={formData.salePrice}
+          value={formData.saleprice}
           onChange={handleChange}
         />
         <label htmlFor="category">Категория</label>
@@ -213,6 +218,7 @@ const ModifyBouquet = ({ bouquet }) => {
             );
           })}
         </div>
+        <div>Максимум 5 фотографий</div>
         <label htmlFor="photo">Загрузить фото</label>
         <input
           id="photo"

@@ -78,53 +78,71 @@ class DashboardController {
     }
   }
 
-  static async modifyNavBar(req, res) {
+  static async addCategoryInMenu(req, res) {
     try {
-      // 1. Защита: проверяем, что пришёл массив
-      const rawCategories = Array.isArray(req.body.categories)
-        ? req.body.categories
-        : [];
-
-      // 2. Преобразуем в числа, убираем пустые, дубликаты и некорректные значения
-      const categories = Array.from(
-        new Set(
-          rawCategories.map((id) => parseInt(id, 10)).filter((id) => !isNaN(id)) // исключаем нечисла
-        )
-      );
-
-      // 3. Проверка лимита
-      if (categories.length === 0 || categories.length > 3) {
-        return res.status(400).json({
-          message: "Выберите от 1 до 3 категорий",
-        });
+      const id = req.body.category;
+      if (!id) {
+        return res.status(404).json({ message: "Ошибка id категории" });
       }
-
-      // 4. Обновляем категории
-      await Category.update(
-        { showInNavbar: true },
-        {
-          where: {
-            id: {
-              [Op.in]: categories,
-            },
-          },
-        }
-      );
-
-      await Category.update(
-        { showInNavbar: false },
-        {
-          where: {
-            id: {
-              [Op.notIn]: categories,
-            },
-          },
-        }
-      );
-
-      return res.status(200).json({ message: "Категории обновлены успешно" });
+      await Category.update({ showInMenu: true }, { where: { id: id } });
+      const category = await Category.findByPk(id);
+      return res.status(200).json({ category: category });
     } catch (error) {
       showError(error);
+    }
+  }
+
+  static async addPopularCategory(req, res) {
+    try {
+      const id = req.body.category;
+      if (!id) {
+        return res.status(404).json({ message: "Ошибка id категории" });
+      }
+      await Category.update({ showInPopular: true }, { where: { id: id } });
+      const category = await Category.findByPk(id);
+      return res.status(200).json({ category: category });
+    } catch (error) {
+      showError(error);
+    }
+  }
+
+  static async addAfterPopularCategory(req, res) {
+    try {
+      const id = req.body.category;
+      if (!id) {
+        return res.status(404).json({ message: "Ошибка id категории" });
+      }
+      await Category.update({ showAfterPopular: true }, { where: { id: id } });
+      const category = await Category.findByPk(id);
+      return res.status(200).json({ category: category });
+    } catch (error) {
+      showError(error);
+    }
+  }
+
+  static async deleteCategoryFromMenu(req, res) {
+    try {
+      const { id, type } = req.body;
+      if (!id || !type) {
+        return res.status(400).json({ message: "Неверные данные" });
+      }
+      let updateData = {};
+      if (type === "menu") {
+        updateData = { showInMenu: false };
+      } else if (type === "popular") {
+        updateData = { showInPopular: false };
+      } else if (type === "afterPopular") {
+        updateData = { showAfterPopular: false };
+      } else {
+        return res.status(400).json({ message: "Неверный тип" });
+      }
+
+      await Category.update(updateData, { where: { id } });
+
+      return res.status(200).json({ message: "Категория успешно обновлена" });
+    } catch (error) {
+      showError(error);
+      res.status(500).json({ message: "Ошибка сервера" });
     }
   }
 

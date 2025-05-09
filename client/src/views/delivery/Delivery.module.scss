@@ -1,0 +1,80 @@
+@import "../../assets/styles/variables";
+
+.delivery {
+  width: 1180px;
+  margin: auto;
+}
+.title {
+  font-family: "PlayfairDisplay";
+  font-size: 2rem;
+  font-weight: 100;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;
+}
+.head {
+  display: flex;
+  width: 100%;
+  .head_leftPart {
+    width: 25%;
+    padding: 10px;
+    .title_leftPart {
+      margin-top: 20px;
+      font-family: "DejaVuSerif";
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+    .textContainer_leftPart {
+      background-color: $color-primary;
+      padding: 20px;
+      .p1 {
+        font-family: "CrimsonRoman";
+        font-size: 1.3rem;
+      }
+      .map_green {
+        color: green;
+        font-size: 1.5rem;
+        margin-right: 5px;
+      }
+      .map_red {
+        color: red;
+        font-size: 1.5rem;
+        margin-right: 5px;
+      }
+      .map_blue {
+        color: blue;
+        font-size: 1.5rem;
+        margin-right: 5px;
+      }
+    }
+  }
+  .head_rightpart {
+    width: 75%;
+  }
+}
+.seconde_container {
+  display: flex;
+  .seconde_containerTitle {
+    font-family: "TimelessMemoriesRegular";
+    font-size: 2rem;
+  }
+  .seconde_container_p1 {
+    font-family: "PlayfairDisplay";
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  .seconde_container_p2 {
+    padding: 15px;
+    font-family: "PlayfairDisplay";
+    color: gray;
+    span {
+      font-weight: bold;
+    }
+  }
+  .seconde_container_left_part {
+    padding: 30px;
+  }
+  .seconde_container_right_part {
+    padding: 30px;
+  }
+}

@@ -5,90 +5,144 @@ import NotificationMessage from "../../UI/notificationMessage/NotificationMessag
 import api from "../../utils/api";
 
 const Profile = () => {
-  const [formEmail, setFormEmail] = useState("");
-  const [formPassword, setFormPassword] = useState({
+  const [formData, setFormData] = useState({
+    name: "",
+    surname: "",
+    familyname: "",
+    email: "",
     oldPassword: "",
     newPassword: "",
     repeatPassword: "",
   });
-  const [responMessage, setResponseMessage] = useState({
-    message: "",
-    boolean: false,
-  });
-  const [notifKey, setNotifKey] = useState(0);
-  const showNotification = () => {
-    setNotifKey((prev) => prev + 1);
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+
+  const handleChangeForm = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleChagePassword = (e) => {
-    const { name, value } = e.target;
-    setFormPassword({ ...formPassword, [name]: value });
-  };
-  // const handleChageEmail = (e) => {
-  //   setFormEmail(e.target.value);
-  // };
-  // const handleSubmitEmail = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await api.post("/main/changeProfileEmail", {
-  //       email: formEmail,
-  //     });
-  //     const res = response.data.message;
-  //   } catch (error) {}
-  // };
-  const handleSubmitPassword = async (e) => {
+  useEffect(() => {
+    const getUserInfo = async () => {
+      try {
+        const response = await api.post("/login/getUserData");
+        const user = response.data.user;
+        setFormData({
+          name: user.name,
+          surname: user.surname,
+          familyname: user.familyname,
+          email: user.email,
+        });
+      } catch (error) {}
+    };
+    getUserInfo();
+  }, []);
+  const handleSubmitInfo = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post("/login/changeProfilePassword", {
-        oldPassword: formPassword.oldPassword,
-        newPassword: formPassword.newPassword,
-        repeatPassword: formPassword.repeatPassword,
-      });
-      setResponseMessage({
-        message: response.data.message,
-        boolean: true,
-      });
-      showNotification();
-    } catch (error) {}
+      const response = await api.post("/login/changeProfileInfo", formData);
+      setResponseMessage(response.data.message);
+      setErrorMessage("");
+    } catch (error) {
+      setErrorMessage(error.response.data.message);
+      setResponseMessage("");
+    }
   };
+
   return (
     <div className={styles.profile_mainContainer}>
-      <form action="">
+      <form action="" onSubmit={handleSubmitInfo}>
         <div>
           <div className={styles.profile_title}>Контактная информация</div>
+          {responseMessage && (
+            <div className={styles.successContainer}>
+              <div className={styles.successMessage}>✅ {responseMessage}</div>
+            </div>
+          )}
+          {errorMessage && (
+            <div className={styles.errorContainer}>
+              <div className={styles.errorTitle}>
+                Ошибка обновления профиля:
+              </div>
+              <div className={styles.errorMessage}>⚠️ {errorMessage}</div>
+            </div>
+          )}
           <div className={styles.profile_mainSection}>
             <div className={styles.profile_section}>
-              <label htmlFor=""> Имя *</label>
-              <input type="text" />
-              <label htmlFor=""> Отображаемое имя *</label>
-              <input type="text" />
+              <label htmlFor="name"> Имя *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                onChange={handleChangeForm}
+                value={formData.name}
+              />
+              <label htmlFor="surname"> Отображаемое имя *</label>
+              <input
+                type="text"
+                id="surname"
+                name="surname"
+                onChange={handleChangeForm}
+                value={formData.surname}
+              />
             </div>
             <div className={styles.profile_section}>
-              <label htmlFor=""> Фамилия *</label>
-              <input type="text" />
-              <label htmlFor=""> Email *</label>
-              <input type="email" />
+              <label htmlFor="familyname"> Фамилия *</label>
+              <input
+                type="text"
+                id="familyname"
+                name="familyname"
+                onChange={handleChangeForm}
+                value={formData.familyname}
+              />
+              <label htmlFor="email"> Email *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                onChange={handleChangeForm}
+                value={formData.email}
+              />
             </div>
           </div>
         </div>
         <div>
           <div className={styles.profile_title}>Контактная информация</div>
           <div className={styles.profile_section}>
-            <label htmlFor="">
+            <label htmlFor="oldPassword">
               {" "}
               Действующий пароль (не заполняйте, чтобы оставить прежний)
             </label>
-            <input type="text" />
-            <label htmlFor="">
+            <input
+              type="password"
+              id="oldPassword"
+              name="oldPassword"
+              onChange={handleChangeForm}
+              value={formData.oldPassword}
+            />
+            <label htmlFor="newPassword">
               {" "}
               Новый пароль (не заполняйте, чтобы оставить прежний)
             </label>
-            <input type="text" />
-            <label htmlFor=""> Подтвердите новый пароль</label>
-            <input type="text" />
+            <input
+              type="password"
+              id="newPassword"
+              name="newPassword"
+              onChange={handleChangeForm}
+              value={formData.newPassword}
+            />
+            <label htmlFor="repeatPassword"> Подтвердите новый пароль</label>
+            <input
+              type="password"
+              id="repeatPassword"
+              name="repeatPassword"
+              onChange={handleChangeForm}
+              value={formData.repeatPassword}
+            />
           </div>
         </div>
-        <button>СОХРАНИТЬ</button>
+        <button type="submit">СОХРАНИТЬ</button>
       </form>
     </div>
   );

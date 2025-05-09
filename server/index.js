@@ -6,9 +6,11 @@ const { connectDB, sequelize, syncBD } = require("./config/db");
 const cors = require("cors");
 const xss = require("xss-clean");
 const rateLimit = require("express-rate-limit");
+const startCleanupJob = require("./tasks/cleanupUnverifiedUsers");
 
 connectDB();
 syncBD();
+startCleanupJob();
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,

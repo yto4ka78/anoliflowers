@@ -1,0 +1,139 @@
+.main_contact_width {
+  width: 1180px;
+  margin: 120px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 48px 50px;
+  background-color: #f9f9f9;
+  box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.08);
+  .contact_firstSection {
+    width: 33%;
+    padding: 0px 40px;
+    div:nth-child(1) {
+      font-family: "NotoSerifLight";
+      font-size: 1.5rem;
+    }
+    div:nth-child(2) {
+      font-family: "Kalnia";
+      font-size: 1.2rem;
+      color: gray;
+    }
+  }
+  .contact_secondSection {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 33%;
+    .phoneSended {
+      color: green;
+      font-style: italic;
+      margin: 5px 0px 15px 0px;
+    }
+    .contact_secondSection_input {
+      margin-bottom: 15px;
+      .error_phone {
+        color: red;
+        font-style: italic;
+        margin-top: 5px;
+      }
+      input {
+        width: 100%;
+        padding: 15px 40px;
+        border: 1px solid rgb(145, 145, 145);
+        border-radius: 3px;
+        font-family: "TimesNewRoman";
+        &:focus {
+          border: 1px solid rgb(145, 145, 145);
+          outline: none;
+          box-shadow: none;
+        }
+      }
+      img {
+        position: absolute;
+        top: 28px;
+        left: 15px;
+        transform: translateY(-50%);
+      }
+    }
+    button {
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      width: 100%;
+      min-height: 65px;
+      color: #fff;
+      font: 15px "Kalnia", sans-serif;
+      line-height: 20px;
+      text-transform: uppercase;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      vertical-align: top;
+      padding: 10px 20px;
+      margin: 0 0 20px 0;
+      border: solid 1px #7a9874;
+      background: #7a9874;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .contact_secondSection_checkbox {
+      display: flex;
+      .custom_checkbox {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+        }
+        .checkmark {
+          width: 20px;
+          height: 20px;
+          background-color: #f9f9f9;
+          border: 2px solid #ddd;
+          border-radius: 50%;
+          display: inline-block;
+          position: relative;
+          transition: all 0.2s ease;
+        }
+        input:checked + .checkmark {
+          border: 1px solid #4caf50;
+          background-color: #f9f9f9;
+        }
+        input:checked + .checkmark::after {
+          content: "";
+          position: absolute;
+          left: 6px;
+          top: 2px;
+          width: 6px;
+          height: 12px;
+          border: solid #4caf50;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+      }
+      div {
+        margin-left: 5px;
+        color: #414141;
+        font-size: 12px;
+        font-style: italic;
+        line-height: 1.1;
+      }
+    }
+  }
+  .contact_thirdSection {
+    padding: 0px 40px;
+    width: 33%;
+    img {
+      width: 39%;
+      border-radius: 100px;
+    }
+    div {
+      font-family: "RalewayRegular";
+      font-size: 1rem;
+      color: rgb(75, 75, 75);
+    }
+  }
+}

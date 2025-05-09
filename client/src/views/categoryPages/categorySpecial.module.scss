@@ -1,16 +1,22 @@
+@import "../../assets/styles/variables";
+
 .categorySpecial_main {
-  width: 60%;
+  width: 1180px;
   margin: auto;
   padding-bottom: 10px;
 }
 h3 {
+  padding: 0px 12px;
   margin: 15px 0px;
   font-family: "TimesNewRoman";
-  color: #a49864;
+  font-weight: bold;
+  color: $color-text;
 }
 
 h5 {
+  padding: 0px 12px;
   margin: 5px 0px;
   font-family: "TimesNewRoman";
-  color: #000000;
+  color: gray;
+  font-style: italic;
 }

@@ -68,6 +68,8 @@ const ModifyCategory = ({ category: initialCategory }) => {
       });
       setMessage(response.data.message);
       setShowMessage(true);
+      setPreviewPhotos([response.data.category.imageUrl]);
+      setPhotoToDeleted([]);
     } catch (error) {
       setMessage("❌ Ошибка при добавлении категории.");
       setShowMessage(true);

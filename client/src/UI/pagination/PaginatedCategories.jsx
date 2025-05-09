@@ -19,21 +19,6 @@ const PaginatedCategories = ({ allBouquets }) => {
       <div className={styles.allPagination_list}>
         {currentItems.map((flower, index) => (
           <FlowerShow flower={flower} index={index} key={index} />
-          // <div key={bouquet.id} className={styles.allPagination_element}>
-          //   <Link to={`/product_page/${bouquet.id}`} state={{ id: bouquet.id }}>
-          //     <img src={bouquet.imageUrl[0]} alt={bouquet.Name} />
-          //   </Link>
-          //   <div className={styles.allPagination_elementFlex}>
-          //     <div>{bouquet.name}</div>
-          //     <div>{bouquet.price} тенге</div>
-          //     <Link
-          //       to={`/product_page/${bouquet.id}`}
-          //       state={{ id: bouquet.id }}
-          //     >
-          //       <button>Посмотреть</button>
-          //     </Link>
-          //   </div>
-          // </div>
         ))}
       </div>
 

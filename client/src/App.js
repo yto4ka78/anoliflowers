@@ -14,6 +14,10 @@ import Contacts from "./views/contacts/Contacts";
 import Confidentiality from "./UI/footer/Confidentiality";
 import Cookie from "./UI/footer/Cookie";
 import Login from "./views/registration/Login.jsx";
+import EmailVerified from "./views/registration/EmailVerified.jsx";
+import Basket from "./views/basket/Basket.jsx";
+import Delivery from "./views/delivery/Delivery.jsx";
+import EmailChanged from "./views/registration/EmailChanged.jsx";
 
 function App() {
   return (
@@ -38,6 +42,8 @@ function App() {
             <Route path="/confidentiality" element={<Confidentiality />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/email-verified" element={<EmailVerified />} />
+            <Route path="/email-changed" element={<EmailChanged />} />
             <Route
               path="/profile"
               element={
@@ -46,6 +52,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="/basket" element={<Basket />} />
+            <Route path="/delivery" element={<Delivery />} />
             <Route
               path="/dashboard"
               element={

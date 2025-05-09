@@ -6,10 +6,14 @@ const Bouquet = db.Bouquet;
 const Category = db.Category;
 const { sequelize } = require("../config/db");
 class MainController {
-  static async getNavbarLinks(req, res) {
+  static async getMenu(req, res) {
     try {
       const categories = await Category.findAll({
-        where: { showInNavbar: 1 },
+        where: { showInMenu: 1 },
+        include: {
+          model: Bouquet,
+          through: { attributes: [] },
+        },
       });
 
       res.status(200).json({ categories: categories });
@@ -21,10 +25,7 @@ class MainController {
 
   static async getMainData(req, res) {
     try {
-      const response = await Bouquet.findAll({
-        limit: 8,
-        order: sequelize.literal("RAND()"),
-      });
+      const response = await Bouquet.findAll();
       res.json(response);
     } catch (err) {
       showError(err);

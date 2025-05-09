@@ -5,9 +5,21 @@ const authenticate = require("../middleware/authMiddleware");
 
 router.post("/login", LoginController.autorization);
 router.post(
-  "/changeProfilePassword",
+  "/changeProfileInfo",
   authenticate(["user", "admin", "root"]),
-  LoginController.changePassword
+  LoginController.changeProfileInfo
+);
+
+router.post(
+  "/getUserData",
+  authenticate(["user", "admin", "root"]),
+  LoginController.getUserData
+);
+
+router.post(
+  "/verifyEmail",
+  authenticate(["user", "admin", "root"]),
+  LoginController.verifyEmail
 );
 // router.post(
 //   "/changeProfileEmail",

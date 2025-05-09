@@ -9,7 +9,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    showInNavbar: {
+    showInMenu: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    showInPopular: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    showAfterPopular: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
