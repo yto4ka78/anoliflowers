@@ -5,17 +5,31 @@ import userHasRole from "../../utils/userRole";
 import { Link, useNavigate } from "react-router-dom";
 import Profile from "./Profile";
 import Adress from "./Adress";
+import ProfileOrdersDetail from "./ProfileOrdersDetail";
 
 const ProfileScript = () => {
   const [activeProfileView, setActiveProfileView] = useState("profile");
+  const [selectedOrder, setSelectedOrder] = useState(null);
   const RenderMainProfile = () => {
     switch (activeProfileView) {
       case "profile":
         return <Profile />;
       case "orders":
-        return <ProfileOrders />;
+        return (
+          <ProfileOrders
+            setActiveProfileView={setActiveProfileView}
+            setSelectedOrder={setSelectedOrder}
+          />
+        );
       case "address":
         return <Adress />;
+      case "profileOrderDetail":
+        return (
+          <ProfileOrdersDetail
+            setActiveView={setActiveProfileView}
+            order={selectedOrder}
+          />
+        );
       default:
         return <Profile />;
     }

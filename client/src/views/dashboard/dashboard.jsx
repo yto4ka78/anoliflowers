@@ -13,6 +13,7 @@ const Dashboard = () => {
   const [activeView, setActiveView] = useState("orders");
   const [selectedBouquet, setSelectedBouquet] = useState(null);
   const [categoryToModify, setCategoryToModify] = useState(null);
+  const [selectedOrder, setSelectedOrder] = useState(null);
 
   const renderMainView = () => {
     switch (activeView) {
@@ -40,9 +41,19 @@ const Dashboard = () => {
           />
         );
       case "orders":
-        return <Orders setActiveView={setActiveView} />;
+        return (
+          <Orders
+            setActiveView={setActiveView}
+            setSelectedOrder={setSelectedOrder}
+          />
+        );
       case "OrderRootDetail":
-        return <OrderRootDetail setActiveView={setActiveView} />;
+        return (
+          <OrderRootDetail
+            setActiveView={setActiveView}
+            order={selectedOrder}
+          />
+        );
       case "ModifyCategory":
         return <ModifyCategory category={categoryToModify} />;
       case "ManageNavBar":

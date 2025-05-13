@@ -1,3 +1,4 @@
+@import "../../assets/styles/variables";
 .menu_button {
   height: 100%;
   display: flex;
@@ -13,6 +14,13 @@
   cursor: pointer;
   &:hover {
     background-color: #5c6d59;
+  }
+  @media (max-width: $phone-width) {
+    padding: 0;
+    height: 100%;
+    display: flex;
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -33,4 +41,7 @@
 .text {
   font-family: "NotoSerifLight";
   font-weight: normal;
+  @media (max-width: $phone-width) {
+    display: none;
+  }
 }

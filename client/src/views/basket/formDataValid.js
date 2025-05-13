@@ -22,8 +22,9 @@ export const validateFormData = (formData) => {
   }
 
   if (!deliveryZone) errors.push("Выберите зону доставки");
-
-  if (!address.trim()) errors.push("Укажите адрес доставки");
+  if (!deliveryZone === "pickup") {
+    if (!address.trim()) errors.push("Укажите адрес доставки");
+  }
   if (errors.length > 0) {
     return errors;
   } else {

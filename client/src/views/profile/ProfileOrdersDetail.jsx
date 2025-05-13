@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import styles from "./OrderRootDetail.module.scss";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import styles from "./ProfileOrdersDetail.module.scss";
+import userHasRole from "../../utils/userRole";
 import api from "../../utils/api";
 
-const OrderRootDetail = ({ setActiveView, order }) => {
+const ProfileOrdersDetail = ({ setActiveView, order }) => {
   const orderDetails = [
     { label: "Email заказчика", value: order?.emailuser || "Не указано" },
     {
@@ -61,27 +63,6 @@ const OrderRootDetail = ({ setActiveView, order }) => {
   ];
   const [statusOrder, setStatusOrder] = useState(order.status);
 
-  const handleSubmitOrder = async (id) => {
-    try {
-      const response = await api.post("/order/confirmorder", {
-        id: id,
-      });
-      const resultat = response.data.status;
-      setStatusOrder(response.data.status);
-    } catch (error) {}
-  };
-
-  const deleteOrder = async (id) => {
-    try {
-      const response = await api.post("/order/deleteorder", {
-        id: id,
-      });
-      const resultat = response.data.status;
-      if (resultat === "deleted") {
-        setActiveView("orders");
-      }
-    } catch (error) {}
-  };
   return (
     <div className={styles.orderRootDetail_main}>
       <div className={styles.orderRootDetail_container}>
@@ -93,22 +74,7 @@ const OrderRootDetail = ({ setActiveView, order }) => {
         ))}
         {statusOrder === "pending" ? (
           <div className={styles.orderDetails_buttons}>
-            <button
-              className={styles.button_confirmed}
-              onClick={() => {
-                handleSubmitOrder(order.id);
-              }}
-            >
-              Подтвердить
-            </button>
-            <button
-              className={styles.button_deleted}
-              onClick={() => {
-                deleteOrder(order.id);
-              }}
-            >
-              Удалить
-            </button>
+            Заказ не Подтверждён
           </div>
         ) : (
           <div className={styles.orderConfirmed_text}>✅ Заказ Подтверждён</div>
@@ -118,4 +84,4 @@ const OrderRootDetail = ({ setActiveView, order }) => {
   );
 };
 
-export default OrderRootDetail;
+export default ProfileOrdersDetail;

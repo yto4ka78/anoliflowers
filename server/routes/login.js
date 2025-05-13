@@ -21,10 +21,8 @@ router.post(
   authenticate(["user", "admin", "root"]),
   LoginController.verifyEmail
 );
-// router.post(
-//   "/changeProfileEmail",
-//   authenticate(["user", "admin", "root"]),
-//   LoginController.changeEmail
-// );
+
+router.post("/forgetPassword", LoginController.forgetPassword);
+router.post("/resetPassword", LoginController.resetPassword);
 
 module.exports = router;

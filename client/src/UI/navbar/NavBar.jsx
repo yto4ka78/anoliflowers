@@ -13,10 +13,10 @@ import { useSelector } from "react-redux";
 const NavBar = () => {
   const [user, setUser] = useState(null);
   const [links, setLinks] = useState();
-  const [menuOpen, setMenuOpen] = useState(false);
+  // const [menuOpen, setMenuOpen] = useState(false);
   const [menuHovered, setMenuHovered] = useState(false);
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(null);
-  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  // const toggleMenu = () => setMenuOpen((prev) => !prev);
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const totalProduct = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -74,9 +74,9 @@ const NavBar = () => {
             Доставка цветов по городу <br /> Алматы и Астана
           </div>
           <div className={styles.secondSection_text}>
-            <button href="">
+            {/* <button href="">
               <div>Алматы</div> <img src="/arr-down.svg" alt="" />
-            </button>
+            </button> */}
           </div>
           <div className={styles.thirdSection_text}>+337-80-33-54-90</div>
           <div className={styles.fourthSection_text}>
@@ -122,20 +122,22 @@ const NavBar = () => {
               </div>
             </a>
           </div>
+
+          {/* Для телефона */}
+          <div className={styles.burger_button}>
+            <MenuButton></MenuButton>
+          </div>
         </div>
       </div>
 
       {/* НавБар вторая часть */}
       <div className={styles.NavBar_Main_size2}>
         <div className={styles.NavBar_Main_Section2}>
-          <div className={styles.burger} onClick={toggleMenu}>
+          {/* <div className={styles.burger} onClick={toggleMenu}>
             {menuOpen ? "✖ Список категорий" : "☰ Список категорий"}
-          </div>
+          </div> */}
 
-          <div
-            className={`${styles.navLinks} ${menuOpen ? styles.show : ""}`}
-            onClick={() => setMenuOpen(false)}
-          >
+          <div className={`${styles.navLinks} `}>
             <div
               className={styles.navBarWrapper}
               ref={navRef}
@@ -173,7 +175,7 @@ const NavBar = () => {
                                 key={i}
                                 className={styles.submenuItem}
                                 onClick={() => {
-                                  navigate(`/category/${bouquet.id}`);
+                                  navigate(`/product_page/${bouquet.id}`);
                                 }}
                               >
                                 {bouquet.name}

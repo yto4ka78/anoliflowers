@@ -38,7 +38,7 @@ const ProductPage = () => {
       } catch (error) {}
     };
     getProduct();
-  }, []);
+  }, [id]);
   if (!product) {
     return <div>Загрузка...</div>;
   }

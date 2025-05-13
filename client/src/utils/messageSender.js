@@ -1,4 +1,6 @@
-export const generateWhatsAppMessage = (formData) => {
+import getUserFromToken from "./getUser";
+import api from "./api";
+export const handleOrderCreationAndGenerateMessage = (formData) => {
   const {
     bouquets,
     isSelfRecipient,
@@ -11,7 +13,6 @@ export const generateWhatsAppMessage = (formData) => {
     address,
     comment,
   } = formData;
-
   const bouquetLines = bouquets.map((b) => {
     return `${b.name}\nКоличество: ${b.quantity}\nРазмер: ${b.size}\nЦена: ${b.total} ₸\n`;
   });
@@ -43,6 +44,14 @@ export const generateWhatsAppMessage = (formData) => {
     message += `\n📝 Комментарий: ${comment}`;
   }
 
+  const user = getUserFromToken();
+  if (user) {
+    api
+      .post("/order/creatOrder", {
+        formData,
+      })
+      .catch((err) => {});
+  }
   return message;
 };
 

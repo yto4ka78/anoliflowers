@@ -35,11 +35,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    orders: {
-      type: DataTypes.JSON,
-      allowNull: true,
-      defaultValue: [],
-    },
     roles: {
       type: DataTypes.JSON,
       allowNull: false,
@@ -54,6 +49,13 @@ module.exports = (sequelize, DataTypes) => {
   User.beforeCreate(async (user) => {
     user.password = await bcrypt.hash(user.password, 10);
   });
+
+  User.associate = (models) => {
+    User.hasMany(models.Orderdetails, {
+      foreignKey: "userId",
+      as: "orders",
+    });
+  };
 
   return User;
 };

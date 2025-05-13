@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "./Login.module.scss";
 import axios from "axios";
 const Login = () => {
-  //For login
   const [logFormData, setLogFormData] = useState({
     logEmail: "",
     logPassword: "",
@@ -41,6 +40,7 @@ const Login = () => {
       setMessage("");
     }, 6000);
   };
+
   return (
     <div className={styles.LoginContainer}>
       <h1>Вход</h1>
@@ -88,7 +88,7 @@ const Login = () => {
       </form>
 
       <div className={styles.links}>
-        <a href="">Забыл свой пароль?</a>
+        <a href="/forget_pass">Забыл свой пароль?</a>
         <a href="/registration">Регистрация</a>
       </div>
     </div>

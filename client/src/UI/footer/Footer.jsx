@@ -38,13 +38,10 @@ const Footer = () => {
               <Link to="">Пионы</Link>
             </div>
             <div>
-              <Link to="">Доставка</Link>
-            </div>
-            <div>
               <Link to="/contacts">Контакты</Link>
             </div>
             <div>
-              <Link to="/contacts">Оплата</Link>
+              <Link to="/delivery">Доставка</Link>
             </div>
           </div>
         </div>

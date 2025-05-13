@@ -6,56 +6,7 @@ import styles from "./allcategory.module.scss";
 import PaginatedCategories from "../../UI/pagination/PaginatedCategories";
 
 const AllCategory = () => {
-  const [pupularCategories, setpupularCategories] = useState([
-    {
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743600807/ReactNode/Category/himcahhanly7nhagni6i.jpg",
-      ],
-      id: "21",
-      Name: "Розы",
-      showInMenu: true,
-      showInPopular: null,
-      showAfterPopular: null,
-      createdAt: "2025-04-02T13:34:41.000Z",
-      updatedAt: "2025-04-07T19:16:16.000Z",
-    },
-    {
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743600822/ReactNode/Category/fz3fpf4ugukhqtemsfjz.jpg",
-      ],
-      id: "22",
-      Name: "Фиалки",
-      showInMenu: true,
-      showInPopular: null,
-      showAfterPopular: null,
-      createdAt: "2025-04-02T13:34:56.000Z",
-      updatedAt: "2025-04-07T19:16:16.000Z",
-    },
-    {
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743617500/ReactNode/Category/kcpsdwgrihy7kh1qp1qu.jpg",
-      ],
-      id: "23",
-      Name: "Фиолетовые цветы",
-      showInMenu: true,
-      showInPopular: null,
-      showAfterPopular: null,
-      createdAt: "2025-04-02T16:01:26.000Z",
-      updatedAt: "2025-04-07T19:16:16.000Z",
-    },
-    {
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1745918700/ReactNode/Category/z7visnv0lpvbgqitiklp.png",
-      ],
-      id: "a134d28b-58c9-4177-9a25-0713aff9b5f9",
-      Name: "Категория добра",
-      showInMenu: true,
-      showInPopular: true,
-      showAfterPopular: true,
-      createdAt: "2025-04-29T09:26:29.000Z",
-      updatedAt: "2025-04-29T10:16:48.000Z",
-    },
-  ]);
+  const [pupularCategories, setpupularCategories] = useState([]);
   const [categorySelected, setCategorySelected] = useState(null);
   const [allCategories, setAllCategories] = useState([]);
   const [allBouquets, setAllBouquets] = useState([]);

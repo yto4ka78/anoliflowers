@@ -18,6 +18,8 @@ import EmailVerified from "./views/registration/EmailVerified.jsx";
 import Basket from "./views/basket/Basket.jsx";
 import Delivery from "./views/delivery/Delivery.jsx";
 import EmailChanged from "./views/registration/EmailChanged.jsx";
+import ForgetPassword from "./views/registration/ForgetPassword.jsx";
+import ResetPassword from "./views/registration/ResetPassword.jsx";
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
             <Route path="/confidentiality" element={<Confidentiality />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/forget_pass" element={<ForgetPassword />} />
+            <Route path="/reset_password" element={<ResetPassword />} />
             <Route path="/email-verified" element={<EmailVerified />} />
             <Route path="/email-changed" element={<EmailChanged />} />
             <Route

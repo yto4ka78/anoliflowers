@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
+    userId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
     emailuser: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -58,5 +62,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
+
+  Orderdetails.associate = (models) => {
+    Orderdetails.belongsTo(models.User, {
+      foreignKey: "userId",
+      as: "user",
+    });
+  };
+
   return Orderdetails;
 };

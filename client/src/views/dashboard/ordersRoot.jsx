@@ -1,40 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ordersRoot.module.scss";
 import ReactPaginate from "react-paginate";
+import api from "../../utils/api";
 
-const OrdersRoot = ({ setActiveView }) => {
-  const [allOrders, setAllOrders] = useState([
-    {
-      id: 1,
-      name: "Саша",
-      price: 20000,
-      date: "20.04.2024",
-      address: "Пугкина 28",
-      phone: "+77714661111",
-    },
-    {
-      id: 2,
-      name: "Саша",
-      price: 20000,
-      date: "20.04.2024",
-      address: "Пугкина 28",
-      phone: "+77714661111",
-    },
-  ]);
+const OrdersRoot = ({ setActiveView, setSelectedOrder }) => {
+  const [allOrders, setAllOrders] = useState([]);
 
-  const itemsPerPage = 24;
+  const itemsPerPage = 30;
   const [currentPage, setCurrentPage] = useState(0);
   const pageCount = Math.ceil((allOrders?.length || 0) / itemsPerPage);
   const handlePageClick = (event) => {
     setCurrentPage(event.selected);
   };
   const offset = currentPage * itemsPerPage;
-  const currentItems = (allOrders || []).slice(offset, offset + itemsPerPage);
+  const currentItems = Array.isArray(allOrders)
+    ? allOrders.slice(offset, offset + itemsPerPage)
+    : [];
 
+  useEffect(() => {
+    const handleGetOrders = async () => {
+      try {
+        const response = await api.post("/order/getOrdersRoot");
+        setAllOrders(response.data.orders);
+      } catch {}
+    };
+    handleGetOrders();
+  }, []);
   return (
     <div>
       <div className={styles.orderRoot_header}>
-        <span className={styles.orderRoot_column}>Получатель</span>
+        <span className={styles.orderRoot_column}>Отправитель</span>
         <span className={styles.orderRoot_column}>Цена</span>
         <span className={styles.orderRoot_column}>Дата заказа</span>
         <span className={styles.orderRoot_column}>Адрес</span>
@@ -42,27 +37,30 @@ const OrdersRoot = ({ setActiveView }) => {
         <span className={styles.orderRoot_column}></span>
       </div>
       <div className={styles.orderRoot_body}>
-        <div className={styles.orderRoot_order}>
-          <span className={styles.orderRoot_column}>Саша</span>
-          <span className={styles.orderRoot_column}>20000</span>
-          <span className={styles.orderRoot_column}>20.04.2024</span>
-          <span className={styles.orderRoot_column}>Пугкина 28</span>
-          <span className={styles.orderRoot_column}>+77714661111</span>
-          <button
-            className={styles.orderRoot_column}
-            onClick={() => setActiveView("OrderRootDetail")}
-          >
-            Подробно
-          </button>
-        </div>
-        <div className={styles.orderRoot_order}>
-          <span className={styles.orderRoot_column}>Саша</span>
-          <span className={styles.orderRoot_column}>20000</span>
-          <span className={styles.orderRoot_column}>20.04.2024</span>
-          <span className={styles.orderRoot_column}>Пугкина 28</span>
-          <span className={styles.orderRoot_column}>+77714661111</span>
-          <button className={styles.orderRoot_column}>Подробно</button>
-        </div>
+        {currentItems.map((order) => (
+          <div key={order.id} className={styles.orderRoot_order}>
+            <span className={styles.orderRoot_column}>
+              {order.sendername || order.emailuser}
+            </span>
+            <span className={styles.orderRoot_column}>{order.totalPrice}</span>
+            <span className={styles.orderRoot_column}>
+              {new Date(order.createdAt).toLocaleDateString("ru-RU")}
+            </span>
+            <span className={styles.orderRoot_column}>{order.address}</span>
+            <span className={styles.orderRoot_column}>
+              {order.sendernumberphone}
+            </span>
+            <button
+              className={styles.orderRoot_column}
+              onClick={() => {
+                setActiveView("OrderRootDetail");
+                setSelectedOrder(order);
+              }}
+            >
+              Подробно
+            </button>
+          </div>
+        ))}
       </div>
       <ReactPaginate
         previousLabel={"← Назад"}

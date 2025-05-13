@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 import Cookies from "js-cookie";
 import api from "../../utils/api";
 import {
-  generateWhatsAppMessage,
+  handleOrderCreationAndGenerateMessage,
   sendTelegramMessage,
 } from "../../utils/messageSender";
 import { validateFormData } from "./formDataValid";
@@ -159,7 +159,7 @@ const Basket = () => {
     } else {
       setFormDataValide(true);
       setErrorMessage();
-      const message = generateWhatsAppMessage(formData);
+      const message = handleOrderCreationAndGenerateMessage(formData);
       sendTelegramMessage(message);
       dispatch(clearCart());
     }
@@ -188,10 +188,10 @@ const Basket = () => {
       if (orderInfoRef.current) {
         orderInfoRef.current.style.transform = `translateY(${currentY}px)`;
       }
-      if (window.scrollY > 1400 && !hideButtonRef.current) {
+      if (window.scrollY > 1200 && !hideButtonRef.current) {
         hideButtonRef.current = true;
         setHideButton(true);
-      } else if (window.scrollY <= 1400 && hideButtonRef.current) {
+      } else if (window.scrollY <= 1200 && hideButtonRef.current) {
         hideButtonRef.current = false;
         setHideButton(false);
       }

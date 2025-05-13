@@ -6,90 +6,32 @@ import CheckboxListPriceMain from "../../UI/checkbox/CheckboxListPriceMain";
 import FlowerShow from "../../UI/flowerShow/FlowerShow";
 import ContactWhatsApp from "../../UI/contactWhatsApp/ContactWhatsApp";
 const Main = () => {
-  const [flowers, setFlowers] = useState([
-    {
-      name: "Розы",
-      price: 10000,
-      saleprice: 8000,
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-      ],
-    },
-    {
-      name: "Тюльпаны",
-      price: 9500,
-      saleprice: 7500,
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-      ],
-    },
-    {
-      name: "Пионы",
-      price: 12000,
-      saleprice: 9800,
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-      ],
-    },
-    {
-      name: "Герберы",
-      price: 8000,
-      saleprice: 6500,
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-      ],
-    },
-    {
-      name: "Лилии",
-      price: 11000,
-      saleprice: 9200,
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-      ],
-    },
-    {
-      name: "Орхидеи",
-      price: 15000,
-      saleprice: 13500,
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-      ],
-    },
-    {
-      name: "Нарциссы",
-      price: 7000,
-      saleprice: 6000,
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-      ],
-    },
-    {
-      name: "Альстромерии",
-      price: 9000,
-      saleprice: 7700,
-      imageUrl: [
-        "https://res.cloudinary.com/dcuqusnsc/image/upload/v1743609816/ReactNode/Bouquet/n0ep0ntj5ahpe2noogym.webp",
-      ],
-    },
-  ]);
+  const [flowers, setFlowers] = useState([]);
+  const [allFlowers, setAllFlowers] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
+  const [bouquetInPage, setBouquetInPage] = useState(8);
   function mixArray(array) {
     return array.sort(() => Math.random() - 0.5);
   }
 
+  const addBouquetInPage = () => {
+    setBouquetInPage(bouquetInPage + 8);
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch("/api/main/");
         let result = await response.json();
         if (Array.isArray(result)) {
-          result = mixArray(result).slice(0, 24);
+          // result = mixArray(result);
+          setFlowers(result.slice(0, bouquetInPage));
         }
-        setFlowers(result);
-      } catch {}
+      } catch (e) {
+        console.error("Ошибка загрузки", e);
+      }
     };
     fetchData();
-  }, []);
+  }, [bouquetInPage]);
 
   const handlePriceFilterChange = async (ranges) => {
     try {
@@ -99,7 +41,7 @@ const Main = () => {
       if (!Array.isArray(result)) return;
 
       if (ranges.length === 0) {
-        const all = mixArray(result).slice(0, 24);
+        const all = mixArray(result).slice(0, bouquetInPage);
         setFlowers(all);
         return;
       }
@@ -109,7 +51,7 @@ const Main = () => {
         return ranges.some(([min, max]) => price >= min && price <= max);
       });
 
-      const shuffled = mixArray(filtered).slice(0, 24);
+      const shuffled = mixArray(filtered).slice(0, bouquetInPage);
       setFlowers(shuffled);
     } catch (e) {
       console.error("Ошибка загрузки", e);
@@ -153,7 +95,7 @@ const Main = () => {
             ))}
         </div>
         <div className={styles.showMoreflowers}>
-          <button>Посмотреть еще</button>
+          <button onClick={addBouquetInPage}>Посмотреть еще</button>
         </div>
       </div>
 

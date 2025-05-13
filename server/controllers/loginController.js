@@ -91,6 +91,13 @@ class LoginController {
 
       if (email) {
         if (user.email !== email) {
+          const existingUser = await User.findOne({ where: { email } });
+          if (existingUser && existingUser.id !== user.id) {
+            return res.status(400).json({
+              message: "Этот email уже используется другим пользователем",
+            });
+          }
+
           const emailToken = jwt.sign({ email }, EMAIL_SECRET, {
             expiresIn: "60m",
           });
@@ -152,6 +159,51 @@ class LoginController {
       return res
         .status(400)
         .json({ message: "Недействительный или просроченный токен" });
+    }
+  }
+
+  static async forgetPassword(req, res) {
+    try {
+      const { email } = req.body;
+      const user = await User.findOne({ where: { email: email } });
+      if (!user) {
+        return res.status(400).json({ message: "Пользователь не найден" });
+      }
+      const token = jwt.sign({ userId: user.id }, EMAIL_SECRET, {
+        expiresIn: "1h",
+      });
+      const resetUrl = `http://localhost:5000/reset_password?token=${token}`;
+
+      await sendEmail({
+        to: email,
+        subject: "Сброс пароля",
+        html: `<p>Нажмите по ссылке, чтобы изменить пароль:</p><a href="${resetUrl}">${resetUrl}</a>`,
+      });
+
+      return res.json({
+        message: "Ссылка отправлена на email",
+        status: "success",
+      });
+    } catch (err) {
+      showError(err);
+      return res.status(400).json({ message: "Ошибка отправки пароля" });
+    }
+  }
+
+  static async resetPassword(req, res) {
+    const { token, newPassword } = req.body;
+    try {
+      const decoded = jwt.verify(token, EMAIL_SECRET);
+      const user = await User.findByPk(decoded.userId);
+      if (!user)
+        return res.status(400).json({ message: "Пользователь не найден" });
+
+      user.password = await bcrypt.hash(newPassword, 10);
+      await user.save();
+
+      return res.json({ message: "Пароль успешно обновлён" });
+    } catch (e) {
+      return res.status(400).json({ message: "Неверный или истекший токен" });
     }
   }
 }

@@ -1,344 +1,70 @@
 @import "../../assets/styles/mixin.scss";
 @import "../../assets/styles/variables";
 
-@media (min-width: $desktop-width) {
-  .NavBar_Main {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
+.NavBar_Main {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  .NavBar_Main_size {
     width: 100%;
-    z-index: 999;
-    .NavBar_Main_size {
-      width: 100%;
-      background-color: #f7f0eb;
-      display: flex;
-      justify-content: center;
-      .NavBar_Main_Section1 {
-        width: 1180px;
-        display: flex;
-        justify-content: space-between;
-        padding: 5px 0px;
-        background-color: #f7f0eb;
-        .logo {
-          img {
-            width: 180px;
-            margin-right: 5px;
-          }
-        }
-        .firstSection_text {
-          font-family: "NotoSerifLight";
-        }
-        .secondSection_text {
-          display: flex;
-          align-items: center;
-          button {
-            display: flex;
-            font-family: "NotoSerifLight";
-            background-color: transparent;
-            border: none;
-            img {
-              margin-left: 5px;
-            }
-          }
-        }
-        .thirdSection_text {
-          font-family: "TimelessMemoriesRegular", "sans-serif";
-          font-weight: 200;
-          align-items: center;
-          display: flex;
-        }
-        .fourthSection_text {
-          display: flex;
-          align-items: center;
-          div {
-            margin-right: 5px;
-          }
-        }
-        .loginSection {
-          font-family: "TimesNewRoman", "sans-serif";
-          display: flex;
-          min-width: 250px;
-          justify-content: space-around;
-          align-items: center;
-          /* Для гостя */
-          .link_toConnexion {
-            display: flex;
-            align-items: center;
-            height: 100%;
-            a {
-              padding: 0px 5px;
-              display: flex;
-              align-items: center;
-              text-decoration: none;
-              color: black;
-              height: 100%;
-              transition: 0.3s ease;
-              &:hover {
-                height: 60%;
-                border: 1px solid rgb(168, 168, 168);
-                cursor: pointer;
-              }
-            }
-          }
-
-          /*Если юзер авторизирован*/
-          .dropdown {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            .dropbtn {
-              background-color: transparent;
-              border: none;
-              cursor: pointer;
-              height: 100%;
-              transition: 0.3s ease;
-            }
-            .dropdownContent {
-              display: none;
-              position: absolute;
-              background-color: #f9f9f9;
-              min-width: 160px;
-              box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-              z-index: 1;
-              top: 100%;
-            }
-            .dropdownContent a {
-              color: black;
-              padding: 12px 16px;
-              text-decoration: none;
-              display: block;
-            }
-            .dropdownContent a:hover {
-              background-color: #f1f1f1;
-            }
-            &:hover .dropdownContent {
-              display: block;
-            }
-            &:hover .dropbtn {
-              align-items: center;
-              height: 60%;
-              background-color: rgb(242, 242, 242);
-              border: 1px solid rgb(168, 168, 168);
-              cursor: pointer;
-            }
-          }
-          //* Корзина */
-          .linkBasket {
-            display: block;
-            text-decoration: none;
-            color: black;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            .NavBar_Main_Section1_rightParty_basket {
-              display: flex;
-              align-items: center;
-              height: 100%;
-              transition: 0.3s;
-
-              div {
-                margin: 0px 10px;
-              }
-
-              img {
-                width: 20px;
-              }
-            }
-
-            &:hover .NavBar_Main_Section1_rightParty_basket {
-              height: 60%;
-              border: 1px solid rgb(168, 168, 168);
-              cursor: pointer;
-            }
-          }
-        }
-      }
-    }
-
-    //* Вторая секция - навигация */
-    .NavBar_Main_size2 {
-      width: 100%;
-      background-color: #7d9678;
-      display: flex;
-      justify-content: center;
-      .NavBar_Main_Section2 {
-        display: flex;
-        height: 60px;
-        width: 1180px;
-        background-color: #7d9678;
-        .burger {
-          display: none;
-        }
-        .navLinks {
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          .navBarWrapper {
-            position: relative;
-            z-index: 10;
-            height: 100%;
-            .overlay {
-              position: fixed;
-              inset: 0;
-              background-color: rgba(0, 0, 0, 0.2);
-              z-index: 10;
-              pointer-events: all;
-            }
-            .navLinks_menu {
-              position: relative;
-              height: 100%;
-              z-index: 11;
-              .navLinks__categoriesFromBd {
-                position: absolute;
-                display: none;
-                min-width: 140%;
-                flex-direction: column;
-                padding: 10px;
-                background-color: white;
-                align-items: flex-start;
-                &.showMenu {
-                  //Это
-                  display: flex;
-                }
-                .categoryItem {
-                  position: relative;
-                }
-                .submenu {
-                  position: fixed;
-                  top: 118px;
-                  left: 619px;
-                  background-color: white;
-                  border-left: 1px solid #ccc;
-                  z-index: 20;
-                  min-width: 200px;
-                  padding: 10px;
-
-                  .submenuItem {
-                    padding: 5px 10px;
-                    white-space: nowrap;
-                    &:hover {
-                      background-color: #f0f0f0;
-                    }
-                  }
-                }
-                button {
-                  display: flex;
-                  width: 100%;
-                  border: none;
-                  background-color: white;
-                  padding: 5px;
-                  font-family: "Georgia";
-                  text-transform: uppercase;
-                  transition: 0.3s ease;
-                  &:hover {
-                    color: orange;
-                  }
-                }
-              }
-              // &:hover .navLinks__categoriesFromBd {
-              //   display: block;
-              // }
-            }
-          }
-          .navLinks__categories {
-            display: flex;
-            div {
-              margin: 0px 5px;
-              a {
-                position: relative;
-                text-decoration: none;
-                color: white;
-                margin: 10px;
-                font-size: 1rem;
-                font-family: "NotoSerifLight";
-                &::before {
-                  content: "";
-                  position: absolute;
-                  width: 160%; // ← будет шириной как a
-                  height: 165%;
-                  border: #ffe77b solid 1px;
-                  transform: translate(-18%, -15%) rotate(-10deg) scale(0);
-                  border-radius: 50%;
-                  transition: transform 0.4s ease;
-                  z-index: 2;
-                }
-                &:hover::before {
-                  transform: translate(-25%, -15%) rotate(-10deg) scale(1);
-                }
-
-                &:hover {
-                  color: #fff;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-// ДЛЯ ТЕЛЕФОНА
-
-@media (max-width: $phone-width) {
-  .NavBar_Main {
-    .NavBar_Main_Section0 {
-      display: flex;
-      justify-content: center;
-      padding: 5px;
-      background-color: rgb(205, 205, 205);
-      font-family: "JacquesFrancois";
-      font-size: 1rem;
-    }
+    background-color: $color-background;
+    display: flex;
+    justify-content: center;
     .NavBar_Main_Section1 {
+      width: 1180px;
       display: flex;
-      padding: 5px 20px;
-      flex-direction: column;
-      align-items: center;
-      .NavBar_Main_Section1_leftParty {
-        display: flex;
-        font-family: "JacquesFrancois", "Sans-serif";
-        font-size: 0.8rem;
-        width: 250px;
-        flex-direction: column;
-        justify-content: center;
-        div {
-          display: flex;
-          justify-content: center;
-        }
+      justify-content: space-between;
+      padding: 5px 0px;
+      background-color: $color-background;
+      .logo {
         img {
-          width: 20px;
+          width: 180px;
           margin-right: 5px;
         }
       }
-      .NavBar_Main_Section1_centralParty {
+      .firstSection_text {
+        font-family: "NotoSerifLight";
+        @media (max-width: $phone-width) {
+          display: none;
+        }
+      }
+      .secondSection_text {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        font-size: 1.3rem;
-        font-family: "Georgia", "sans-serif";
-        a {
-          text-decoration: none;
-          font-size: 0.9rem;
-          color: black;
-          transition: 2s ease;
-          &:hover {
-            transform: scale(1.1);
+        button {
+          display: flex;
+          font-family: "NotoSerifLight";
+          background-color: transparent;
+          border: none;
+          img {
+            margin-left: 5px;
           }
         }
       }
-      .NavBar_Main_Section1_rightParty {
+      .thirdSection_text {
+        font-family: "TimelessMemoriesRegular", "sans-serif";
+        font-weight: 200;
+        align-items: center;
+        display: flex;
+      }
+      .fourthSection_text {
+        display: flex;
+        align-items: center;
+        div {
+          margin-right: 5px;
+        }
+      }
+      .loginSection {
         font-family: "TimesNewRoman", "sans-serif";
         display: flex;
         min-width: 250px;
         justify-content: space-around;
         align-items: center;
-        /* для гостей */
+        /* Для гостя */
         .link_toConnexion {
           display: flex;
           align-items: center;
@@ -353,14 +79,11 @@
             transition: 0.3s ease;
             &:hover {
               height: 60%;
-              background-color: rgb(242, 242, 242);
               border: 1px solid rgb(168, 168, 168);
               cursor: pointer;
             }
           }
         }
-
-        /*Если юзер авторизирован*/
 
         .dropdown {
           position: relative;
@@ -378,7 +101,7 @@
           .dropdownContent {
             display: none;
             position: absolute;
-            background-color: transparent;
+            background-color: #f9f9f9;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
@@ -404,58 +127,181 @@
             cursor: pointer;
           }
         }
-
-        .NavBar_Main_Section1_rightParty_basket {
+        //* Корзина */
+        .linkBasket {
+          display: block;
+          text-decoration: none;
+          color: black;
+          height: 100%;
           display: flex;
           align-items: center;
-          transition: 0.3s;
-          height: 100%;
-          div {
-            margin: 0px 10px;
+          .NavBar_Main_Section1_rightParty_basket {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            transition: 0.3s;
+
+            div {
+              margin: 0px 10px;
+            }
+
+            img {
+              width: 20px;
+            }
           }
-          img {
-            width: 20px;
-          }
-          &:hover {
+
+          &:hover .NavBar_Main_Section1_rightParty_basket {
             height: 60%;
-            background-color: rgb(242, 242, 242);
             border: 1px solid rgb(168, 168, 168);
             cursor: pointer;
           }
         }
-      }
-    }
-    .NavBar_Main_Section2 {
-      background-color: #000;
-      .burger {
-        padding-left: 5px;
-        font-size: 1.5rem;
-        color: white;
-        display: block;
-        font-family: "NotoSerifLight";
-      }
-      .navLinks {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease, opacity 0.3s ease;
-        flex-direction: column;
-      }
-      .show {
-        max-height: 1000px;
-        opacity: 1;
-      }
-      div {
-        transition: 0.3s;
-        a {
-          text-decoration: none;
-          color: white;
-          margin: 10px;
-          font-size: 1.2rem;
-          font-family: "NotoSerifLight";
-          transition: 0.3s;
+        @media (max-width: $phone-width) {
+          display: none;
         }
+      }
+      .burger_button {
+        display: none;
+        @media (max-width: $phone-width) {
+          display: flex;
+          justify-content: center;
+          width: 70px;
+          height: 100%;
+        }
+      }
+      @media (max-width: $phone-width) {
+        width: 100%;
+        padding: 0;
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
     }
   }
+
+  //* Вторая секция - навигация */
+  .NavBar_Main_size2 {
+    width: 100%;
+    background-color: #7d9678;
+    display: flex;
+    justify-content: center;
+    .NavBar_Main_Section2 {
+      display: flex;
+      height: 60px;
+      width: 1180px;
+      background-color: #7d9678;
+      .burger {
+        display: none;
+      }
+      .navLinks {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .navBarWrapper {
+          position: relative;
+          z-index: 10;
+          height: 100%;
+          .overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            pointer-events: all;
+          }
+          .navLinks_menu {
+            position: relative;
+            height: 100%;
+            z-index: 11;
+            .navLinks__categoriesFromBd {
+              position: absolute;
+              display: none;
+              min-width: 140%;
+              flex-direction: column;
+              padding: 10px;
+              background-color: white;
+              align-items: flex-start;
+              &.showMenu {
+                display: flex;
+              }
+              .categoryItem {
+                position: relative;
+                width: 100%;
+              }
+              .submenu {
+                position: fixed;
+                top: 118px;
+                left: 619px;
+                background-color: white;
+                border-left: 1px solid #ccc;
+                z-index: 20;
+                min-width: 200px;
+                padding: 10px;
+
+                .submenuItem {
+                  padding: 5px 10px;
+                  white-space: nowrap;
+                }
+              }
+              button {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                border: none;
+                background-color: white;
+                padding: 5px;
+                font-family: "Georgia";
+                text-transform: uppercase;
+                transition: 0.3s ease;
+                &:hover {
+                  color: orange;
+                }
+              }
+            }
+            // &:hover .navLinks__categoriesFromBd {
+            //   display: block;
+            // }
+          }
+        }
+        .navLinks__categories {
+          display: flex;
+          div {
+            margin: 0px 5px;
+            a {
+              position: relative;
+              text-decoration: none;
+              color: white;
+              margin: 10px;
+              font-size: 1rem;
+              font-family: "NotoSerifLight";
+              &::before {
+                content: "";
+                position: absolute;
+                width: 160%; // ← будет шириной как a
+                height: 165%;
+                border: #ffe77b solid 1px;
+                transform: translate(-18%, -15%) rotate(-10deg) scale(0);
+                border-radius: 50%;
+                transition: transform 0.4s ease;
+                z-index: 2;
+              }
+              &:hover::before {
+                transform: translate(-25%, -15%) rotate(-10deg) scale(1);
+              }
+
+              &:hover {
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+    @media (max-width: $phone-width) {
+      display: none;
+    }
+  }
 }
+
+// ДЛЯ ТЕЛЕФОНА
