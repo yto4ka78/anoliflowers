@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./Gallery.module.scss"; // или .css
+import styles from "./Gallery.module.scss";
 
 const Gallery = ({ images }) => {
   const [mainImage, setMainImage] = useState(null);

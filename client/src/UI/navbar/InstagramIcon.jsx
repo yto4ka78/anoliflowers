@@ -3,11 +3,11 @@ import styles from "./InstagramIcon.module.scss";
 
 const InstagramIcon = () => {
   return (
-    <a href="">
+    <a href="" className={styles.instagram_icon}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="34"
-        fill="#5c6d59"
+        fill="currentColor"
         className={`bi bi-instagram ${styles.instagram_icon__svg}`}
         viewBox="0 0 16 16"
       >

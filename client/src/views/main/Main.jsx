@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import CheckboxListPriceMain from "../../UI/checkbox/CheckboxListPriceMain";
 import FlowerShow from "../../UI/flowerShow/FlowerShow";
 import ContactWhatsApp from "../../UI/contactWhatsApp/ContactWhatsApp";
+import SomeInfo from "../../UI/someInfo/SomeInfo";
+import MainServiceBenefits from "../../UI/mainServiceBenefits/MainServiceBenefits";
 const Main = () => {
   const [flowers, setFlowers] = useState([]);
-  const [allFlowers, setAllFlowers] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
   const [bouquetInPage, setBouquetInPage] = useState(8);
   function mixArray(array) {
@@ -76,13 +77,35 @@ const Main = () => {
             </div>
           )}
           <div className={styles.main_priceSection_categories}>
-            <a href=""> Розы 🌹</a>
-            <a href=""> Пионы</a>
-            <a href=""> Тюльпаны 🌷</a>
-            <a href=""> Подарочные наборы</a>
-            <a href=""> Клубника в шоколаде 🍓</a>
-            <a href=""> Гортензии</a>
-            <a href=""> Спрей розы </a>
+            <Link to={`/category/${"0fce425c-6935-425b-9984-2fe91119632e"}`}>
+              {" "}
+              Розы 🌹
+            </Link>
+            <Link to={`/category/${"797e1197-28d9-4977-abd2-badce4e2663b"}`}>
+              {" "}
+              Пионы
+            </Link>
+
+            <Link to={`/category/${"35552479-2873-423d-9de1-1b30699a69bc"}`}>
+              {" "}
+              Тюльпаны 🌷
+            </Link>
+            <Link to={`/category/${"82357ee4-932f-4d88-af51-41f9c6a33681"}`}>
+              {" "}
+              Подарочные наборы
+            </Link>
+            <Link to={`/category/${"bb503324-45c2-4948-9deb-7d5783fc1887"}`}>
+              {" "}
+              Клубника в шоколаде 🍓
+            </Link>
+            <Link to={`/category/${"32294316-1fc9-4485-b55e-625c0e6b814e"}`}>
+              {" "}
+              Гортензии
+            </Link>
+            <Link to={`/category/${"b31b0690-06d8-4801-b383-805fedffa7fb"}`}>
+              {" "}
+              Спрей розы{" "}
+            </Link>
           </div>
         </div>
       </div>
@@ -99,7 +122,6 @@ const Main = () => {
         </div>
       </div>
 
-      {/* КОНТАКТ */}
       <ContactWhatsApp> </ContactWhatsApp>
 
       <div className={styles.main_description}>
@@ -197,90 +219,8 @@ const Main = () => {
         </div>
       </div>
 
-      <div className={styles.main_someInfo}>
-        <div className={styles.someInfo_centre}>
-          <div className={styles.someInfo_flex}>
-            <div className={styles.someInfo_image}>
-              <img src="/icon_someInfo.svg" alt="" />
-            </div>
-            <div>
-              <p className={styles.someInfo_textBold}>Гарантия свежести</p>
-              <p className={styles.someInfo_textNormal}>7 дней</p>
-            </div>
-          </div>
-          <div className={styles.someInfo_flex}>
-            <div className={styles.someInfo_image}>
-              {" "}
-              <p>10%</p>
-            </div>
-            <div>
-              <p className={styles.someInfo_textBold}>Скидка 10%</p>
-              <p className={styles.someInfo_textNormal}>при самовывозе</p>
-            </div>
-          </div>
-          <div className={styles.someInfo_flex}>
-            <div className={styles.someInfo_image2}>
-              <img src="/icon_someInfo2.png" alt="" />
-            </div>
-            <div>
-              <p className={styles.someInfo_textNormal}>Быстрая</p>
-              <p className={styles.someInfo_textBold}>оплата переводом</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className={styles.main_service_benefits}>
-        <div className={styles.service_benefits}>
-          <div className={styles.service_benefits_Section}>
-            <div className={styles.service_benefits_img}>
-              <img src="/service_benefits_firstSection.svg" alt="" />
-            </div>
-            <div className={styles.service_benefits_title}>
-              ОТКРЫТКА К БУКЕТУ
-            </div>
-            <div className={styles.service_benefits_text}>
-              По желанию в букет положим <strong>бесплатную открытку</strong> с
-              пожеланиями получателю букета от вашего имени.
-            </div>
-          </div>
-          <hr className={styles.vertical_line} />
-          <div className={styles.service_benefits_Section}>
-            <div>
-              <img src="/service_benefits_secondSection.svg" alt="" />
-            </div>
-            <div className={styles.service_benefits_title}>ФОТООТЧЁТ</div>
-            <div className={styles.service_benefits_text}>
-              <strong>Фотографируем ваш букет</strong> перед отправкой, чтобы вы
-              были спокойны - доставят то, что заказывали.
-            </div>
-          </div>
-          <hr className={styles.vertical_line} />
-          <div className={styles.service_benefits_Section}>
-            <div>
-              <img src="/service_benefits_thirdSection.svg" alt="" />
-            </div>
-            <div className={styles.service_benefits_title}>
-              СМС-ИНФОРМИРОВАНИЕ
-            </div>
-            <div className={styles.service_benefits_text}>
-              <strong>Информируем</strong> обо всех этапах доставки: когда
-              подарок собран, когда доставляется и когда доставлен.
-            </div>
-          </div>
-          <hr className={styles.vertical_line} />
-          <div className={styles.service_benefits_Section}>
-            <div>
-              <img src="/service_benefits_fourthSection.svg" alt="" />
-            </div>
-            <div className={styles.service_benefits_title}>ВИДЕООТЧЁТ</div>
-            <div className={styles.service_benefits_text}>
-              <strong>Записываем на видео эмоции</strong> счастливого получателя
-              вашего подарка
-            </div>
-          </div>
-        </div>
-      </div>
+      <SomeInfo></SomeInfo>
+      <MainServiceBenefits></MainServiceBenefits>
     </div>
   );
 };

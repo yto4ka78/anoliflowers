@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: #6f886f; // заменишь на свой цвет
+  background-color: #ff5e23;
   border: none;
   color: white;
   font-weight: bold;
@@ -13,7 +13,7 @@
   position: relative;
   cursor: pointer;
   &:hover {
-    background-color: #5c6d59;
+    background-color: $color-button-secondary;
   }
   @media (max-width: $phone-width) {
     padding: 0;

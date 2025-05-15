@@ -26,7 +26,7 @@ const CheckboxListPriceMain = ({ onFilterChange }) => {
       updated.push(range);
     }
     setSelected(updated);
-    onFilterChange(updated); // 🔥 Сообщаем наверх
+    onFilterChange(updated);
   };
 
   return (

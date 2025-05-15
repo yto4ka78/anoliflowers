@@ -1,0 +1,15 @@
+.mapSite_container {
+  width: 1180px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 50px;
+  .category {
+    border-right: 1px solid black;
+    color: gray;
+    font-family: CrimsonRoman;
+    font-size: 1.2rem;
+    margin: 10px;
+    width: 31%;
+  }
+}

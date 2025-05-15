@@ -17,7 +17,7 @@ const Carousel = () => {
         <div className={styles.thirddiv}>
           <div className={styles.thirddiv_relative}>
             <div>
-              <img src="/main_1.webp" alt="" />
+              <img src="/main_1.png" alt="" />
             </div>
             <div>
               Гарантия свежести <br /> цветов!
@@ -25,7 +25,7 @@ const Carousel = () => {
           </div>
           <div className={styles.thirddiv_relative}>
             <div>
-              <img src="/main_2.webp" alt="" />
+              <img src="/main_2.png" alt="" />
             </div>
             <div>
               Фото букета перед <br /> отправкой

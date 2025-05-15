@@ -96,8 +96,8 @@
       text-align: center;
       padding: 5px 20px;
       margin: 10px 0 20px 0;
-      border: solid 1px #7a9874;
-      background: #7a9874;
+      border: solid 1px $color-button;
+      background: $color-button;
       box-sizing: border-box;
       width: 30%;
     }
@@ -235,7 +235,7 @@
       }
     }
     button {
-      @include pinkyButton;
+      @include greenButton;
     }
   }
   .manageCategories_message {
@@ -274,13 +274,8 @@
     hr {
       border-top: 1px solid;
     }
-    // display: flex;
-    // justify-content: space-between;
-    // align-items: center;
-    // font-family: "NotoSerifLight";
-    // font-size: 1rem;
     button {
-      @include pinkyButton;
+      @include greenButton;
     }
   }
   .manageCategories_listCategories {

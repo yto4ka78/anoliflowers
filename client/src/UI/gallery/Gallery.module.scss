@@ -29,6 +29,9 @@
   .gallery {
     display: flex;
     flex-direction: column;
+    .text {
+      display: none;
+    }
   }
   .mainImage {
     padding: 0 10px;

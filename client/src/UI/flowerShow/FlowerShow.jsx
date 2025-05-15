@@ -17,6 +17,7 @@ const FlowerShow = ({ flower, index }) => {
       </Link>
       <div className={styles.flower_description}>
         <div className={styles.flowerName}>{flower.name}</div>
+        <div style={{ flex: 1 }}></div>
         <div className={styles.flowerStock}>Цветы в наличии</div>
         <div className={styles.flowerPrice}>
           {flower.saleprice ? (

@@ -53,7 +53,16 @@ const ProfileOrders = ({ setActiveProfileView, setSelectedOrder }) => {
                 {order.sendernumberphone}
               </span>
               <button
-                className={styles.profileOrders_column}
+                className={`${styles.profileOrders_column} ${styles.iconOnly}`}
+                onClick={() => {
+                  setActiveProfileView("profileOrderDetail");
+                  setSelectedOrder(order);
+                }}
+              >
+                📄
+              </button>
+              <button
+                className={`${styles.profileOrders_column} ${styles.textOnly}`}
                 onClick={() => {
                   setActiveProfileView("profileOrderDetail");
                   setSelectedOrder(order);
@@ -64,7 +73,7 @@ const ProfileOrders = ({ setActiveProfileView, setSelectedOrder }) => {
             </div>
           ))
         ) : (
-          <div>
+          <div className={styles.NoOrdersInfo}>
             <div>У вас на данный момент нету заказов</div>
             <div>
               Если вы оплатили заказ и не видете его тут, значит менеджер еще не

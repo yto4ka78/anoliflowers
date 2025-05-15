@@ -3,6 +3,9 @@
 .delivery {
   width: 1180px;
   margin: auto;
+  @media (max-width: $phone-width) {
+    width: 100%;
+  }
 }
 .title {
   font-family: "PlayfairDisplay";
@@ -46,10 +49,24 @@
         font-size: 1.5rem;
         margin-right: 5px;
       }
+      @media (max-width: $phone-width) {
+        margin: 0px 30px;
+      }
+    }
+    @media (max-width: $phone-width) {
+      width: 100%;
     }
   }
   .head_rightpart {
     width: 75%;
+    @media (max-width: $phone-width) {
+      width: 100%;
+      padding: 0px 20px;
+    }
+  }
+  @media (max-width: $phone-width) {
+    display: flex;
+    flex-direction: column;
   }
 }
 .seconde_container {
@@ -76,5 +93,9 @@
   }
   .seconde_container_right_part {
     padding: 30px;
+  }
+  @media (max-width: $phone-width) {
+    display: flex;
+    flex-direction: column;
   }
 }

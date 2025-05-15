@@ -1,3 +1,6 @@
+@import "../../assets/styles/mixin.scss";
+@import "../../assets/styles/variables";
+
 .main_product {
   background-color: #f7f0eb;
   margin: 15px;
@@ -14,6 +17,9 @@
       height: 100%;
       width: 100%;
       object-fit: cover;
+    }
+    @media (max-width: $phone-width) {
+      max-height: 200px;
     }
   }
   .flower_description {
@@ -37,6 +43,9 @@
         .flowerSalePrice {
           font-family: "CrimsonRoman";
           font-size: 1.5rem;
+          @media (max-width: $phone-width) {
+            font-size: 1rem;
+          }
         }
         .flowerOldPrice {
           font-family: "CrimsonRoman";
@@ -44,6 +53,10 @@
           margin-left: 10px;
           color: gray;
           text-decoration: line-through;
+          @media (max-width: $phone-width) {
+            font-size: 0.8rem;
+            margin-left: 0px;
+          }
         }
         .flowerPercentSale {
           margin-left: 10px;
@@ -57,6 +70,9 @@
       .flowerNormalPrice {
         font-family: "CrimsonRoman";
         font-size: 1.5rem;
+        @media (max-width: $phone-width) {
+          font-size: 0.9rem;
+        }
       }
     }
     .flowerButton {
@@ -64,10 +80,10 @@
       display: flex;
       justify-content: space-between;
       button:nth-child(1) {
-        background-color: #7a9874;
+        background-color: $color-button;
         text-decoration: none;
-        color: white;
-        border: #7a9874 1px solid;
+        color: $color-background;
+        border: $color-button 1px solid;
         border-radius: 5px;
         font-size: 0.9rem;
         transition: 0.3s ease;
@@ -75,24 +91,43 @@
         padding: 10px 15px;
         &:hover {
           background-color: transparent;
-          color: #7a9874;
+          color: $color-button;
+        }
+        @media (max-width: $phone-width) {
+          padding: 0px;
+          margin-right: 3px;
+          width: 49%;
         }
       }
       button:nth-child(2) {
         background-color: transparent;
         text-decoration: none;
-        color: #7a9874;
-        border: #7a9874 1px solid;
+        color: $color-button;
+        border: $color-button 1px solid;
         border-radius: 5px;
         font-size: 0.9rem;
         transition: 0.3s ease;
         font-weight: 100;
         padding: 10px 18px;
         &:hover {
-          background-color: #7a9874;
-          color: white;
+          background-color: $color-button;
+          color: $color-background;
+        }
+        @media (max-width: $phone-width) {
+          padding: 0;
+          width: 49%;
         }
       }
     }
+    @media (max-width: $phone-width) {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+    }
+  }
+  @media (max-width: $phone-width) {
+    width: calc(50% - 20px);
+    margin: 10px;
+    min-height: 1px;
   }
 }

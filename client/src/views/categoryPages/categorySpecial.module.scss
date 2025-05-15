@@ -4,6 +4,9 @@
   width: 1180px;
   margin: auto;
   padding-bottom: 10px;
+  @media (max-width: $desktop-width) {
+    width: 100%;
+  }
 }
 h3 {
   padding: 0px 12px;

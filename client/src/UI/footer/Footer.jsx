@@ -49,7 +49,7 @@ const Footer = () => {
       <div className={styles.footer_maindiv_secondsection_size}>
         <div className={styles.footer_maindiv_secondsection}>
           <div className={styles.left_side}>
-            <a href="">Карта сайта</a>
+            <Link to="/mapsite">Карта сайта</Link>
             <a href="">Наверх</a>
           </div>
           <div className={styles.right_side}>

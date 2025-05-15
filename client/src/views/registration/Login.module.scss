@@ -1,3 +1,6 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixin.scss";
+
 .LoginContainer {
   width: 1180px;
   margin: auto;
@@ -79,7 +82,7 @@
       margin-right: 10px;
     }
     input:checked + .checkmark {
-      border: 1px solid #4caf50;
+      border: 1px solid $color-button-secondary;
       background-color: #f9f9f9;
     }
     input:checked + .checkmark::after {
@@ -89,15 +92,15 @@
       top: 2px;
       width: 6px;
       height: 12px;
-      border: solid #4caf50;
+      border: solid $color-button-secondary;
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
     }
   }
   .submitButton {
     font-family: "Georgia";
-    background-color: #7a9675;
-    color: white;
+    background-color: $color-button;
+    color: $color-background;
     padding: 15px 50px;
     border: none;
     font-size: 16px;
@@ -106,7 +109,7 @@
     transition: background-color 0.3s ease;
   }
   .submitButton:hover {
-    background-color: #6b8668;
+    background-color: $color-button-hover;
   }
 
   .links {
@@ -118,5 +121,9 @@
         text-decoration: none;
       }
     }
+  }
+  @media (max-width: $phone-width) {
+    width: 100%;
+    padding: 100px 10px 100px 10px;
   }
 }

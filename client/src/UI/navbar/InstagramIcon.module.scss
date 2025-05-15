@@ -1,3 +1,5 @@
+@import "../../assets/styles/mixin.scss";
+@import "../../assets/styles/variables";
 .instagram_icon {
   display: inline-block;
   transition: transform 0.2s ease;
@@ -8,13 +10,13 @@
 
   &__svg {
     padding: 7px;
-    color: #5c6d59;
+    color: $color-button;
     background-color: #e6d8cf;
     transition: 0.2s ease;
     border-radius: 100px;
 
     &:hover {
-      background-color: #6f886f;
+      background-color: $color-button;
       color: #ffffff;
     }
   }

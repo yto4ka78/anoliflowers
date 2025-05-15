@@ -1,55 +1,44 @@
-@media (min-width: 577px) {
-  .profileScript_main {
-    width: 1180px;
-    margin: auto;
-    margin-bottom: 10px;
-    .profileScript_navbar {
-      padding: 5px;
-      background-color: #eee2da;
-      margin-top: 10px;
-      border: #d8ccc4 1px solid;
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixin.scss";
+
+.profileScript_main {
+  width: 1180px;
+  margin: auto;
+  margin-bottom: 10px;
+  .profileScript_navbar {
+    padding: 5px;
+    background-color: $color-profile-div;
+    margin-top: 10px;
+    border: #d8ccc4 1px solid;
+    display: flex;
+    button {
       display: flex;
-      button {
-        display: flex;
-        background-color: transparent;
-        border: none;
-        font-size: 1rem;
-        text-decoration: none;
-        color: rgb(46, 46, 46);
-        margin: 20px 10px;
-        transition: 0.3s;
-        font-family: "DejaVuSerif";
-        &:hover {
-          box-shadow: inset 0 -1px 0 black;
-        }
-        img {
-          width: 20px;
-          height: 20px;
-          margin-right: 5px;
-        }
+      background-color: transparent;
+      border: none;
+      font-size: 1rem;
+      text-decoration: none;
+      color: rgb(46, 46, 46);
+      margin: 20px 10px;
+      transition: 0.3s;
+      font-family: "DejaVuSerif";
+      &:hover {
+        box-shadow: inset 0 -1px 0 black;
       }
+      img {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      }
+      @media (max-width: $phone-width) {
+        margin: 5px 10px;
+      }
+    }
+    @media (max-width: $phone-width) {
+      display: flex;
+      flex-direction: column;
     }
   }
-}
-@media (max-width: 576px) {
-  .profileScript_main {
-    .profileScript_navbar {
-      padding: 5px;
-      background-color: rgb(237, 237, 237);
-      margin: 10px;
-      border-radius: 10px;
-      button {
-        border: none;
-        font-size: 1.2rem;
-        text-decoration: none;
-        color: #a49864;
-        margin: 0px 10px;
-        transition: 0.3s;
-        font-family: "NotCourierSans";
-        &:hover {
-          color: black;
-        }
-      }
-    }
+  @media (max-width: $phone-width) {
+    width: 100%;
   }
 }

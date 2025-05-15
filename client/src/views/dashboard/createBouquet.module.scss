@@ -95,7 +95,7 @@
           position: relative;
           margin: 10px 10px 0px 0px;
           width: 190px;
-          height: 200px; /* Убедитесь, что у контейнера есть высота для корректного отображения */
+          height: 200px;
 
           img {
             border-radius: 10px;
@@ -121,8 +121,8 @@
           }
 
           &:hover button {
-            visibility: visible; /* Делает элемент видимым */
-            opacity: 1; /* Делает элемент непрозрачным */
+            visibility: visible;
+            opacity: 1;
             z-index: 5;
           }
           &:hover img {
@@ -145,8 +145,8 @@
         text-align: center;
         padding: 10px 20px;
         margin: 10px 0 20px 0;
-        border: solid 1px #7a9874;
-        background: #7a9874;
+        border: solid 1px $color-button;
+        background: $color-button;
         box-sizing: border-box;
         width: 30%;
       }

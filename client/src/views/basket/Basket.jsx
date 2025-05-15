@@ -295,6 +295,33 @@ const Basket = () => {
             ))
           )}
         </div>
+        {/* Корзина Для телефона */}
+        <div className={styles.orderInfo_phone}>
+          <div className={styles.orderTitle}>Ваш заказ</div>
+          <div className={styles.orderDetails}>
+            <div className={styles.orderText}>
+              <div>Кол-во товаров</div>
+              <div className={styles.flex}></div>
+              <div>{totalProductCount}</div>
+            </div>
+            <div className={styles.orderText}>
+              <div>Стоимость</div>
+              <div className={styles.flex}></div>
+              <div>{totalSum} ₸</div>
+            </div>
+            <div className={styles.orderText}>
+              <div>Доставка</div>
+              <div className={styles.flex}></div>
+              <div>{deliveryPrice} ₸</div>
+            </div>
+            <div className={styles.orderText}>
+              <div>Итого</div>
+              <div className={styles.flex}></div>
+              <div>{totalWithDelivery} ₸</div>
+            </div>
+          </div>
+        </div>
+
         <div className={styles.userInfo}>
           <h3>Кто получит товар?</h3>
           <div className={styles.choise_client_buttons}>

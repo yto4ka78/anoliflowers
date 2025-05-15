@@ -1,147 +1,172 @@
 @import "../../assets/styles/variables";
 
-@media (min-width: $desktop-width) {
-  .main_carousel {
-    position: relative;
-    .main_carousel_info {
+.main_carousel {
+  position: relative;
+  .main_carousel_info {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%, 0%);
+    width: 1180px;
+    flex-direction: column;
+    align-items: flex-start;
+    @media (max-width: $phone-width) {
       display: flex;
-      position: absolute;
-      left: 50%;
-      top: 10%;
-      transform: translate(-50%, 0%);
-      width: 1180px;
-      flex-direction: column;
-      align-items: flex-start;
-      .firstdiv {
-        font-size: 3.5rem;
-        color: white;
-        font-family: "NotoSerifLight";
-        font-weight: 600;
-        width: 600px;
-      }
-      .seconddiv {
-        margin-top: 50px;
-        font-size: 1.5rem;
-        color: white;
-        font-family: "NotoSerifLight";
-        width: 600px;
-      }
-      a {
-        margin-top: 50px;
-        display: flex;
-        width: 283px;
-        height: 84px;
-        font-size: 20px;
-        background: linear-gradient(to bottom, #f89cbe, #aa3c5b);
-        border-radius: 14px;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        color: white;
-        transition: 0.3s ease;
-        svg {
-          margin-right: 5px;
-        }
-        &:hover {
-          box-shadow: -10px 5px 25px rgb(0, 0, 0);
-        }
-      }
-      .thirddiv {
-        display: flex;
-        margin-top: 80px;
-        .thirddiv_relative {
-          padding: 10px;
-          border-radius: 60px;
-          background-color: white;
-          display: flex;
-          align-items: center;
-          margin-right: 20px;
-          div:nth-of-type(1) {
-            width: 50px;
-            img {
-              width: 100%;
-              height: 100%;
-              border-radius: 100px;
-            }
-          }
-          div:nth-of-type(2) {
-            margin: 0px 10px;
-            font-size: 1rem;
-            font-family: "DejaVuSerif";
-          }
-        }
-      }
+      width: 100%;
+      top: 5%;
+      padding-left: 10px;
     }
-    .main_carousel_title {
-      height: 750px;
-      img {
+    .firstdiv {
+      font-size: 3.5rem;
+      color: white;
+      font-family: "NotoSerifLight";
+      font-weight: 600;
+      width: 600px;
+      @media (max-width: $phone-width) {
+        font-size: 2rem;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: left top;
       }
     }
-  }
-}
-// Медиа для телефона
-@media (max-width: $phone-width) {
-  .carousel_custom {
-    overflow: hidden;
-    .carousel-inner {
-      .carousel-item {
-        height: 100%;
-        div {
-          padding: 20px;
-          width: 100%;
-          align-items: center;
-          color: #fff;
-          display: flex;
-          flex-direction: column;
-          font-family: NotCourierSans;
-          font-size: 1.8rem;
-          font-weight: 700;
-          left: 50%;
-          position: absolute;
-          text-align: center;
-          text-shadow: -1px -1px 3px #000;
-          top: 30%;
-          transform: translate(-50%, -50%);
-          z-index: 1;
-        }
-        a {
-          z-index: 1;
-          position: absolute;
-          transform: translate(-50%, -50%);
-          left: 50%;
-          top: 75%;
-          padding: 15px;
-          background-color: white;
-          color: black;
-          font-size: 1.2rem;
-          font-family: "NotCourierSans";
-          text-decoration: none;
-          transition: 0.3s;
-          &:hover {
-            background-color: rgb(222, 222, 222);
-          }
-        }
-        img {
-          height: 100%;
-          object-fit: cover;
-          transition: transform 10s ease-in-out;
-        }
-        &.active {
+    .seconddiv {
+      margin-top: 50px;
+      font-size: 1.5rem;
+      color: white;
+      font-family: "NotoSerifLight";
+      width: 600px;
+      @media (max-width: $phone-width) {
+        font-size: 1rem;
+        width: 80%;
+      }
+    }
+    a {
+      margin-top: 50px;
+      display: flex;
+      width: 283px;
+      height: 84px;
+      font-size: 20px;
+      background: linear-gradient(to bottom, #25d366, #128c7e);
+      border-radius: 14px;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s ease;
+      svg {
+        margin-right: 5px;
+      }
+      &:hover {
+        box-shadow: -10px 5px 25px rgb(0, 0, 0);
+      }
+    }
+    .thirddiv {
+      display: flex;
+      margin-top: 80px;
+      .thirddiv_relative {
+        padding: 10px;
+        border-radius: 60px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        div:nth-of-type(1) {
+          width: 50px;
           img {
-            transform: scale(1.4);
+            width: 100%;
+            height: 100%;
+            border-radius: 100px;
+          }
+        }
+        div:nth-of-type(2) {
+          margin: 0px 10px;
+          font-size: 1rem;
+          font-family: "DejaVuSerif";
+        }
+        @media (max-width: $phone-width) {
+          &:nth-of-type(2),
+          &:nth-of-type(3) {
+            display: none;
           }
         }
       }
     }
   }
-
-  .carouselImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .main_carousel_title {
+    height: 750px;
+    @media (max-width: $phone-width) {
+      width: 100%;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left top;
+      @media (max-width: $phone-width) {
+        object-position: 35% 50%;
+      }
+    }
   }
 }
+
+// Медиа для телефона
+// @media (max-width: $phone-width) {
+//   .carousel_custom {
+//     overflow: hidden;
+//     .carousel-inner {
+//       .carousel-item {
+//         height: 100%;
+//         div {
+//           padding: 20px;
+//           width: 100%;
+//           align-items: center;
+//           color: #fff;
+//           display: flex;
+//           flex-direction: column;
+//           font-family: NotCourierSans;
+//           font-size: 1.8rem;
+//           font-weight: 700;
+//           left: 50%;
+//           position: absolute;
+//           text-align: center;
+//           text-shadow: -1px -1px 3px #000;
+//           top: 30%;
+//           transform: translate(-50%, -50%);
+//           z-index: 1;
+//         }
+//         a {
+//           z-index: 1;
+//           position: absolute;
+//           transform: translate(-50%, -50%);
+//           left: 50%;
+//           top: 75%;
+//           padding: 15px;
+//           background-color: white;
+//           color: black;
+//           font-size: 1.2rem;
+//           font-family: "NotCourierSans";
+//           text-decoration: none;
+//           transition: 0.3s;
+//           &:hover {
+//             background-color: rgb(222, 222, 222);
+//           }
+//         }
+//         img {
+//           height: 100%;
+//           object-fit: cover;
+//           transition: transform 10s ease-in-out;
+//         }
+//         &.active {
+//           img {
+//             transform: scale(1.4);
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   .carouselImage {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//   }
+// }

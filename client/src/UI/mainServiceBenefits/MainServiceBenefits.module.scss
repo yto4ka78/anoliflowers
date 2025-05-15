@@ -1,0 +1,46 @@
+@import "../../assets/styles/mixin.scss";
+@import "../../assets/styles/variables";
+
+.main_service_benefits {
+  width: 100%;
+  background-color: #f9f9f9;
+  .service_benefits {
+    width: 1180px;
+    margin: auto;
+    display: flex;
+    padding: 60px 0px;
+    .service_benefits_Section {
+      padding: 0px 40px;
+      width: 25%;
+
+      @media (max-width: $phone-width) {
+        width: 100%;
+      }
+    }
+    .service_benefits_img {
+      width: 60px;
+      img {
+        width: 100%;
+      }
+    }
+    .service_benefits_title {
+      font-family: "TimelessMemoriesRegular";
+      font-weight: 300;
+      margin: 20px 0px;
+      font-size: 1.1rem;
+    }
+    .service_benefits_text {
+      font-family: "Karma";
+    }
+    .vertical_line {
+      width: 1px;
+      background-color: #ccc;
+      border: none;
+    }
+    @media (max-width: $phone-width) {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

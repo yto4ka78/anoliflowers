@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProtectedRoute from "./utils/protectedRoute";
 import Main from "./views/main/Main";
@@ -20,23 +21,18 @@ import Delivery from "./views/delivery/Delivery.jsx";
 import EmailChanged from "./views/registration/EmailChanged.jsx";
 import ForgetPassword from "./views/registration/ForgetPassword.jsx";
 import ResetPassword from "./views/registration/ResetPassword.jsx";
+import MapSite from "./views/mapSite/MapSite.jsx";
 
 function App() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        marginTop: "118px",
-      }}
-    >
+    <div className="app_container">
       <BrowserRouter>
         <NavBar />
         <div style={{ flex: "1" }}>
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/contacts" element={<Contacts />} />
+            <Route path="/mapsite" element={<MapSite />} />
             <Route path="/allCategories" element={<AllCategory />} />
             <Route path="/category/:id" element={<CategorySpecial />} />
             <Route path="/product_page/:id" element={<ProductPage />} />

@@ -4,6 +4,11 @@
   width: 1180px;
   margin: auto;
   display: flex;
+  @media (max-width: $phone-width) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }
 .headTitle {
   h2 {
@@ -18,6 +23,10 @@
 }
 .leftPart {
   width: 65%;
+  @media (max-width: $phone-width) {
+    padding: 15px;
+    width: 100%;
+  }
 }
 .lackOfBouquets {
   padding: 10px 0px;
@@ -221,6 +230,10 @@
           }
         }
       }
+      @media (max-width: $phone-width) {
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 }
@@ -329,6 +342,15 @@
           padding: 0px 10px;
           border-radius: 100px;
         }
+        @media (max-width: $phone-width) {
+          width: 100%;
+          margin-bottom: 5px;
+        }
+      }
+      @media (max-width: $phone-width) {
+        display: flex;
+        flex-direction: column;
+        margin: 0px;
       }
     }
   }
@@ -376,6 +398,9 @@
       color: black;
     }
   }
+  @media (max-width: $phone-width) {
+    width: 100%;
+  }
 }
 
 .sendButton {
@@ -394,6 +419,48 @@
   font-style: italic;
   color: gray;
   margin-bottom: 20px;
+}
+
+//Для общенй информации о заказе
+.orderInfo_phone {
+  width: 100%;
+  .orderTitle {
+    background-color: $color-primary;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-family: "CrimsonRoman";
+    font-weight: lighter;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    color: $color-text;
+    margin-bottom: 10px;
+    margin-top: 30px;
+  }
+  .orderDetails {
+    background-color: $color-primary;
+    border-radius: 10px;
+    padding: 20px 20px;
+    font-family: "CrimsonRoman";
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    color: $color-text;
+    .orderText {
+      display: flex;
+    }
+    .flex {
+      flex: 1;
+      border-bottom: dashed black 1px;
+      margin-bottom: 8px;
+    }
+  }
+  button {
+    margin: 10px 0px !important;
+    font-size: 1.2rem !important;
+    @include greenButton;
+  }
+  @media (min-width: $phone-width) {
+    display: none;
+  }
 }
 
 .orderInfo {
@@ -436,5 +503,8 @@
     margin: 10px 0px !important;
     font-size: 1.2rem !important;
     @include greenButton;
+  }
+  @media (max-width: $phone-width) {
+    display: none;
   }
 }

@@ -1,5 +1,5 @@
-// OrderRootDetail.module.scss
-@import "../../assets/styles/mixin";
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixin.scss";
 .orderRootDetail_main {
   display: flex;
   justify-content: center;
@@ -13,6 +13,9 @@
   padding: 20px;
   font-family: "Arial", sans-serif;
   width: 60%;
+  @media (max-width: $phone-width) {
+    width: 100%;
+  }
 }
 
 .orderRootDetail_row {

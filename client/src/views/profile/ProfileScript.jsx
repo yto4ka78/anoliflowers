@@ -35,6 +35,12 @@ const ProfileScript = () => {
     }
   };
   const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      localStorage.removeItem("token");
+      window.location.href = "/";
+    } catch {}
+  };
 
   return (
     <div className={styles.profileScript_main}>
@@ -44,6 +50,7 @@ const ProfileScript = () => {
           <img src="/busket_profile.svg" alt="" />
           Заказы
         </button>
+        <hr />
         {/* <button onClick={() => setActiveProfileView("address")}>
           {" "}
           <img src="/phoneicon_profile.svg" alt="" />
@@ -53,13 +60,15 @@ const ProfileScript = () => {
           <img src="/phoneicon_profile.svg" alt="" />
           Анкета
         </button>
+        <hr />
         {/* {userHasRole("root") && ( */}
         <button onClick={() => navigate("/dashboard")}>
           <img src="/adminicon_profile.svg" alt="" />
           Admin
         </button>
+        <hr />
         {/*)} */}
-        <button onClick={() => setActiveProfileView("profile")}>
+        <button onClick={() => handleLogout()}>
           <img src="/desconnecticon_profile.svg" alt="" />
           Выйти
         </button>

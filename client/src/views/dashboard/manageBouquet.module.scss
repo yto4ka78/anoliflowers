@@ -3,7 +3,7 @@
 
 @media (min-width: $desktop-width) {
   .manageBouquet_header {
-    background-color: #eee2da;
+    background-color: $color-profile-div;
     padding: 10px;
     display: flex;
     flex-direction: row;

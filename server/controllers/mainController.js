@@ -83,6 +83,15 @@ class MainController {
       });
     }
   }
+
+  static async getCategoriesForMapSite(req, res) {
+    try {
+      const categories = await Category.findAll();
+      res.json({ categories: categories });
+    } catch (err) {
+      showError(err);
+    }
+  }
 }
 
 module.exports = MainController;

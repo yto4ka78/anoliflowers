@@ -1,107 +1,4 @@
-@mixin centerText {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  text-align: center;
-}
-
-@mixin footerText {
-  div:nth-child(1) {
-    font-family: "DejaVuSerif";
-    font-size: 1.2rem;
-  }
-  div:nth-child(2) {
-    font-family: "CrimsonRoman";
-    font-size: 1rem;
-  }
-}
-
-@mixin mainContact {
-  div:nth-child(1) {
-    font-family: "CrimsonRoman";
-    font-size: 2rem;
-  }
-  div:nth-child(2) {
-    font-family: "NotCourierSans";
-    font-size: 1rem;
-  }
-}
-
-@mixin registrationForm {
-  padding: 10px;
-  width: 50%;
-  div:nth-child(1) {
-    font-family: "DejaVuSerif";
-    font-size: 2rem;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0px;
-    background-color: #e0e0e042;
-    border: 1px solid #a49864;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    label {
-      color: gray;
-      margin: 10px 0px;
-    }
-    input {
-      border-radius: 5px;
-      border: 1px solid gray;
-      padding: 5px;
-    }
-    button {
-      width: 30%;
-      background-color: #a49864;
-      border-radius: 5px;
-      border: none;
-      margin: 10px 0;
-      padding: 5px;
-      color: white;
-      font-family: "Kalnia";
-      font-weight: bold;
-      &:hover {
-        background-color: rgb(212, 212, 212);
-        color: rgb(105, 105, 105);
-      }
-    }
-    .errorDiv {
-      font-family: "DejaVuSerif";
-      font-size: 0.8rem;
-      color: rgb(166, 0, 0);
-      margin-top: 5px;
-    }
-  }
-}
-
-@mixin pinkyButton {
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  width: 100%;
-  min-height: 65px;
-  color: #fff;
-  font: 15px "Kalnia", sans-serif;
-  text-transform: uppercase;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 10px 20px;
-  margin: 0 0 20px 0;
-  border: solid 1px #7a9874;
-  background: #7a9874;
-  border-radius: 5px;
-  box-sizing: border-box;
-  width: 30%;
-}
+@import "./variables";
 
 @mixin greenButton {
   cursor: pointer;
@@ -109,7 +6,7 @@
   display: flex;
   width: 100%;
   min-height: 65px;
-  color: #fff;
+  color: $color-background;
   font: 15px "Kalnia", sans-serif;
   text-transform: uppercase;
   align-items: center;
@@ -117,14 +14,14 @@
   text-align: center;
   padding: 10px 20px;
   margin: 0 0 20px 0;
-  border: solid 1px #7a9874;
-  background: #7a9874;
+  border: solid 1px $color-button;
+  background: $color-button;
   border-radius: 5px;
   box-sizing: border-box;
   transition: 0.3s;
   &:hover {
-    background: white;
-    color: #7a9874;
+    background: $color-background;
+    color: $color-button;
   }
 }
 
@@ -134,7 +31,7 @@
   display: flex;
   width: 100%;
   min-height: 65px;
-  color: #7a9874;
+  color: $color-button;
   font: 15px "Kalnia", sans-serif;
   text-transform: uppercase;
   align-items: center;
@@ -142,13 +39,13 @@
   text-align: center;
   padding: 10px 20px;
   margin: 0 0 20px 0;
-  border: solid 1px #7a9874;
-  background: white;
+  border: solid 1px $color-button;
+  background: $color-background;
   border-radius: 5px;
   box-sizing: border-box;
   transition: 0.3s;
   &:hover {
-    background: #7a9874;
+    background: $color-button;
     color: white;
   }
 }

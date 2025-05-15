@@ -1,4 +1,6 @@
+@import "../../assets/styles/variables";
 @import "../../assets/styles/mixin.scss";
+
 .registrationContainer {
   width: 1180px;
   margin: auto;
@@ -54,7 +56,7 @@
   }
   .submitButton {
     font-family: "Georgia";
-    background-color: #7a9675;
+    background-color: $color-button;
     color: white;
     padding: 15px 50px;
     border: none;
@@ -64,6 +66,10 @@
     transition: background-color 0.3s ease;
   }
   .submitButton:hover {
-    background-color: #6b8668;
+    background-color: $color-button-hover;
+  }
+  @media (max-width: $phone-width) {
+    width: 100%;
+    padding: 100px 10px 100px 10px;
   }
 }

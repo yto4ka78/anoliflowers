@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/cartSlice.js";
 import ContactWhatsApp from "../contactWhatsApp/ContactWhatsApp.jsx";
 import { useNavigate } from "react-router-dom";
+import MainServiceBenefits from "../mainServiceBenefits/MainServiceBenefits.jsx";
+import SomeInfo from "../someInfo/SomeInfo.jsx";
 
 const ProductPage = () => {
   const navigate = useNavigate();
@@ -160,90 +162,9 @@ const ProductPage = () => {
         <ContactWhatsApp> </ContactWhatsApp>
       </div>
 
-      <div className={styles.main_someInfo}>
-        <div className={styles.someInfo_centre}>
-          <div className={styles.someInfo_flex}>
-            <div className={styles.someInfo_image}>
-              <img src="/icon_someInfo.svg" alt="" />
-            </div>
-            <div>
-              <p className={styles.someInfo_textBold}>Гарантия свежести</p>
-              <p className={styles.someInfo_textNormal}>7 дней</p>
-            </div>
-          </div>
-          <div className={styles.someInfo_flex}>
-            <div className={styles.someInfo_image}>
-              {" "}
-              <p>10%</p>
-            </div>
-            <div>
-              <p className={styles.someInfo_textBold}>Скидка 10%</p>
-              <p className={styles.someInfo_textNormal}>при самовывозе</p>
-            </div>
-          </div>
-          <div className={styles.someInfo_flex}>
-            <div className={styles.someInfo_image2}>
-              <img src="/icon_someInfo2.png" alt="" />
-            </div>
-            <div>
-              <p className={styles.someInfo_textNormal}>Быстрая</p>
-              <p className={styles.someInfo_textBold}>оплата переводом</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <SomeInfo></SomeInfo>
 
-      <div className={styles.main_service_benefits}>
-        <div className={styles.service_benefits}>
-          <div className={styles.service_benefits_Section}>
-            <div className={styles.service_benefits_img}>
-              <img src="/service_benefits_firstSection.svg" alt="" />
-            </div>
-            <div className={styles.service_benefits_title}>
-              ОТКРЫТКА К БУКЕТУ
-            </div>
-            <div className={styles.service_benefits_text}>
-              По желанию в букет положим <strong>бесплатную открытку</strong> с
-              пожеланиями получателю букета от вашего имени.
-            </div>
-          </div>
-          <hr className={styles.vertical_line} />
-          <div className={styles.service_benefits_Section}>
-            <div>
-              <img src="/service_benefits_secondSection.svg" alt="" />
-            </div>
-            <div className={styles.service_benefits_title}>ФОТООТЧЁТ</div>
-            <div className={styles.service_benefits_text}>
-              <strong>Фотографируем ваш букет</strong> перед отправкой, чтобы вы
-              были спокойны - доставят то, что заказывали.
-            </div>
-          </div>
-          <hr className={styles.vertical_line} />
-          <div className={styles.service_benefits_Section}>
-            <div>
-              <img src="/service_benefits_thirdSection.svg" alt="" />
-            </div>
-            <div className={styles.service_benefits_title}>
-              СМС-ИНФОРМИРОВАНИЕ
-            </div>
-            <div className={styles.service_benefits_text}>
-              <strong>Информируем</strong> обо всех этапах доставки: когда
-              подарок собран, когда доставляется и когда доставлен.
-            </div>
-          </div>
-          <hr className={styles.vertical_line} />
-          <div className={styles.service_benefits_Section}>
-            <div>
-              <img src="/service_benefits_fourthSection.svg" alt="" />
-            </div>
-            <div className={styles.service_benefits_title}>ВИДЕООТЧЁТ</div>
-            <div className={styles.service_benefits_text}>
-              <strong>Записываем на видео эмоции</strong> счастливого получателя
-              вашего подарка
-            </div>
-          </div>
-        </div>
-      </div>
+      <MainServiceBenefits></MainServiceBenefits>
     </div>
   );
 };

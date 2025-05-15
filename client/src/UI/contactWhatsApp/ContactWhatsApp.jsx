@@ -38,7 +38,7 @@ const ContactWhatsApp = () => {
             value={phoneNumber}
             placeholder="+7 (ˍˍˍ) ˍˍˍ ˍˍ ˍˍ"
           />
-          <img src="icon_phone.svg" alt="" />
+          <img src="icon_phone.png" alt="" />
           {errorPhone && (
             <div className={styles.error_phone}>Неправильно введен номер</div>
           )}
