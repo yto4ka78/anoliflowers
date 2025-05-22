@@ -61,13 +61,12 @@ const ProfileScript = () => {
           Анкета
         </button>
         <hr />
-        {/* {userHasRole("root") && ( */}
-        <button onClick={() => navigate("/dashboard")}>
-          <img src="/adminicon_profile.svg" alt="" />
-          Admin
-        </button>
-        <hr />
-        {/*)} */}
+        {userHasRole("root") && (
+          <button onClick={() => navigate("/dashboard")}>
+            <img src="/adminicon_profile.svg" alt="" />
+            Admin
+          </button>
+        )}
         <button onClick={() => handleLogout()}>
           <img src="/desconnecticon_profile.svg" alt="" />
           Выйти

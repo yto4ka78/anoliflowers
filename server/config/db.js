@@ -8,6 +8,13 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: "mysql",
+    logging: false, // отключает SQL-логи
+    pool: {
+      max: 10, // максимум одновременных соединений
+      min: 1,
+      acquire: 30000, // максимум 30 сек ждать соединение
+      idle: 10000, // закрывать "пустые" соединения через 10 сек
+    },
   }
 );
 

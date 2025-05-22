@@ -11,11 +11,7 @@ class registrationController {
     const t = await sequelize.transaction();
     try {
       const { email, password } = req.body;
-
-      let rawIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-      if (rawIp === "::1") rawIp = "127.0.0.1";
-      if (rawIp.startsWith("::ffff:")) rawIp = rawIp.replace("::ffff:", "");
-      const ip = rawIp;
+      const ip = req.ip;
 
       const today = new Date().toISOString().split("T")[0];
 
@@ -46,11 +42,6 @@ class registrationController {
         expiresIn: "60m",
       });
       const url = `http://localhost:5000/email-verified?token=${emailToken}`;
-      await sendEmail({
-        to: email,
-        subject: "Подтверждение email",
-        html: `<p>Нажмите по ссылке, чтобы подтвердить email:</p><a href="${url}">${url}</a>`,
-      });
 
       await RegistrationLog.create({ ip, date: today }, { transaction: t });
       await t.commit();
@@ -58,6 +49,13 @@ class registrationController {
       res.status(201).json({
         message: "Пользователь зарегистрирован. Подтвердите email через почту.",
         condition: true,
+      });
+      sendEmail({
+        to: email,
+        subject: "Подтверждение email Anoli Flowers",
+        html: `<p>Нажмите по ссылке, чтобы подтвердить email:</p><a href="${url}">${url}</a>`,
+      }).catch((err) => {
+        console.error("Ошибка при отправке письма:", err);
       });
     } catch (err) {
       await t.rollback();

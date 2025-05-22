@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Login.module.scss";
-import axios from "axios";
+import api from "../../utils/api";
 const Login = () => {
   const [logFormData, setLogFormData] = useState({
     logEmail: "",
@@ -20,7 +20,7 @@ const Login = () => {
     data.append("logEmail", logFormData.logEmail);
     data.append("logPassword", logFormData.logPassword);
     try {
-      const response = await axios.post("api/login/login", data, {
+      const response = await api.post("/login/login", data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -56,6 +56,7 @@ const Login = () => {
           Имя пользователя или Email *
         </label>
         <input
+          required
           type="email"
           id="logEmail"
           name="logEmail"
@@ -67,6 +68,7 @@ const Login = () => {
           Пароль *
         </label>
         <input
+          required
           type="password"
           id="logPassword"
           name="logPassword"

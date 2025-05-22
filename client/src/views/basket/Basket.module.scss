@@ -1,6 +1,7 @@
 @import "../../assets/styles/variables.scss";
 @import "../../assets/styles/mixin.scss";
 .main {
+  position: relative;
   width: 1180px;
   margin: auto;
   display: flex;
@@ -467,7 +468,7 @@
   z-index: 1;
   top: 7px;
   position: absolute;
-  right: 410px;
+  right: 50px;
   width: 350px;
   transition: transform 0.2s ease-out;
   .orderTitle {

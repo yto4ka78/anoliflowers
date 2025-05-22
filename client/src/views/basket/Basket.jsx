@@ -515,29 +515,29 @@ const Basket = () => {
             {/* Зелёная зона */}
             <Circle
               center={center}
-              radius={3000}
-              pathOptions={{ color: "green", fillOpacity: 0.3 }}
+              radius={10000}
+              pathOptions={{ color: "blue", fillOpacity: 0.1 }}
             >
-              <Popup>Зона 1: Бесплатная доставка</Popup>
+              <Popup>Доставка (зона 3) 4000 ₸</Popup>
             </Circle>
-
-            {/* Красная зона */}
             <Circle
               center={center}
               radius={6000}
               pathOptions={{ color: "red", fillOpacity: 0.2 }}
             >
-              <Popup>Зона 2: 1000 ₸</Popup>
+              <Popup>Доставка (зона 2) 3000 ₸</Popup>
             </Circle>
-
-            {/* Синяя зона */}
             <Circle
               center={center}
-              radius={10000}
-              pathOptions={{ color: "blue", fillOpacity: 0.1 }}
+              radius={3000}
+              pathOptions={{ color: "green", fillOpacity: 0.3 }}
             >
-              <Popup>Зона 3: 2000 ₸</Popup>
+              <Popup>Доставка от 2500 ₸</Popup>
             </Circle>
+
+            {/* Красная зона */}
+
+            {/* Синяя зона */}
           </MapContainer>
           <div className={styles.map_info}>
             <div className={styles.map_info_flex}>

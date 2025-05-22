@@ -36,6 +36,7 @@ const NavBar = () => {
     setSubmenuPos({ left: rect.right });
     setActiveCategoryIndex(index);
   };
+
   useEffect(() => {
     const handleResize = () => {
       if (

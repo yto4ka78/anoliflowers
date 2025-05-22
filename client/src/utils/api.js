@@ -1,3 +1,4 @@
+// import { isPending } from "@reduxjs/toolkit";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -41,4 +42,34 @@ api.interceptors.response.use(
   }
 );
 
-export default api;
+const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+let lastRequest = Promise.resolve();
+let isPending = false;
+
+const rateLimitedRequest = async (method, ...args) => {
+  if (isPending) return; // запрет повторного вызова
+  isPending = true;
+
+  try {
+    await sleep(500); // если нужен искусственный интервал
+    return await method(...args);
+  } catch (err) {
+    throw err;
+  } finally {
+    isPending = false;
+  }
+};
+
+// === Оборачиваем все методы ===
+const wrappedApi = {
+  get: (...args) => rateLimitedRequest(api.get, ...args),
+  post: (...args) => rateLimitedRequest(api.post, ...args),
+  put: (...args) => rateLimitedRequest(api.put, ...args),
+  delete: (...args) => rateLimitedRequest(api.delete, ...args),
+  patch: (...args) => rateLimitedRequest(api.patch, ...args),
+  request: (...args) => rateLimitedRequest(api.request, ...args),
+  // Оригинальный axios, если нужно без ограничений
+  raw: api,
+};
+
+export default wrappedApi;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./registration.module.scss";
 import axios from "axios";
+import api from "../../utils/api";
 
 const Registration = () => {
   const [regFormData, setregFormData] = useState({
@@ -24,7 +25,7 @@ const Registration = () => {
     data.append("email", regFormData.regEmail);
     data.append("password", regFormData.regPassword);
     try {
-      const response = await axios.post("/api/registration/registration", {
+      const response = await api.post("/registration/registration", {
         email: regFormData.regEmail,
         password: regFormData.regPassword,
       });
@@ -50,6 +51,7 @@ const Registration = () => {
           Email *
         </label>
         <input
+          required
           type="email"
           id="regEmail"
           name="regEmail"
@@ -61,6 +63,7 @@ const Registration = () => {
           Пароль *
         </label>
         <input
+          required
           type="password"
           id="regPassword"
           name="regPassword"
@@ -72,6 +75,7 @@ const Registration = () => {
           Повторите пароль *
         </label>
         <input
+          required
           type="password"
           id="regRepPassword"
           name="regRepPassword"

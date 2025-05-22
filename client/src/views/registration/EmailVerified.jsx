@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./EmailVerified.module.scss";
+import api from "../../utils/api";
 
 const EmailVerified = () => {
   const [message, setMessage] = useState("Проверка токена...");

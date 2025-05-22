@@ -7,6 +7,8 @@ import FlowerShow from "../../UI/flowerShow/FlowerShow";
 import ContactWhatsApp from "../../UI/contactWhatsApp/ContactWhatsApp";
 import SomeInfo from "../../UI/someInfo/SomeInfo";
 import MainServiceBenefits from "../../UI/mainServiceBenefits/MainServiceBenefits";
+import api from "../../utils/api";
+
 const Main = () => {
   const [flowers, setFlowers] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
@@ -36,7 +38,7 @@ const Main = () => {
 
   const handlePriceFilterChange = async (ranges) => {
     try {
-      const response = await fetch("/api/main/");
+      const response = await api.get("/main/");
       let result = await response.json();
 
       if (!Array.isArray(result)) return;
