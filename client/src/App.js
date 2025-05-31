@@ -22,11 +22,18 @@ import EmailChanged from "./views/registration/EmailChanged.jsx";
 import ForgetPassword from "./views/registration/ForgetPassword.jsx";
 import ResetPassword from "./views/registration/ResetPassword.jsx";
 import MapSite from "./views/mapSite/MapSite.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div className="app_container">
       <BrowserRouter>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          theme="light"
+        />
         <NavBar />
         <div style={{ flex: "1" }}>
           <Routes>

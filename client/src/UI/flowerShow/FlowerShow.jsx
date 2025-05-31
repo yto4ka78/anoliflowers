@@ -3,8 +3,11 @@ import styles from "./FlowerShow.module.scss";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/cartSlice";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const FlowerShow = ({ flower, index }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
     <div className={styles.main_product} key={index}>
@@ -38,30 +41,40 @@ const FlowerShow = ({ flower, index }) => {
         </div>
         <div className={styles.flowerButton}>
           <button
-            onClick={() =>
+            onClick={() => {
               dispatch(
                 addToCart({
                   id: flower.id,
                   price: flower.saleprice || flower.price,
                   size: "S",
                 })
-              )
-            }
+              );
+              navigate("/basket");
+            }}
           >
             Купить в 1 клик
           </button>
           <button
-            onClick={() =>
+            onClick={() => {
               dispatch(
                 addToCart({
                   id: flower.id,
                   price: flower.saleprice || flower.price,
                   size: "S",
                 })
-              )
-            }
+              );
+              toast.success("Добавлено!", {
+                position: "bottom-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "dark",
+              });
+            }}
           >
-            в корзину
+            В корзину
           </button>
         </div>
       </div>

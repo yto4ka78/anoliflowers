@@ -23,8 +23,8 @@ const Main = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/main/");
-        let result = await response.json();
+        const response = await api.get("/main");
+        let result = response.data;
         if (Array.isArray(result)) {
           // result = mixArray(result);
           setFlowers(result.slice(0, bouquetInPage));
@@ -38,8 +38,8 @@ const Main = () => {
 
   const handlePriceFilterChange = async (ranges) => {
     try {
-      const response = await api.get("/main/");
-      let result = await response.json();
+      const response = await api.get("/main");
+      let result = response.data;
 
       if (!Array.isArray(result)) return;
 

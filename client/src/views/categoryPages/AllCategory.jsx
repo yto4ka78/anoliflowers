@@ -61,7 +61,30 @@ const AllCategory = () => {
             </Link>
           ))}
       </div>
-      {categorySelected &&
+      {categorySelected && (
+        <div>
+          <div className={styles.allCategories_TextHeader}>
+            <h2>
+              <span>Розы</span>
+            </h2>
+          </div>
+          <div className={styles.allCategories_list}>
+            {Array.isArray(categorySelected) &&
+              categorySelected.map((category) => (
+                <Link
+                  to={`/category/${category.id}`}
+                  key={category.id}
+                  state={{ id: category.id }}
+                  className={styles.allCategories_category}
+                >
+                  <img src={category.imageUrl[0]} alt={category.Name} />
+                  <div className={styles.category_title}>{category.Name}</div>
+                </Link>
+              ))}
+          </div>
+        </div>
+      )}
+      {/* {categorySelected &&
         categorySelected.map((category) => (
           <div>
             <div className={styles.allCategories_TextHeader}>
@@ -84,7 +107,7 @@ const AllCategory = () => {
                 ))}
             </div>
           </div>
-        ))}
+        ))} */}
       <div className={styles.allCategories_TextHeader}>
         <h2>
           <span>Другие </span>категории

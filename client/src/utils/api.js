@@ -43,20 +43,19 @@ api.interceptors.response.use(
 );
 
 const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
-let lastRequest = Promise.resolve();
-let isPending = false;
+const isPendingMap = new Map();
 
-const rateLimitedRequest = async (method, ...args) => {
-  if (isPending) return; // запрет повторного вызова
-  isPending = true;
+const rateLimitedRequest = async (method, url, ...args) => {
+  if (isPendingMap.get(url)) return;
+  isPendingMap.set(url, true);
 
   try {
-    await sleep(500); // если нужен искусственный интервал
-    return await method(...args);
+    await sleep(500); // если нужен
+    return await method(url, ...args);
   } catch (err) {
     throw err;
   } finally {
-    isPending = false;
+    isPendingMap.set(url, false);
   }
 };
 
